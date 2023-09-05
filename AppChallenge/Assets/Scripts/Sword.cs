@@ -12,6 +12,7 @@ public class Sword : MonoBehaviour
     public float parryDamage;
     [SerializeField] private GameObject visual;
     [SerializeField] private BoxCollider2D bCollider;
+    [SerializeField] private BoxCollider2D sweetBCollider;
     static public Sword instance;
 
 
@@ -27,7 +28,7 @@ public class Sword : MonoBehaviour
         swordActiveTime = 0;
         visual.SetActive(false);
         bCollider.enabled = false;
-
+        sweetBCollider.enabled = false;
 
     }
 
@@ -39,6 +40,7 @@ public class Sword : MonoBehaviour
         bool swordActive = swordActiveTime > 0;
         visual.SetActive(swordActive);
         bCollider.enabled = swordActive;
+        sweetBCollider.enabled = swordActive;
 
         if (Input.GetKey(KeyCode.Space) && swordCooldown <= 0)
         {
@@ -46,15 +48,17 @@ public class Sword : MonoBehaviour
             swordCooldown = 1f;
             swordActiveTime = 0.2f;
             canDealDamage = true;
+            sweetBCollider.enabled = true;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 6 && canDealDamage)
+        //parry bullet
+        if (collision.gameObject.layer == 6)
         {
-            print("bazing");
             canDealDamage = false;
+            sweetBCollider.enabled = false;
             collision.GetComponent<Bullet>().isFriendly = true;
             collision.GetComponent<Bullet>().currentStoredDamage = parryDamage;
             collision.GetComponent<Rigidbody2D>().velocity = (Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position)).normalized * bulletParrySpeed;

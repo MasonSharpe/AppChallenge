@@ -8,8 +8,14 @@ public class Enemy : MonoBehaviour{
     [SerializeField] private float bulletSpeed = 150;
     private float shootCooldown = 0;
     [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private GameObject xpPrefab;
     public float health;
 
+
+    private void Start()
+    {
+        health = 3 + (int)(EnemySpawner.instance.levelTimer / 6f);
+    }
 
     private void Update()
     {
@@ -25,7 +31,6 @@ public class Enemy : MonoBehaviour{
             bullet.GetComponent<Rigidbody2D>().velocity = bulletSpeed * dir;
             bullet.isFriendly = false;
 
-            Destroy(bullet, 5);
 
             shootCooldown = 1.5f;
         }
@@ -34,22 +39,28 @@ public class Enemy : MonoBehaviour{
     private void GetHit(float damage)
     {
         health -= damage;
+        if (health <= 0)
+        {
+            GameObject xp = Instantiate(xpPrefab, XpHandler.instance.transform);
+            xp.transform.position = transform.position;
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //hit by sword
         if (collision.gameObject.layer == 3 && Sword.instance.canDealDamage)
         {
-            print("ow");
             GetHit(Sword.instance.swingDamage);
 
         }
 
+        //hit by player bullet
         if (collision.gameObject.layer == 6)
         {
             if (collision.GetComponent<Bullet>().isFriendly)
             {
-                print("owiewowie");
                 GetHit(collision.GetComponent<Bullet>().currentStoredDamage);
             }
         }
