@@ -20,8 +20,7 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.layer == 9)
         {
             currentStoredDamage *= 2;
-            rb.velocity *= 1.3f;
-            print("ya!");
+            rb.velocity *= 1.5f;
         }
     }
 

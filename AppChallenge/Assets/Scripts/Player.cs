@@ -37,6 +37,8 @@ public class Player : MonoBehaviour
 
 	//TODO AT HOME: add bullet spread, fix health bars
 
+	//make bullet blue
+
 	private void Update()
 	{
 		invincPeriod -= Time.deltaTime;
