@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 1179294381346732822}
   - component: {fileID: -6473268565544530559}
   m_Layer: 6
-  m_Name: Circle
+  m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -221,3 +221,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a4918469dd14c044be00a5a61cdc21f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFriendly: 0
+  currentStoredDamage: 0
+  rb: {fileID: 1873920214208651020}
