@@ -6,7 +6,7 @@ public class Sword : MonoBehaviour
 {
     private float swordCooldown;
     private float swordActiveTime;
-    [SerializeField] private float bulletParrySpeed;
+    public float bulletParrySpeed;
     public bool canDealDamage;
     public float swingDamage;
     public float parryDamage;
@@ -59,9 +59,11 @@ public class Sword : MonoBehaviour
         {
             canDealDamage = false;
             sweetBCollider.enabled = false;
-            collision.GetComponent<Bullet>().isFriendly = true;
-            collision.GetComponent<Bullet>().currentStoredDamage = parryDamage;
-            collision.GetComponent<Rigidbody2D>().velocity = (Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position)).normalized * bulletParrySpeed;
+            Bullet bullet = collision.GetComponent<Bullet>();
+            bullet.isFriendly = true;
+            bullet.currentStoredDamage = parryDamage;
+            bullet.rb.velocity = (Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position)).normalized * bulletParrySpeed;
+            bullet.spriteRenderer.color = Color.cyan;
         }
     }
 

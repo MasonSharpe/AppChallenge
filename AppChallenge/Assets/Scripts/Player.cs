@@ -79,11 +79,12 @@ public class Player : MonoBehaviour
 		if(collision.gameObject.layer == 10)
         {
 			xp++;
-			if (xp >= level * 3)
+			if (xp >= Mathf.RoundToInt(Mathf.Pow(level, 1.5f) + 3))
             {
 				level++;
 				xp = 0;
-				xpSlider.maxValue = level * level;
+				xpSlider.maxValue = Mathf.Pow(level, 1.5f) + 3;
+				LevelUpScreen.instance.Show();
             }
 
 			Destroy(collision.gameObject);

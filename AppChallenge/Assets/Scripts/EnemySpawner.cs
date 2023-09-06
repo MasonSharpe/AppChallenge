@@ -9,6 +9,7 @@ public class EnemySpawner : MonoBehaviour
     private float spawnTimer;
     public float levelTimer;
     public static EnemySpawner instance;
+    public Transform[] spawnPositions; 
 
     private void Awake()
     {
@@ -28,13 +29,18 @@ public class EnemySpawner : MonoBehaviour
 
         if (spawnTimer <= 0)
         {
-            Vector3 range = new(Random.Range(-10, 10), Random.Range(-10, 10), 0);
-            float spawnAmount = Random.Range(2, 4 + (levelTimer * 0.1f));
+            float spawnAmount = Random.Range(1, 2 + (levelTimer * 0.1f));
+            int location = Random.Range(0, spawnPositions.Length);
+
 
             for (int i = 0; i < spawnAmount; i++){
 
                 Enemy enemy = Instantiate(enemyPrefab, transform);
-                enemy.transform.position = range + new Vector3(Random.Range(1f, 4f), Random.Range(1f, 4f), 0);
+                for (int e = 0; e < 10; e++)
+                {
+                    enemy.transform.position = spawnPositions[location].position + (Vector3)(Random.insideUnitCircle * 2);
+                    if ((Player.instance.transform.position - enemy.transform.position).magnitude > 5) break;
+                }
 
             }
 

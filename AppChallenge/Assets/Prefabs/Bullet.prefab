@@ -224,3 +224,4 @@ MonoBehaviour:
   isFriendly: 0
   currentStoredDamage: 0
   rb: {fileID: 1873920214208651020}
+  spriteRenderer: {fileID: 2913059004580052974}
