@@ -25,11 +25,11 @@ public class EnemySpawner : MonoBehaviour
     private void Update()
     {
         spawnTimer -= Time.deltaTime;
-        levelTimer -= Time.deltaTime;
+        levelTimer += Time.deltaTime;
 
         if (spawnTimer <= 0)
         {
-            float spawnAmount = Random.Range(1, 2 + (levelTimer * 0.1f));
+            float spawnAmount = Random.Range(2, 2 + (levelTimer * 0.1f));
             int location = Random.Range(0, spawnPositions.Length);
 
 
