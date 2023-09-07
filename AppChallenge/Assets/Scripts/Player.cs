@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
 	[SerializeField] private Slider healthSlider;
 	[SerializeField] private Slider xpSlider;
 	[SerializeField] private TextMeshProUGUI levelText;
+	[SerializeField] private GameObject loadedAreas;
 	static public Player instance;
 	public float health;
 	public int xp;
@@ -31,7 +32,6 @@ public class Player : MonoBehaviour
 		health = 10;
 		level = 1;
 		xp = 0;
-
 	}
 
 
@@ -73,8 +73,9 @@ public class Player : MonoBehaviour
 				health -= 1;
 				invincPeriod = 0.5f;
 				Destroy(collision.gameObject);
-            }
-        }
+
+			}
+		}
 		//xp
 		if(collision.gameObject.layer == 10)
         {
@@ -89,5 +90,10 @@ public class Player : MonoBehaviour
 
 			Destroy(collision.gameObject);
 		}
+		//areaTrigger
+		if (collision.gameObject.layer == 12)
+        {
+			//AreaManager.instance.LoadTriggered();
+        }
     }
 }
