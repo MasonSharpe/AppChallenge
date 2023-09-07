@@ -173,7 +173,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a2d46119941f154da550ed84b4d5730
+      spriteID: 8f2dfaf5d349ddd4a9862d6117f48f57
       internalID: -1610186304
       vertices: []
       indices: 
@@ -194,7 +194,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 426de075fe5fbb84eb947006fd79c69f
+      spriteID: 3f313ddeeb6ab5045988e38222ac3d69
       internalID: -251665774
       vertices: []
       indices: 
@@ -215,7 +215,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ead12cf5c860d5548a574591a86a4e66
+      spriteID: a8451cbc38065104a9e15698749d68e7
       internalID: -1372612232
       vertices: []
       indices: 
@@ -236,7 +236,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ff228a16ede6f6458f641ca94b7e4a2
+      spriteID: f16514f73de872c4786e4b4157add50a
       internalID: 118585395
       vertices: []
       indices: 
@@ -257,7 +257,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6dc3ade47679c2f498d7accb17d9f487
+      spriteID: 4a80bdc9aa04fb340b4badd4ad5bcb07
       internalID: 1915155213
       vertices: []
       indices: 
@@ -278,7 +278,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2315f1d885fc87f498651ed3228ae0b2
+      spriteID: 014d08fc97e1b8847b4b993d9bddceba
       internalID: -881471899
       vertices: []
       indices: 
@@ -299,7 +299,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c99b53b9082550546811fabadbb65a6c
+      spriteID: 851e97b0435d31f4891a21f3c266a226
       internalID: -422302193
       vertices: []
       indices: 
@@ -320,8 +320,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2763b5caaabf87143911a2ee8364d761
+      spriteID: dd1dc36e51d73584d8410db9ccad921c
       internalID: -1757507473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dead dry grass_10
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21ca742fc1260af4c81297987b003e2f
+      internalID: -634275075
       vertices: []
       indices: 
       edges: []
@@ -339,6 +360,7 @@ TextureImporter:
     nameFileIdTable:
       dead dry grass_0: -545906542
       dead dry grass_1: 248063138
+      dead dry grass_10: -634275075
       dead dry grass_2: -1610186304
       dead dry grass_3: -251665774
       dead dry grass_4: -1372612232
