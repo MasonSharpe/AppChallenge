@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Sword : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class Sword : MonoBehaviour
     [SerializeField] private GameObject visual;
     [SerializeField] private BoxCollider2D bCollider;
     [SerializeField] private BoxCollider2D sweetBCollider;
+    [SerializeField] private Image cooldownVisual;
     static public Sword instance;
 
 
@@ -37,12 +39,16 @@ public class Sword : MonoBehaviour
         swordCooldown -= Time.deltaTime;
         swordActiveTime -= Time.deltaTime;
 
+        cooldownVisual.fillAmount = 1 - swordCooldown / 1;
+        print(swordCooldown);
+        cooldownVisual.enabled = swordCooldown > 0;
+
         bool swordActive = swordActiveTime > 0;
         visual.SetActive(swordActive);
         bCollider.enabled = swordActive;
         sweetBCollider.enabled = swordActive;
 
-        if (Input.GetKey(KeyCode.Space) && swordCooldown <= 0)
+        if (Input.GetMouseButton(0) && swordCooldown <= 0)
         {
 
             swordCooldown = 1f;

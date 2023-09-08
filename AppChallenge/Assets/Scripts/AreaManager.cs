@@ -1,19 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AreaManager : MonoBehaviour
 {
     public static AreaManager instance;
 
     public Transform loadedAreas;
-    public AreaLoader[] allAreas;
 
+    [System.Serializable]
     public class AreaLoader
     {
 
-        public GameObject[] scenesToLoad;
-        public bool unloads;
+        public string sceneToLoad;
+        ///public bool unloads;
+       /// public int id;
+       /// public GameObject itself;
 
     }
 
@@ -22,22 +25,39 @@ public class AreaManager : MonoBehaviour
         instance = this;
     }
 
-    public void LoadTriggered(int areaLoaderIndex)
+    public void LoadTriggered(AreaLoader areaLoader)
     {
-        AreaLoader areaLoader = allAreas[areaLoaderIndex];
-
-        foreach (GameObject gameObject in areaLoader.scenesToLoad)
+        SceneManager.LoadScene(areaLoader.sceneToLoad);
+    /*foreach (GameObject gameObject in areaLoader.scenesToLoad)
         {
+
+            AreaLoader areaExists = CheckIfAreaExists(areaLoader);
+
             if (areaLoader.unloads)
             {
-                Destroy(gameObject);
+                if (areaExists != null) Destroy(areaExists.itself);
             }
             else
             {
-                Instantiate(gameObject, loadedAreas);
+                if (areaExists == null) Instantiate(gameObject, loadedAreas);
+            }
+        } */
+    }
+
+    /*public AreaLoader CheckIfAreaExists(AreaLoader areaLoader)
+    {
+        AreaLoader doesExist = null;
+
+        foreach (Transform transform in GetComponentInChildren<Transform>())
+        {
+            AreaLoader loadedArea = transform.GetComponent<AreaLoader>();
+            if (loadedArea.id == areaLoader.id)
+            {
+                doesExist = loadedArea; break;
             }
         }
-    }
+        return doesExist;
+    }*/
 
 
 

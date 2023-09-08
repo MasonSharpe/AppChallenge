@@ -9,7 +9,11 @@ public class Enemy : MonoBehaviour{
     private float shootCooldown = 0;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject xpPrefab;
+    [SerializeField] Rigidbody2D rb;
     public float health;
+    public Transform bulletParent;
+    public Transform xpParent;
+
 
 
     private void Start()
@@ -20,13 +24,13 @@ public class Enemy : MonoBehaviour{
     private void Update()
     {
         Vector3 dir = (Player.instance.transform.position - transform.position).normalized;
-        transform.Translate(moveSpeed * Time.deltaTime * dir);
+        rb.velocity = moveSpeed * dir;
 
         shootCooldown -= Time.deltaTime;
 
         if (shootCooldown <= 0)
         {
-            Bullet bullet = Instantiate(bulletPrefab).GetComponent<Bullet>();
+            Bullet bullet = Instantiate(bulletPrefab, bulletParent).GetComponent<Bullet>();
             bullet.transform.position = transform.position;
             bullet.GetComponent<Rigidbody2D>().velocity = bulletSpeed * dir;
             bullet.isFriendly = false;
@@ -41,7 +45,7 @@ public class Enemy : MonoBehaviour{
         health -= damage;
         if (health <= 0)
         {
-            GameObject xp = Instantiate(xpPrefab, XpHandler.instance.transform);
+            GameObject xp = Instantiate(xpPrefab, xpParent);
             xp.transform.position = transform.position;
             Destroy(gameObject);
         }

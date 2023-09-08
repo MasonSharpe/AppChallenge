@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
 	public int xp;
 	public int level;
 	public float invincPeriod;
+	[SerializeField] Rigidbody2D rb;
 
     private void Awake()
     {
@@ -50,7 +51,7 @@ public class Player : MonoBehaviour
 		xpSlider.value = xp;
 		levelText.text = level.ToString();
 
-		transform.position += Time.deltaTime * moveSpeed * new Vector3(moveX, moveY);
+		rb.velocity = moveSpeed * new Vector3(moveX, moveY);
 
 		Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
 		float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -70,21 +71,34 @@ public class Player : MonoBehaviour
         {
 			if (!collision.GetComponent<Bullet>().isFriendly && invincPeriod < 0)
             {
-				health -= 1;
-				invincPeriod = 0.5f;
+				health -= 0.5f;
+				invincPeriod = 0.25f;
 				Destroy(collision.gameObject);
 
 			}
 		}
+
+		//touch enemy
+		if (collision.gameObject.layer == 7)
+		{
+			if (invincPeriod < 0)
+			{
+				health -= 0.2f;
+				invincPeriod = 0.1f;
+
+			}
+		}
+
+
 		//xp
-		if(collision.gameObject.layer == 10)
+		if (collision.gameObject.layer == 10)
         {
 			xp++;
-			if (xp >= Mathf.RoundToInt(Mathf.Pow(level, 1.5f) + 3))
+			if (xp >= Mathf.RoundToInt(Mathf.Pow(level, 1.5f) + 5))
             {
 				level++;
 				xp = 0;
-				xpSlider.maxValue = Mathf.Pow(level, 1.5f) + 3;
+				xpSlider.maxValue = Mathf.Pow(level, 1.5f) + 5;
 				LevelUpScreen.instance.Show();
             }
 
@@ -93,7 +107,7 @@ public class Player : MonoBehaviour
 		//areaTrigger
 		if (collision.gameObject.layer == 12)
         {
-			//AreaManager.instance.LoadTriggered();
+			AreaManager.instance.LoadTriggered(collision.GetComponent<AreaTrigger>().areaLoader);
         }
     }
 }

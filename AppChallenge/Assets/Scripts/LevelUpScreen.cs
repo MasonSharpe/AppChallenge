@@ -24,8 +24,8 @@ public class LevelUpScreen : MonoBehaviour
     public Upgrade[] allSuperUpgrades;
 
     private List<Upgrade> superUpgradesYetToGet;
-
-    private int[] normalUpgradesGotten;
+    //NORMAL UPGRADES:
+    public int[] normalUpgradesGotten;
     private List<Upgrade> superUpgradesGotten;
 
     private Upgrade[] screenUpgrades;
