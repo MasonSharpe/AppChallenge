@@ -9,7 +9,9 @@ public class EnemySpawner : MonoBehaviour
     private float spawnTimer;
     public float levelTimer;
     public static EnemySpawner instance;
-    public Transform[] spawnPositions; 
+    public Transform[] spawnPositions;
+    public Transform bulletParent;
+    public Transform xpParent;
 
     private void Awake()
     {
@@ -38,6 +40,8 @@ public class EnemySpawner : MonoBehaviour
                 Enemy enemy = Instantiate(enemyPrefab, transform);
                 for (int e = 0; e < 10; e++)
                 {
+                    enemy.bulletParent = bulletParent;
+                    enemy.xpParent = xpParent;
                     enemy.transform.position = spawnPositions[location].position + (Vector3)(Random.insideUnitCircle * 2);
                     if ((Player.instance.transform.position - enemy.transform.position).magnitude > 5) break;
                 }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4059561563539279409}
   - component: {fileID: 7015454247356019825}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +162,9 @@ MonoBehaviour:
   bulletSpeed: 9
   bulletPrefab: {fileID: 8937682944150014530, guid: a8843ce0657a35d42aae5a372aac4ac0, type: 3}
   xpPrefab: {fileID: 3720884284327579049, guid: e21ab9a31c665cf49a9d5b91242b68ab, type: 3}
+  rb: {fileID: 7374326628906696948}
   health: 15
+  bulletParent: {fileID: 0}
 --- !u!61 &7374326628906696947
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -209,4 +211,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
