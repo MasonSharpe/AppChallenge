@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c4c4e941971bd294abff55119c5cb567
+guid: db16f909edee38e4eaebdef114f89fec
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,85 +117,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: menu butons 2_0
+      name: better buttton 3.0_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
-        width: 64
-        height: 64
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 8, y: 8, z: 8, w: 8}
+      border: {x: 58, y: 58, z: 58, w: 58}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9500f8d72ff232c42960d6d1ed63c5a0
-      internalID: -2140721765
+      spriteID: 956c08d459c8e9a469483f36708dd48a
+      internalID: -2043529719
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: menu butons 2_1
+      name: better buttton 3.0_1
       rect:
         serializedVersion: 2
-        x: 64
-        y: 64
-        width: 64
-        height: 64
+        x: 128
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 8, y: 8, z: 8, w: 8}
+      border: {x: 58, y: 58, z: 58, w: 58}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8161217bda96ae74b8c21668c82c2a8f
-      internalID: 62229854
+      spriteID: b65a641dde82a5a4cb19384e768325d3
+      internalID: 902336777
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: menu butons 2_2
+      name: better buttton 3.0_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 58, y: 58, z: 58, w: 58}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4081464f8a42d24781d71c351ff938f
+      internalID: 1353122944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: better buttton 3.0_3
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 58, y: 58, z: 58, w: 58}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdd9d4884d48b844fbdc926d9781b8c5
+      internalID: -1387699091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: better buttton 3.0_4
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 64
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 8, y: 8, z: 8, w: 8}
+      border: {x: 58, y: 58, z: 58, w: 58}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ec3317f54c6d3d40a95259698e5b71c
-      internalID: -119552514
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: menu butons 2_3
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 8, y: 8, z: 8, w: 8}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: edf875b9f17bf884883384e6f5216297
-      internalID: -552838666
+      spriteID: 74b3dfb9b36b1ed4fb90578202625d99
+      internalID: 1626084147
       vertices: []
       indices: 
       edges: []
@@ -211,10 +232,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      menu butons 2_0: -2140721765
-      menu butons 2_1: 62229854
-      menu butons 2_2: -119552514
-      menu butons 2_3: -552838666
+      better buttton 3.0_0: -2043529719
+      better buttton 3.0_1: 902336777
+      better buttton 3.0_2: 1353122944
+      better buttton 3.0_3: -1387699091
+      better buttton 3.0_4: 1626084147
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
