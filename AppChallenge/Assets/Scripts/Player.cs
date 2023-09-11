@@ -20,7 +20,9 @@ public class Player : MonoBehaviour
 	public float invincPeriod;
 	[SerializeField] Rigidbody2D rb;
 
-    private void Awake()
+
+
+	private void Awake()
     {
 		instance = this;
     }
@@ -59,7 +61,7 @@ public class Player : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.R))
         {
-			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+			NightCycle.instance.SetToNight();
         }
 
 	}
@@ -110,4 +112,6 @@ public class Player : MonoBehaviour
 			AreaManager.instance.LoadTriggered(collision.GetComponent<AreaTrigger>().areaLoader);
         }
     }
+
+
 }

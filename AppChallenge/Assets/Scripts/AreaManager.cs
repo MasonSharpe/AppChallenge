@@ -7,18 +7,19 @@ public class AreaManager : MonoBehaviour
 {
     public static AreaManager instance;
 
-    public Transform loadedAreas;
 
     [System.Serializable]
     public class AreaLoader
     {
 
         public string sceneToLoad;
+        public Vector3 positionToGo;
         ///public bool unloads;
        /// public int id;
        /// public GameObject itself;
 
     }
+
 
     private void Awake()
     {
@@ -27,7 +28,9 @@ public class AreaManager : MonoBehaviour
 
     public void LoadTriggered(AreaLoader areaLoader)
     {
+        print(areaLoader.positionToGo);
         SceneManager.LoadScene(areaLoader.sceneToLoad);
+        Player.instance.transform.position = areaLoader.positionToGo;
     /*foreach (GameObject gameObject in areaLoader.scenesToLoad)
         {
 

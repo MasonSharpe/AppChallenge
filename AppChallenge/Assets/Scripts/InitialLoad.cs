@@ -10,7 +10,7 @@ public class InitialLoad : MonoBehaviour
         DontDestroyOnLoad(this);
 
 
-        SceneManager.LoadScene("Town1");
+        SceneManager.LoadScene("Area1");
     }
 
 
