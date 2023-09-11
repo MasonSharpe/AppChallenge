@@ -15,6 +15,7 @@ public class Sword : MonoBehaviour
     [SerializeField] private BoxCollider2D bCollider;
     [SerializeField] private BoxCollider2D sweetBCollider;
     [SerializeField] private Image cooldownVisual;
+    [SerializeField] private Animator animator;
     static public Sword instance;
 
 
@@ -28,7 +29,6 @@ public class Sword : MonoBehaviour
         swordCooldown = 0;
         canDealDamage = true;
         swordActiveTime = 0;
-        visual.SetActive(false);
         bCollider.enabled = false;
         sweetBCollider.enabled = false;
 
@@ -40,13 +40,12 @@ public class Sword : MonoBehaviour
         swordActiveTime -= Time.deltaTime;
 
         cooldownVisual.fillAmount = 1 - swordCooldown / 1;
-        print(swordCooldown);
         cooldownVisual.enabled = swordCooldown > 0;
 
         bool swordActive = swordActiveTime > 0;
-        visual.SetActive(swordActive);
         bCollider.enabled = swordActive;
         sweetBCollider.enabled = swordActive;
+
 
         if (Input.GetMouseButton(0) && swordCooldown <= 0)
         {
@@ -55,7 +54,9 @@ public class Sword : MonoBehaviour
             swordActiveTime = 0.2f;
             canDealDamage = true;
             sweetBCollider.enabled = true;
+            animator.Play("SwordSwing");
         }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -12,13 +12,14 @@ public class EnemySpawner : MonoBehaviour
     public Transform[] spawnPositions;
     public Transform bulletParent;
     public Transform xpParent;
+    public bool isSpawningEnemies = false;
 
     private void Awake()
     {
         instance = this;
     }
 
-
+    //ude nashi
     private void Start()
     {
         spawnTimer = 2;
@@ -29,27 +30,29 @@ public class EnemySpawner : MonoBehaviour
         spawnTimer -= Time.deltaTime;
         levelTimer += Time.deltaTime;
 
-        if (spawnTimer <= 0)
+        if (spawnTimer <= 0 && isSpawningEnemies)
         {
-            float spawnAmount = Random.Range(2, 2 + (levelTimer * 0.1f));
+            float spawnAmount = Random.Range(2, 2 + (levelTimer * 0.05f));
             int location = Random.Range(0, spawnPositions.Length);
+            for (int i = 0; i < 10; i++)
+            {
+                location = Random.Range(0, spawnPositions.Length);
+                if ((Player.instance.transform.position - spawnPositions[location].position).magnitude > 10) break;
+
+            }
 
 
             for (int i = 0; i < spawnAmount; i++){
 
                 Enemy enemy = Instantiate(enemyPrefab, transform);
-                for (int e = 0; e < 10; e++)
-                {
-                    enemy.bulletParent = bulletParent;
-                    enemy.xpParent = xpParent;
-                    enemy.transform.position = spawnPositions[location].position + (Vector3)(Random.insideUnitCircle * 2);
-                    if ((Player.instance.transform.position - enemy.transform.position).magnitude > 5) break;
-                }
+                enemy.bulletParent = bulletParent;
+                enemy.xpParent = xpParent;
+                enemy.transform.position = spawnPositions[location].position + (Vector3)(Random.insideUnitCircle * 1.5f);
 
             }
 
 
-            spawnTimer = Random.Range(1, 3 - (levelTimer * 0.01f)) + spawnAmount / 2;
+            spawnTimer = Random.Range(1, 4 - (levelTimer * 0.01f)) + spawnAmount / 2;
         }
     }
 

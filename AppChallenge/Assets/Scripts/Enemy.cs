@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour{
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject xpPrefab;
     [SerializeField] Rigidbody2D rb;
+    public float maxHealth;
     public float health;
     public Transform bulletParent;
     public Transform xpParent;
@@ -18,7 +19,8 @@ public class Enemy : MonoBehaviour{
 
     private void Start()
     {
-        health = 3 + (int)(EnemySpawner.instance.levelTimer / 6f);
+        maxHealth = 3 + (int)(EnemySpawner.instance.levelTimer / 6f);
+        health = maxHealth;
     }
 
     private void Update()
@@ -56,7 +58,7 @@ public class Enemy : MonoBehaviour{
         //hit by sword
         if (collision.gameObject.layer == 3 && Sword.instance.canDealDamage)
         {
-            GetHit(Sword.instance.swingDamage);
+            GetHit(maxHealth / 3);
 
         }
 
