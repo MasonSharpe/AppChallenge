@@ -28,7 +28,6 @@ public class AreaManager : MonoBehaviour
 
     public void LoadTriggered(AreaLoader areaLoader)
     {
-        print(areaLoader.positionToGo);
         SceneManager.LoadScene(areaLoader.sceneToLoad);
         Player.instance.transform.position = areaLoader.positionToGo;
     /*foreach (GameObject gameObject in areaLoader.scenesToLoad)

@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class InitialLoad : MonoBehaviour
 {
+
+
     private void Start()
     {
         DontDestroyOnLoad(this);

@@ -58,11 +58,8 @@ public class Player : MonoBehaviour
 		Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
 		float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 		sword.transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+		sword.transform.position = transform.position;
 
-		if (Input.GetKeyDown(KeyCode.R))
-        {
-			NightCycle.instance.SetToNight();
-        }
 
 	}
 
@@ -80,16 +77,7 @@ public class Player : MonoBehaviour
 			}
 		}
 
-		//touch enemy
-		if (collision.gameObject.layer == 7)
-		{
-			if (invincPeriod < 0)
-			{
-				health -= 0.2f;
-				invincPeriod = 0.1f;
 
-			}
-		}
 
 
 		//xp
@@ -113,5 +101,17 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+		//touch enemy
+		if (collision.gameObject.layer == 7)
+		{
+			if (invincPeriod < 0)
+			{
+				health -= 0.2f;
+				invincPeriod = 0.05f;
 
+			}
+		}
+	}
 }
