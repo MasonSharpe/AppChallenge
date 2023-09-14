@@ -3333,7 +3333,7 @@ MonoBehaviour:
   bulletParrySpeed: 18
   canDealDamage: 0
   swingDamage: 1
-  parryDamage: 0.25
+  parryDamage: 0.5
   visual: {fileID: 153823813}
   bCollider: {fileID: 1476838273}
   sweetBCollider: {fileID: 35632663}

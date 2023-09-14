@@ -6,6 +6,7 @@ public class EnemySpawner : MonoBehaviour
 {
 
     [SerializeField] Enemy enemyPrefab;
+    [SerializeField] Pickup pickupPrefab;
     private float spawnTimer;
     public float levelTimer;
     public static EnemySpawner instance;
@@ -48,6 +49,13 @@ public class EnemySpawner : MonoBehaviour
                 enemy.bulletParent = bulletParent;
                 enemy.xpParent = xpParent;
                 enemy.transform.position = spawnPositions[location].position + (Vector3)(Random.insideUnitCircle * 1.5f);
+
+                if (Random.Range(0, 10) > 8)
+                {
+                    Pickup pickup = Instantiate(pickupPrefab, transform);
+                    pickup.transform.position = spawnPositions[location].position + (Vector3)(Random.insideUnitCircle * 1.5f);
+                }
+
 
             }
 
