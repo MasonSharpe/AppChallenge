@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour{
 
     private void Start()
     {
-        maxHealth = 3 + (int)(EnemySpawner.instance.levelTimer / 6f);
+        maxHealth = 3 + (int)(EnemySpawner.instance.levelTimer / 25f);
         health = maxHealth;
     }
 
@@ -58,7 +58,8 @@ public class Enemy : MonoBehaviour{
         //hit by sword
         if (collision.gameObject.layer == 3 && Sword.instance.canDealDamage)
         {
-            GetHit(maxHealth / 3);
+            GetHit(maxHealth / (5 - (LevelUpScreen.instance.normalUpgradesGotten[0] * 0.4f)) + Sword.instance.swingDamage);
+            Sword.instance.swordCooldown -= Mathf.Clamp(LevelUpScreen.instance.normalUpgradesGotten[1] * 0.02f, 0, 0.25f);
 
         }
 

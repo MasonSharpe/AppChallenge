@@ -30,8 +30,7 @@ public class NightCycle : MonoBehaviour
             walls.color = new Color(colorAmount, colorAmount, colorAmount);
         }
 
-
-        if (amount > nightLength && isNight)
+        if (amount >= 1 && isNight)
         {
 
             EndNight();
@@ -42,7 +41,7 @@ public class NightCycle : MonoBehaviour
     public void SetToNight()
     {
         isNight = true;
-        nightLength = 45 + 45 * currentNightIndex;
+        nightLength = 445 + 45 * currentNightIndex;
         EnemySpawner.instance.isSpawningEnemies = true;
         EnemySpawner.instance.levelTimer = 0;
         visual.enabled = true;
@@ -58,5 +57,10 @@ public class NightCycle : MonoBehaviour
         visual.enabled = false;
         GameManager.nightsBeaten[currentNightIndex] = true;
 
+        Enemy[] enemies = EnemySpawner.instance.gameObject.GetComponentsInChildren<Enemy>();
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            Destroy(enemies[i].gameObject);
+        }
     }
 }

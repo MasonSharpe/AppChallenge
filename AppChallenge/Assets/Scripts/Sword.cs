@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Sword : MonoBehaviour
 {
-    private float swordCooldown;
+    public float swordCooldown;
     private float swordActiveTime;
     public float bulletParrySpeed;
     public bool canDealDamage;
@@ -57,6 +57,7 @@ public class Sword : MonoBehaviour
             animator.Play("SwordSwing");
         }
 
+        transform.localScale = Vector3.one + (0.15f * LevelUpScreen.instance.normalUpgradesGotten[2] * Vector3.one);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -68,7 +69,8 @@ public class Sword : MonoBehaviour
             sweetBCollider.enabled = false;
             Bullet bullet = collision.GetComponent<Bullet>();
             bullet.isFriendly = true;
-            bullet.currentStoredDamage = parryDamage;
+            bullet.currentStoredDamage = parryDamage * LevelUpScreen.instance.normalUpgradesGotten[3] * 0.4f;
+            swordCooldown -= LevelUpScreen.instance.normalUpgradesGotten[5] * 0.02f;
             bullet.rb.velocity = (Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position)).normalized * bulletParrySpeed;
             bullet.spriteRenderer.color = Color.cyan;
         }

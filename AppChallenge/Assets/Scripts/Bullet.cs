@@ -27,7 +27,7 @@ public class Bullet : MonoBehaviour
                 rb.velocity = (Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position)).normalized * Sword.instance.bulletParrySpeed;
                 spriteRenderer.color = Color.cyan;
             }
-            currentStoredDamage *= 2;
+            currentStoredDamage *= 2 + LevelUpScreen.instance.normalUpgradesGotten[4];
             rb.velocity *= 1.5f;
         }
 

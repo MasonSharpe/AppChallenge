@@ -32,7 +32,7 @@ public class EnemySpawner : MonoBehaviour
 
         if (spawnTimer <= 0 && isSpawningEnemies)
         {
-            float spawnAmount = Random.Range(2, 2 + (levelTimer * 0.05f));
+            float spawnAmount = Random.Range(2, 2 + (levelTimer * 0.02f));
             int location = Random.Range(0, spawnPositions.Length);
             for (int i = 0; i < 10; i++)
             {
@@ -52,7 +52,7 @@ public class EnemySpawner : MonoBehaviour
             }
 
 
-            spawnTimer = Random.Range(1, 4 - (levelTimer * 0.01f)) + spawnAmount / 2;
+            spawnTimer = Random.Range(1, 6 - (levelTimer * 0.01f)) + spawnAmount / 2;
         }
     }
 

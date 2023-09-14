@@ -13,15 +13,18 @@ public class StartNightNPC : MonoBehaviour
     private void Update()
     {
         playerIsClose = (Player.instance.transform.position - transform.position).magnitude < 5;
-        text.enabled = playerIsClose;
+        text.enabled = playerIsClose && !NightCycle.instance.isNight;
         if (Input.GetKeyDown(KeyCode.E) && playerIsClose)
         {
             NightCycle.instance.currentNightIndex = nightIndex;
 
             NightCycle.instance.SetToNight();
+
+            text.enabled = false;
+
         }
 
-        enabled = GameManager.nightsBeaten[nightIndex];
+        enabled = !GameManager.nightsBeaten[nightIndex] && !NightCycle.instance.isNight;
 
     }
 

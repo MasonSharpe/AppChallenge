@@ -46,13 +46,14 @@ public class Player : MonoBehaviour
 	{
 		invincPeriod -= Time.deltaTime;
 
-		float moveX = Input.GetAxis("Horizontal");
-		float moveY = Input.GetAxis("Vertical");
+		float moveX = Mathf.Clamp(Input.GetAxis("Horizontal") * (1 + LevelUpScreen.instance.normalUpgradesGotten[7] * 0.5f), -1, 1);
+		float moveY = Mathf.Clamp(Input.GetAxis("Vertical") * (1 + LevelUpScreen.instance.normalUpgradesGotten[7] * 0.5f), -1, 1);
 
 		healthSlider.value = health;
 		xpSlider.value = xp;
 		levelText.text = level.ToString();
 
+		moveSpeed = 10 * (1 + LevelUpScreen.instance.normalUpgradesGotten[6] * 0.15f);
 		rb.velocity = moveSpeed * new Vector3(moveX, moveY);
 
 		Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
@@ -60,10 +61,21 @@ public class Player : MonoBehaviour
 		sword.transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
 		sword.transform.position = transform.position;
 
-
+		if (Input.GetKeyDown(KeyCode.L))
+        {
+			LevelUp();
+        }
 	}
 
-    private void OnTriggerEnter2D(Collider2D collision)
+	private void LevelUp()
+	{
+		level++;
+		xp = 0;
+		xpSlider.maxValue = Mathf.Pow(level, 1.5f) + 5;
+		LevelUpScreen.instance.Show();
+	}
+
+	private void OnTriggerEnter2D(Collider2D collision)
     {
 		//hit by bullet
         if (collision.gameObject.layer == 6)
@@ -86,10 +98,7 @@ public class Player : MonoBehaviour
 			xp++;
 			if (xp >= Mathf.RoundToInt(Mathf.Pow(level, 1.5f) + 5))
             {
-				level++;
-				xp = 0;
-				xpSlider.maxValue = Mathf.Pow(level, 1.5f) + 5;
-				LevelUpScreen.instance.Show();
+				LevelUp();
             }
 
 			Destroy(collision.gameObject);
