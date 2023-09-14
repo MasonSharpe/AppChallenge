@@ -513,6 +513,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 7374326628906696949, guid: 6eaced408cbe83e41bbd220d0f077ca9, type: 3}
+  pickupPrefab: {fileID: -4271913806882385929, guid: 435a5d12e4fda904886576c5f85995cf, type: 3}
   levelTimer: 5
   spawnPositions:
   - {fileID: 2053426217}
@@ -1964,6 +1965,8 @@ MonoBehaviour:
   levelText: {fileID: 1354952640}
   loadedAreas: {fileID: 0}
   health: 20
+  maxHealth: 0
+  armor: 0
   xp: 0
   level: 0
   invincPeriod: 0

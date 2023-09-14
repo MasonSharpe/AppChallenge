@@ -54,6 +54,7 @@ public class EnemySpawner : MonoBehaviour
                 {
                     Pickup pickup = Instantiate(pickupPrefab, transform);
                     pickup.transform.position = spawnPositions[location].position + (Vector3)(Random.insideUnitCircle * 1.5f);
+                    Destroy(pickup.gameObject);
                 }
 
 
