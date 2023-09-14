@@ -15,13 +15,15 @@ public class Player : MonoBehaviour
 	[SerializeField] private GameObject loadedAreas;
 	static public Player instance;
 	public float health;
+	public float maxHealth;
+	public float armor;
 	public int xp;
 	public int level;
 	public float invincPeriod;
 	[SerializeField] Rigidbody2D rb;
 
 
-
+	//armor and health pickups, armor permanantly increases defense which decreases damage taken
 	private void Awake()
     {
 		instance = this;
@@ -32,15 +34,15 @@ public class Player : MonoBehaviour
 
 		moveSpeed = 10;
 		invincPeriod = 0;
-		health = 10;
+		maxHealth = 10;
+		armor = 0;
+		health = maxHealth;
 		level = 1;
 		xp = 0;
 	}
 
 
-	//TODO AT HOME: add bullet spread, fix health bars
 
-	//make bullet blue
 
 	private void Update()
 	{
@@ -75,6 +77,12 @@ public class Player : MonoBehaviour
 		LevelUpScreen.instance.Show();
 	}
 
+	private void GetHit(float damage, float invincPeriod)
+    {
+		health -= Mathf.Clamp(damage - armor, 1, 1000);
+		this.invincPeriod = invincPeriod;
+	}
+
 	private void OnTriggerEnter2D(Collider2D collision)
     {
 		//hit by bullet
@@ -82,8 +90,7 @@ public class Player : MonoBehaviour
         {
 			if (!collision.GetComponent<Bullet>().isFriendly && invincPeriod < 0)
             {
-				health -= 0.5f;
-				invincPeriod = 0.25f;
+				GetHit(0.5f, 0.25f);
 				Destroy(collision.gameObject);
 
 			}
@@ -117,8 +124,25 @@ public class Player : MonoBehaviour
 		{
 			if (invincPeriod < 0)
 			{
-				health -= 0.2f;
-				invincPeriod = 0.05f;
+				GetHit(0.2f, 0.05f);
+
+			}
+		}
+		//touch pickup
+		if (collision.gameObject.layer == 14)
+		{
+			if (invincPeriod < 0)
+			{
+				Pickup.PickupType pickupType = collision.GetComponent<Pickup>().type;
+
+				if (pickupType == Pickup.PickupType.Health)
+                {
+					health += maxHealth / 4;
+                }
+				else if (pickupType == Pickup.PickupType.Armor)
+				{
+					armor++;
+				}
 
 			}
 		}
