@@ -24,6 +24,8 @@ public class Player : MonoBehaviour
 
 
 	//armor and health pickups, armor permanantly increases defense which decreases damage taken
+	//enemies can get hit by the same swing multiple times
+	// make the game better
 	private void Awake()
     {
 		instance = this;
@@ -79,7 +81,7 @@ public class Player : MonoBehaviour
 
 	private void GetHit(float damage, float invincPeriod)
     {
-		health -= Mathf.Clamp(damage - armor, 1, 1000);
+		health -= Mathf.Clamp(damage - armor, 0.1f, 1000);
 		this.invincPeriod = invincPeriod;
 	}
 
@@ -90,7 +92,7 @@ public class Player : MonoBehaviour
         {
 			if (!collision.GetComponent<Bullet>().isFriendly && invincPeriod < 0)
             {
-				GetHit(0.5f, 0.25f);
+				GetHit(0.7f, 0.05f);
 				Destroy(collision.gameObject);
 
 			}
@@ -124,7 +126,7 @@ public class Player : MonoBehaviour
 		{
 			if (invincPeriod < 0)
 			{
-				GetHit(0.2f, 0.05f);
+				GetHit(0.5f, 0.15f);
 
 			}
 		}
@@ -137,7 +139,7 @@ public class Player : MonoBehaviour
 
 				if (pickupType == Pickup.PickupType.Health)
                 {
-					health += maxHealth / 4;
+					health = Mathf.Clamp(health + maxHealth / 4, 0, maxHealth);
                 }
 				else if (pickupType == Pickup.PickupType.Armor)
 				{
@@ -145,6 +147,7 @@ public class Player : MonoBehaviour
 				}
 
 			}
+			Destroy(collision.gameObject);
 		}
 	}
 }

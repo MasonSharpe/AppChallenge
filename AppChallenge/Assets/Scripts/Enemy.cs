@@ -56,10 +56,9 @@ public class Enemy : MonoBehaviour{
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //hit by sword
-        if (collision.gameObject.layer == 3 && Sword.instance.canDealDamage)
+        if (collision.gameObject.layer == 3)
         {
             GetHit(maxHealth / (5 - (LevelUpScreen.instance.normalUpgradesGotten[0] * 0.4f)) + Sword.instance.swingDamage);
-            print(Mathf.Clamp(LevelUpScreen.instance.normalUpgradesGotten[1] * 0.02f, 0, 0.25f));
             Sword.instance.swordCooldown -= Mathf.Clamp(LevelUpScreen.instance.normalUpgradesGotten[1] * 0.02f, 0, 0.25f);
 
         }

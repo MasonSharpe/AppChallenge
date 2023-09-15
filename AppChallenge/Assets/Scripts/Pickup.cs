@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
+
+    [SerializeField] SpriteRenderer spriteRenderer;
     public enum PickupType
     {
         Health,
@@ -11,6 +13,17 @@ public class Pickup : MonoBehaviour
     }
 
     public PickupType type;
+
+    private void Start()
+    {
+        switch (type){
+            case PickupType.Health:
+                spriteRenderer.color = Color.green; break;
+            case PickupType.Armor:
+                spriteRenderer.color = Color.grey; break;
+
+        }
+    }
 
 
 }
