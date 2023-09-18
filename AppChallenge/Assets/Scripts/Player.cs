@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
 	public int xp;
 	public int level;
 	public float invincPeriod;
+	public float cameraShakeTimer;
 	[SerializeField] Rigidbody2D rb;
 
 
@@ -41,6 +42,7 @@ public class Player : MonoBehaviour
 		health = maxHealth;
 		level = 1;
 		xp = 0;
+		cameraShakeTimer = 0;
 	}
 
 
@@ -49,6 +51,7 @@ public class Player : MonoBehaviour
 	private void Update()
 	{
 		invincPeriod -= Time.deltaTime;
+		cameraShakeTimer -= Time.unscaledDeltaTime;
 
 		float moveX = Mathf.Clamp(Input.GetAxis("Horizontal") * (1 + LevelUpScreen.instance.normalUpgradesGotten[7] * 0.5f), -1, 1);
 		float moveY = Mathf.Clamp(Input.GetAxis("Vertical") * (1 + LevelUpScreen.instance.normalUpgradesGotten[7] * 0.5f), -1, 1);
@@ -69,6 +72,13 @@ public class Player : MonoBehaviour
         {
 			LevelUp();
         }
+
+		Camera.main.gameObject.transform.localPosition = new Vector3(0, 0, -10);
+		if (cameraShakeTimer > 0)
+        {
+			Vector2 pos = Random.insideUnitCircle;
+			Camera.main.gameObject.transform.localPosition = new Vector3(pos.x * 0.1f, pos.y * 0.1f, -10);
+        }
 	}
 
 	private void LevelUp()
@@ -83,6 +93,11 @@ public class Player : MonoBehaviour
     {
 		health -= Mathf.Clamp(damage - armor, 0.1f, 1000);
 		this.invincPeriod = invincPeriod;
+
+		if (health <= 0)
+        {
+			GameManager.Respawn();
+        }
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
@@ -94,6 +109,7 @@ public class Player : MonoBehaviour
             {
 				GetHit(0.7f, 0.05f);
 				Destroy(collision.gameObject);
+				cameraShakeTimer = 0.1f;
 
 			}
 		}
@@ -104,7 +120,7 @@ public class Player : MonoBehaviour
 		//xp
 		if (collision.gameObject.layer == 10)
         {
-			xp++;
+			xp += 1 + Mathf.RoundToInt(Mathf.Pow(GameManager.nightsBeaten.FindAll( h => h == true ).Count, 2));
 			if (xp >= Mathf.RoundToInt(Mathf.Pow(level, 1.5f) + 5))
             {
 				LevelUp();
