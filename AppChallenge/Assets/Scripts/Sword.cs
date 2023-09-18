@@ -73,6 +73,7 @@ public class Sword : MonoBehaviour
             swordCooldown -= LevelUpScreen.instance.normalUpgradesGotten[5] * 0.02f;
             bullet.rb.velocity = (Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position)).normalized * bulletParrySpeed;
             bullet.spriteRenderer.color = Color.cyan;
+            Player.instance.cameraShakeTimer = 0.1f;
         }
     }
 

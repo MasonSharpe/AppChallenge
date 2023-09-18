@@ -598,6 +598,8 @@ MonoBehaviour:
   visual: {fileID: 203122588}
   nightLength: 10
   isNight: 0
+  bulletHolder: {fileID: 1944559760}
+  xpHolder: {fileID: 1046919987}
   currentNightIndex: 0
 --- !u!114 &203122588
 MonoBehaviour:
@@ -1970,6 +1972,7 @@ MonoBehaviour:
   xp: 0
   level: 0
   invincPeriod: 0
+  cameraShakeTimer: 0
   rb: {fileID: 724472892}
 --- !u!212 &724472894
 SpriteRenderer:

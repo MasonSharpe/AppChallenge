@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
 public class NightCycle : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class NightCycle : MonoBehaviour
     public bool isNight;
     private Tilemap ground;
     private Tilemap walls;
+    public GameObject bulletHolder;
+    public GameObject xpHolder;
     public int currentNightIndex = -1;
 
     private void Awake()
@@ -33,15 +36,18 @@ public class NightCycle : MonoBehaviour
         if (amount >= 1 && isNight)
         {
 
-            EndNight();
+            EndNight(true);
         }
 
     }
 
     public void SetToNight()
     {
+        GameManager.SetSpawn(Player.instance.health, SceneManager.GetActiveScene().name,
+            Player.instance.transform.position, Player.instance.level, Player.instance.xp);
+
         isNight = true;
-        nightLength = 445 + 45 * currentNightIndex;
+        nightLength = 45 + 45 * currentNightIndex;
         EnemySpawner.instance.isSpawningEnemies = true;
         EnemySpawner.instance.levelTimer = 0;
         visual.enabled = true;
@@ -50,17 +56,35 @@ public class NightCycle : MonoBehaviour
         walls = tilemaps[1];
     }
 
-    public void EndNight()
+    public void EndNight(bool victorious)
     {
         isNight = false;
         EnemySpawner.instance.isSpawningEnemies = false;
         visual.enabled = false;
-        GameManager.nightsBeaten[currentNightIndex] = true;
+        if (victorious)
+        {
+            GameManager.nightsBeaten[currentNightIndex] = true;
+            GameManager.SetSpawn(Player.instance.health, SceneManager.GetActiveScene().name,
+                Player.instance.transform.position, Player.instance.level, Player.instance.xp);
+        }
+        else
+        {
+            foreach (Transform bullet in bulletHolder.GetComponentsInChildren<Transform>())
+            {
+                Destroy(bullet.gameObject);
+            }
+            foreach (Transform xp in xpHolder.GetComponentsInChildren<Transform>())
+            {
+                Destroy(xp.gameObject);
+            }
+        }
 
-        Enemy[] enemies = EnemySpawner.instance.gameObject.GetComponentsInChildren<Enemy>();
+        Transform[] enemies = EnemySpawner.instance.gameObject.GetComponentsInChildren<Transform>();
         for (int i = 0; i < enemies.Length; i++)
         {
             Destroy(enemies[i].gameObject);
         }
+
+
     }
 }
