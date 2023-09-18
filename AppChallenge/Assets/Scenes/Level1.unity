@@ -897,17 +897,25 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 724066787}
+    - target: {fileID: 1571272497993434902, guid: 9ebf17b507410234e8f99f5b3eeda3ee, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1597209558, guid: 189847dd20cf6f74e819c4298f8cd137, type: 3}
     - target: {fileID: 1571272498281906528, guid: 9ebf17b507410234e8f99f5b3eeda3ee, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 185346076}
+    - target: {fileID: 1571272498281906529, guid: 9ebf17b507410234e8f99f5b3eeda3ee, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 571661, guid: 189847dd20cf6f74e819c4298f8cd137, type: 3}
     - target: {fileID: 1571272498976358424, guid: 9ebf17b507410234e8f99f5b3eeda3ee, type: 3}
       propertyPath: m_Name
       value: AreYouSure_
       objectReference: {fileID: 0}
     - target: {fileID: 1571272498976358424, guid: 9ebf17b507410234e8f99f5b3eeda3ee, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1571272498976358425, guid: 9ebf17b507410234e8f99f5b3eeda3ee, type: 3}
       propertyPath: m_Pivot.x
