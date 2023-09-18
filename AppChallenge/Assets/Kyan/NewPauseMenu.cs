@@ -5,9 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class NewPauseMenu : MonoBehaviour
 {
+    public new AudioSource audioYes;
+    public new AudioSource audioNo;
     // Start is called before the first frame update
     void Start()
     {
+        
         GetComponent<Canvas>().enabled = false;
     }
 
@@ -49,7 +52,13 @@ public class NewPauseMenu : MonoBehaviour
     }
     public void QuitGame()
     {
+        audioYes.Play();
         Debug.Log("quit");
         Application.Quit();
+    }
+    public void BackToPauseMenu()
+    {
+        audioNo.Play();
+        Debug.Log("pressed");
     }
 }

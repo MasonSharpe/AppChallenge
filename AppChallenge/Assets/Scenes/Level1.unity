@@ -320,6 +320,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e920c57434b864041957706b60242a8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioYes: {fileID: 1927382718}
+  audioNo: {fileID: 361895826}
 --- !u!1 &281116180
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,6 +489,11 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!82 &361895826 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5056456553231018304, guid: 9ebf17b507410234e8f99f5b3eeda3ee, type: 3}
+  m_PrefabInstance: {fileID: 1334462285}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &507554171
 GameObject:
   m_ObjectHideFlags: 0
@@ -896,15 +903,35 @@ PrefabInstance:
     - target: {fileID: 1571272497993434901, guid: 9ebf17b507410234e8f99f5b3eeda3ee, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 185346076}
+    - target: {fileID: 1571272497993434901, guid: 9ebf17b507410234e8f99f5b3eeda3ee, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
       objectReference: {fileID: 724066787}
     - target: {fileID: 1571272497993434902, guid: 9ebf17b507410234e8f99f5b3eeda3ee, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1597209558, guid: 189847dd20cf6f74e819c4298f8cd137, type: 3}
     - target: {fileID: 1571272498281906528, guid: 9ebf17b507410234e8f99f5b3eeda3ee, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1571272498281906528, guid: 9ebf17b507410234e8f99f5b3eeda3ee, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1571272498281906528, guid: 9ebf17b507410234e8f99f5b3eeda3ee, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 185346076}
+    - target: {fileID: 1571272498281906528, guid: 9ebf17b507410234e8f99f5b3eeda3ee, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1571272498281906528, guid: 9ebf17b507410234e8f99f5b3eeda3ee, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: NewPauseMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 1571272498281906529, guid: 9ebf17b507410234e8f99f5b3eeda3ee, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -1534,6 +1561,11 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!82 &1927382718 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4892373293511810367, guid: 9ebf17b507410234e8f99f5b3eeda3ee, type: 3}
+  m_PrefabInstance: {fileID: 1334462285}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1977721613
 GameObject:
   m_ObjectHideFlags: 0
