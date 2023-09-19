@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static List<bool> nightsBeaten;
+    public static List<bool> nightsBeaten = new();
     public static float saveHealth = 17;
     public static string saveLocation = "Area1";
     public static Vector3 savePosition = Vector3.zero;

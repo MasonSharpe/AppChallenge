@@ -8,7 +8,7 @@ using TMPro;
 public class Player : MonoBehaviour
 {
 	public float moveSpeed;
-	[SerializeField] private GameObject sword;
+	[SerializeField] private Sword sword;
 	[SerializeField] private Slider healthSlider;
 	[SerializeField] private Slider xpSlider;
 	[SerializeField] private TextMeshProUGUI levelText;
@@ -22,7 +22,10 @@ public class Player : MonoBehaviour
 	public float invincPeriod;
 	public float cameraShakeTimer;
 	[SerializeField] Rigidbody2D rb;
-
+	private float accelerationX;
+	private float accelerationY;
+	private float aMoveX = 0;
+	private float aMoveY = 0;
 
 	//armor and health pickups, armor permanantly increases defense which decreases damage taken
 	//enemies can get hit by the same swing multiple times
@@ -53,8 +56,24 @@ public class Player : MonoBehaviour
 		invincPeriod -= Time.deltaTime;
 		cameraShakeTimer -= Time.unscaledDeltaTime;
 
-		float moveX = Mathf.Clamp(Input.GetAxis("Horizontal") * (1 + LevelUpScreen.instance.normalUpgradesGotten[7] * 0.5f), -1, 1);
-		float moveY = Mathf.Clamp(Input.GetAxis("Vertical") * (1 + LevelUpScreen.instance.normalUpgradesGotten[7] * 0.5f), -1, 1);
+
+		float moveX = Input.GetAxisRaw("Horizontal");
+		float moveY = Input.GetAxisRaw("Vertical");
+		if (moveX == 0) moveX = aMoveX;
+		if (moveY == 0) moveY = aMoveY;
+
+		accelerationX = Mathf.Clamp(accelerationX + (moveX * Time.deltaTime * 2), -1, 1);
+		accelerationY = Mathf.Clamp(accelerationY + (moveY * Time.deltaTime * 2), -1, 1);
+
+		aMoveX = moveX;
+		aMoveY = moveY;
+
+
+		float amount = (1 + LevelUpScreen.instance.normalUpgradesGotten[7] * 10f);
+		moveX = accelerationX;
+		moveY = accelerationY;
+
+
 
 		healthSlider.value = health;
 		xpSlider.value = xp;
@@ -65,7 +84,7 @@ public class Player : MonoBehaviour
 
 		Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
 		float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-		sword.transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+		sword.transform.localRotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
 		sword.transform.position = transform.position;
 
 		if (Input.GetKeyDown(KeyCode.L))
@@ -92,7 +111,7 @@ public class Player : MonoBehaviour
 	private void GetHit(float damage, float invincPeriod)
     {
 		health -= Mathf.Clamp(damage - armor, 0.1f, 1000);
-		this.invincPeriod = invincPeriod;
+		this.invincPeriod = invincPeriod * (1 + LevelUpScreen.instance.normalUpgradesGotten[7] * 0.25f);
 
 		if (health <= 0)
         {

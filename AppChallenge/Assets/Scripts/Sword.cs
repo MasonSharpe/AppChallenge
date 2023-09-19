@@ -11,11 +11,11 @@ public class Sword : MonoBehaviour
     public bool canDealDamage;
     public float swingDamage;
     public float parryDamage;
-    [SerializeField] private GameObject visual;
     [SerializeField] private BoxCollider2D bCollider;
     [SerializeField] private BoxCollider2D sweetBCollider;
     [SerializeField] private Image cooldownVisual;
     [SerializeField] private Animator animator;
+    [SerializeField] public Transform rotatePoint;
     static public Sword instance;
 
 
@@ -57,7 +57,7 @@ public class Sword : MonoBehaviour
             animator.Play("SwordSwing");
         }
 
-        transform.localScale = Vector3.one + (0.15f * LevelUpScreen.instance.normalUpgradesGotten[2] * Vector3.one);
+        transform.localScale = (Vector3.one * 0.8f) + (0.15f * LevelUpScreen.instance.normalUpgradesGotten[2] * Vector3.one);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -72,7 +72,7 @@ public class Sword : MonoBehaviour
             bullet.currentStoredDamage = parryDamage * LevelUpScreen.instance.normalUpgradesGotten[3] * 0.4f;
             swordCooldown -= LevelUpScreen.instance.normalUpgradesGotten[5] * 0.02f;
             bullet.rb.velocity = (Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position)).normalized * bulletParrySpeed;
-            bullet.spriteRenderer.color = Color.cyan;
+            bullet.spriteRenderer.color = new Color(0.58f, 0.47f, 1, 0.83f);
             Player.instance.cameraShakeTimer = 0.1f;
         }
     }

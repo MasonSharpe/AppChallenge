@@ -25,7 +25,7 @@ public class Bullet : MonoBehaviour
                 isFriendly = true;
                 currentStoredDamage = Sword.instance.parryDamage;
                 rb.velocity = (Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position)).normalized * Sword.instance.bulletParrySpeed;
-                spriteRenderer.color = Color.cyan;
+                spriteRenderer.color = new Color (0.58f, 0.47f, 1, 0.83f);
             }
             currentStoredDamage *= 2 + LevelUpScreen.instance.normalUpgradesGotten[4];
             rb.velocity *= 1.5f;
