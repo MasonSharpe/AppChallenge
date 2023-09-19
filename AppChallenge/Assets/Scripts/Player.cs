@@ -24,8 +24,6 @@ public class Player : MonoBehaviour
 	[SerializeField] Rigidbody2D rb;
 	private float accelerationX;
 	private float accelerationY;
-	private float aMoveX = 0;
-	private float aMoveY = 0;
 
 	//armor and health pickups, armor permanantly increases defense which decreases damage taken
 	//enemies can get hit by the same swing multiple times
@@ -59,28 +57,24 @@ public class Player : MonoBehaviour
 
 		float moveX = Input.GetAxisRaw("Horizontal");
 		float moveY = Input.GetAxisRaw("Vertical");
-		if (moveX == 0) moveX = aMoveX;
-		if (moveY == 0) moveY = aMoveY;
-
-		accelerationX = Mathf.Clamp(accelerationX + (moveX * Time.deltaTime * 2), -1, 1);
-		accelerationY = Mathf.Clamp(accelerationY + (moveY * Time.deltaTime * 2), -1, 1);
-
-		aMoveX = moveX;
-		aMoveY = moveY;
+		float acc = Time.deltaTime * (3 + LevelUpScreen.instance.normalUpgradesGotten[7]);
+		float top = 1 + LevelUpScreen.instance.normalUpgradesGotten[6] * 0.2f;
 
 
-		float amount = (1 + LevelUpScreen.instance.normalUpgradesGotten[7] * 10f);
-		moveX = accelerationX;
-		moveY = accelerationY;
+        accelerationX += moveX * acc;
+		accelerationX = Mathf.Clamp(accelerationX, -top, top);
+        accelerationY += moveY * acc;
+        accelerationY = Mathf.Clamp(accelerationY, -top, top);
 
 
 
-		healthSlider.value = health;
+
+        healthSlider.value = health;
 		xpSlider.value = xp;
 		levelText.text = level.ToString();
 
-		moveSpeed = 10 * (1 + LevelUpScreen.instance.normalUpgradesGotten[6] * 0.15f);
-		rb.velocity = moveSpeed * new Vector3(moveX, moveY);
+		moveSpeed = 10;
+		rb.velocity = moveSpeed * new Vector3(accelerationX, accelerationY);
 
 		Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
 		float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -98,7 +92,23 @@ public class Player : MonoBehaviour
 			Vector2 pos = Random.insideUnitCircle;
 			Camera.main.gameObject.transform.localPosition = new Vector3(pos.x * 0.1f, pos.y * 0.1f, -10);
         }
-	}
+
+        if (moveX == 0) {
+			if (accelerationX > 0) {
+				accelerationX = Mathf.Max(0, accelerationX - acc);
+			}
+            else if (accelerationX < 0) {
+                accelerationX = Mathf.Min(0, accelerationX + acc);
+            }
+		}
+        if (moveY == 0) {
+            if (accelerationY > 0) {
+                accelerationY = Mathf.Max(0, accelerationY - acc);
+            } else if (accelerationY < 0) {
+                accelerationY = Mathf.Min(0, accelerationY + acc);
+            }
+        }
+    }
 
 	private void LevelUp()
 	{
