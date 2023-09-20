@@ -6,21 +6,21 @@ using TMPro;
 public class StartNightNPC : MonoBehaviour
 {
 
-    [SerializeField] TextMeshProUGUI text;
+    [SerializeField] GameObject text;
     private bool playerIsClose;
     public int nightIndex;
 
     private void Update()
     {
         playerIsClose = (Player.instance.transform.position - transform.position).magnitude < 5;
-        text.enabled = playerIsClose && !NightCycle.instance.isNight;
+        text.SetActive(playerIsClose && !NightCycle.instance.isNight);
         if (Input.GetKeyDown(KeyCode.E) && playerIsClose)
         {
             NightCycle.instance.currentNightIndex = nightIndex;
 
             NightCycle.instance.SetToNight();
 
-            text.enabled = false;
+            text.SetActive(false);
 
         }
 

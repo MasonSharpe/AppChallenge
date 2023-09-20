@@ -72,7 +72,7 @@ public class Sword : MonoBehaviour
             bullet.currentStoredDamage = parryDamage * LevelUpScreen.instance.normalUpgradesGotten[3] * 0.4f;
             swordCooldown -= LevelUpScreen.instance.normalUpgradesGotten[5] * 0.02f;
             bullet.rb.velocity = (Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position)).normalized * bulletParrySpeed;
-            bullet.spriteRenderer.color = new Color(0.58f, 0.47f, 1, 0.83f);
+            if (bullet.hitSweetSpot == false) bullet.spriteRenderer.color = new Color(0.58f, 0.47f, 1, 0.83f);
             Player.instance.cameraShakeTimer = 0.1f;
         }
     }

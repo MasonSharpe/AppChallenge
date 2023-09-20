@@ -58,7 +58,7 @@ public class Enemy : MonoBehaviour{
         //hit by sword
         if (collision.gameObject.layer == 3)
         {
-            GetHit(maxHealth / (5 - (LevelUpScreen.instance.normalUpgradesGotten[0] * 0.4f)) + Sword.instance.swingDamage);
+            GetHit(maxHealth / Mathf.Clamp(5 - (LevelUpScreen.instance.normalUpgradesGotten[0] * 0.4f), 1.1f, 5) + Sword.instance.swingDamage);
             Sword.instance.swordCooldown -= Mathf.Clamp(LevelUpScreen.instance.normalUpgradesGotten[1] * 0.02f, 0, 0.25f);
 
         }

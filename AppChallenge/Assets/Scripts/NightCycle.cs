@@ -71,18 +71,18 @@ public class NightCycle : MonoBehaviour
         {
             foreach (Transform bullet in bulletHolder.GetComponentsInChildren<Transform>())
             {
-                Destroy(bullet.gameObject);
+                if (bullet.name != "BulletHolder") Destroy(bullet.gameObject);
             }
             foreach (Transform xp in xpHolder.GetComponentsInChildren<Transform>())
             {
-                Destroy(xp.gameObject);
+                if (xp.name != "XPHolder") Destroy(xp.gameObject);
             }
         }
 
         Transform[] enemies = EnemySpawner.instance.gameObject.GetComponentsInChildren<Transform>();
         for (int i = 0; i < enemies.Length; i++)
         {
-            Destroy(enemies[i].gameObject);
+            if (enemies[i].name != "EnemyHolder") Destroy(enemies[i].gameObject);
         }
 
 

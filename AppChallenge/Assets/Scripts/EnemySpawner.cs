@@ -61,7 +61,7 @@ public class EnemySpawner : MonoBehaviour
             }
 
 
-            spawnTimer = Random.Range(0.1f, 0.1f - (levelTimer * 0.01f)) + spawnAmount / 2;
+            spawnTimer = Random.Range(0.1f, 4 - (levelTimer * 0.01f)) + spawnAmount / 2;
         }
     }
 

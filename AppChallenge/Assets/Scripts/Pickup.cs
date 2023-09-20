@@ -20,7 +20,7 @@ public class Pickup : MonoBehaviour
             case PickupType.Health:
                 spriteRenderer.color = Color.green; break;
             case PickupType.Armor:
-                spriteRenderer.color = Color.grey; break;
+                spriteRenderer.color = Color.yellow; break;
 
         }
     }

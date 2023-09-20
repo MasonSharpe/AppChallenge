@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 {
 	public float moveSpeed;
 	[SerializeField] private Sword sword;
+	[SerializeField] private SpriteRenderer swordRenderer;
 	[SerializeField] private Slider healthSlider;
 	[SerializeField] private Slider xpSlider;
 	[SerializeField] private TextMeshProUGUI levelText;
@@ -24,16 +25,17 @@ public class Player : MonoBehaviour
 	[SerializeField] Rigidbody2D rb;
 	private float accelerationX;
 	private float accelerationY;
+	[SerializeField] Animator animator;
 
 	//armor and health pickups, armor permanantly increases defense which decreases damage taken
 	//enemies can get hit by the same swing multiple times
 	// make the game better
 	private void Awake()
-    {
+	{
 		instance = this;
-    }
+	}
 
-    private void Start()
+	private void Start()
 	{
 
 		moveSpeed = 10;
@@ -58,22 +60,26 @@ public class Player : MonoBehaviour
 		float moveX = Input.GetAxisRaw("Horizontal");
 		float moveY = Input.GetAxisRaw("Vertical");
 		float acc = Time.deltaTime * (3 + LevelUpScreen.instance.normalUpgradesGotten[7]);
-		float top = 1 + LevelUpScreen.instance.normalUpgradesGotten[6] * 0.2f;
+		float top = 1;
 
 
-        accelerationX += moveX * acc;
+		accelerationX += moveX * acc;
 		accelerationX = Mathf.Clamp(accelerationX, -top, top);
-        accelerationY += moveY * acc;
-        accelerationY = Mathf.Clamp(accelerationY, -top, top);
+		accelerationY += moveY * acc;
+		accelerationY = Mathf.Clamp(accelerationY, -top, top);
 
+		animator.SetFloat("x", accelerationX);
+		animator.SetFloat("y", accelerationY);
 
+		string animation = animator.GetCurrentAnimatorClipInfo(0)[0].clip.name;
+		swordRenderer.sortingOrder = animation == "walkUp" || animation == "walkLeft" ? -2 : 0;
+		animator.speed = 0.5f + (LevelUpScreen.instance.normalUpgradesGotten[6] * 0.25f);
 
-
-        healthSlider.value = health;
+		healthSlider.value = health;
 		xpSlider.value = xp;
 		levelText.text = level.ToString();
 
-		moveSpeed = 10;
+		moveSpeed = 10 + LevelUpScreen.instance.normalUpgradesGotten[6] * 2.5f;
 		rb.velocity = moveSpeed * new Vector3(accelerationX, accelerationY);
 
 		Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
