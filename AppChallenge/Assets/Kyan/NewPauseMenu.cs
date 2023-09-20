@@ -22,10 +22,7 @@ public class NewPauseMenu : MonoBehaviour
                 Time.timeScale = 0;
                 GetComponent<Canvas>().enabled = true;
             }
-            else
-            {
-                Resume();
-            }
+            
 
 
         }
