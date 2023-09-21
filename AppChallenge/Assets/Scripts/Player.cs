@@ -10,9 +10,13 @@ public class Player : MonoBehaviour
 	public float moveSpeed;
 	[SerializeField] private Sword sword;
 	[SerializeField] private SpriteRenderer swordRenderer;
+	[SerializeField] private SpriteRenderer hurtRenderer;
+	[SerializeField] private SpriteRenderer spriteRenderer;
+	[SerializeField] private SpriteMask hurtMask;
 	[SerializeField] private Slider healthSlider;
 	[SerializeField] private Slider xpSlider;
 	[SerializeField] private TextMeshProUGUI levelText;
+	[SerializeField] private TextMeshProUGUI armorText;
 	[SerializeField] private GameObject loadedAreas;
 	static public Player instance;
 	public float health;
@@ -75,9 +79,13 @@ public class Player : MonoBehaviour
 		swordRenderer.sortingOrder = animation == "walkUp" || animation == "walkLeft" ? -2 : 0;
 		animator.speed = 0.5f + (LevelUpScreen.instance.normalUpgradesGotten[6] * 0.25f);
 
+		hurtRenderer.enabled = invincPeriod > 0 ? true : false;
+		hurtMask.sprite = spriteRenderer.sprite;
+
 		healthSlider.value = health;
 		xpSlider.value = xp;
 		levelText.text = level.ToString();
+		armorText.text = armor.ToString();
 
 		moveSpeed = 10 + LevelUpScreen.instance.normalUpgradesGotten[6] * 2.5f;
 		rb.velocity = moveSpeed * new Vector3(accelerationX, accelerationY);

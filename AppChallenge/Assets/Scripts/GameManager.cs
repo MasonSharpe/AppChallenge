@@ -36,4 +36,9 @@ public class GameManager : MonoBehaviour
         saveLevel = level;
         saveXP = xp;
     }
+
+    public static float ScaleFromNightsBeaten(float number, float exponent)
+    {
+        return number + Mathf.Pow(nightsBeaten.FindAll(h => h == true).Count, exponent);
+    }
 }

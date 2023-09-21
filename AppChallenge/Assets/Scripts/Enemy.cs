@@ -10,10 +10,18 @@ public class Enemy : MonoBehaviour{
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject xpPrefab;
     [SerializeField] Rigidbody2D rb;
+    [SerializeField] private SpriteRenderer hurtRenderer;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private SpriteMask hurtMask;
+    [SerializeField] private Animator animator;
+    [SerializeField] private RuntimeAnimatorController[] animators;
+
+    private float hurtTimer = 0;
     public float maxHealth;
     public float health;
     public Transform bulletParent;
     public Transform xpParent;
+    public int enemyTypeIndex = 0;
 
 
 
@@ -21,6 +29,8 @@ public class Enemy : MonoBehaviour{
     {
         maxHealth = 3 + (int)(EnemySpawner.instance.levelTimer / 25f);
         health = maxHealth;
+        enemyTypeIndex = 0;
+        animator.runtimeAnimatorController = animators[enemyTypeIndex];
     }
 
     private void Update()
@@ -29,6 +39,7 @@ public class Enemy : MonoBehaviour{
         rb.velocity = moveSpeed * dir;
 
         shootCooldown -= Time.deltaTime;
+        hurtTimer -= Time.deltaTime;
 
         if (shootCooldown <= 0)
         {
@@ -36,10 +47,18 @@ public class Enemy : MonoBehaviour{
             bullet.transform.position = transform.position;
             bullet.GetComponent<Rigidbody2D>().velocity = bulletSpeed * dir;
             bullet.isFriendly = false;
+            bullet.bulletType = enemyTypeIndex;
+            bullet.speed = bulletSpeed;
 
 
             shootCooldown = 1.5f;
         }
+
+        hurtRenderer.enabled = hurtTimer > 0 ? true : false;
+        hurtMask.sprite = spriteRenderer.sprite;
+
+        animator.SetFloat("x", dir.x);
+        animator.SetFloat("y", dir.y);
     }
 
     private void GetHit(float damage)
@@ -51,6 +70,7 @@ public class Enemy : MonoBehaviour{
             xp.transform.position = transform.position;
             Destroy(gameObject);
         }
+        hurtTimer = 0.1f;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
