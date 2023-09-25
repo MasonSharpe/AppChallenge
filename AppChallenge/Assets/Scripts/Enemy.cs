@@ -15,6 +15,8 @@ public class Enemy : MonoBehaviour{
     [SerializeField] private SpriteMask hurtMask;
     [SerializeField] private Animator animator;
     [SerializeField] private RuntimeAnimatorController[] animators;
+    private Vector3 randomDir = Vector3.right;
+    private float randomDirTimer = 5;
 
     private float hurtTimer = 0;
     public float maxHealth;
@@ -29,29 +31,50 @@ public class Enemy : MonoBehaviour{
     {
         maxHealth = 3 + (int)(EnemySpawner.instance.levelTimer / 25f);
         health = maxHealth;
-        enemyTypeIndex = 0;
+        if (NightCycle.instance.isNight) enemyTypeIndex = Mathf.Clamp(GameManager.nightsBeaten.FindAll(h => h == true).Count + Random.Range(-2, 2), 0, 2);
         animator.runtimeAnimatorController = animators[enemyTypeIndex];
     }
 
     private void Update()
     {
-        Vector3 dir = (Player.instance.transform.position - transform.position).normalized;
+        Vector2 dir;
+        if (enemyTypeIndex == 2)
+        {
+            dir = randomDir;
+            if (randomDirTimer <= 0)
+            {
+                randomDir = Random.insideUnitCircle.normalized;
+                randomDirTimer = 5;
+            }
+        }
+        else
+        {
+            dir = (Player.instance.transform.position - transform.position).normalized;
+        }
+        if (enemyTypeIndex == 1)
+        {
+            moveSpeed = Mathf.Clamp(10 - Vector3.Distance(Player.instance.transform.position, transform.position), 1, 10);
+        }
+
         rb.velocity = moveSpeed * dir;
+
 
         shootCooldown -= Time.deltaTime;
         hurtTimer -= Time.deltaTime;
+        randomDirTimer -= Time.deltaTime;
+
 
         if (shootCooldown <= 0)
         {
             Bullet bullet = Instantiate(bulletPrefab, bulletParent).GetComponent<Bullet>();
             bullet.transform.position = transform.position;
-            bullet.GetComponent<Rigidbody2D>().velocity = bulletSpeed * dir;
+            bullet.GetComponent<Rigidbody2D>().velocity = bulletSpeed * ((enemyTypeIndex == 2) ? Random.insideUnitCircle.normalized : dir);
             bullet.isFriendly = false;
             bullet.bulletType = enemyTypeIndex;
             bullet.speed = bulletSpeed;
 
 
-            shootCooldown = 1.5f;
+            shootCooldown = (enemyTypeIndex == 2) ? 0.25f : 1.5f;
         }
 
         hurtRenderer.enabled = hurtTimer > 0 ? true : false;
@@ -90,6 +113,16 @@ public class Enemy : MonoBehaviour{
             {
                 GetHit(collision.GetComponent<Bullet>().currentStoredDamage);
             }
+        }
+
+
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == 11 && enemyTypeIndex == 2)
+        {
+            randomDir = Random.insideUnitCircle.normalized;
         }
     }
 

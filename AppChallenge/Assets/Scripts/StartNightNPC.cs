@@ -9,6 +9,15 @@ public class StartNightNPC : MonoBehaviour
     [SerializeField] GameObject text;
     private bool playerIsClose;
     public int nightIndex;
+    [SerializeField] GameObject spawnPositions;
+
+    private void Start()
+    {
+        if (GameManager.nightsBeaten.FindAll(h => h == true).Count != 0)
+        {
+            text.GetComponentInChildren<TextMeshProUGUI>().text = "Press E to start the night.";
+        }
+    }
 
     private void Update()
     {
@@ -17,6 +26,8 @@ public class StartNightNPC : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && playerIsClose)
         {
             NightCycle.instance.currentNightIndex = nightIndex;
+            EnemySpawner.instance.spawnPositions = spawnPositions.GetComponentsInChildren<Transform>();
+
 
             NightCycle.instance.SetToNight();
 

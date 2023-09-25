@@ -60,6 +60,7 @@ public class NightCycle : MonoBehaviour
     {
         isNight = false;
         EnemySpawner.instance.isSpawningEnemies = false;
+        EnemySpawner.instance.levelTimer = 0;
         visual.enabled = false;
         if (victorious)
         {

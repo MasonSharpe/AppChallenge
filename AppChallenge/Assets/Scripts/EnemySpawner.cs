@@ -14,6 +14,7 @@ public class EnemySpawner : MonoBehaviour
     public Transform bulletParent;
     public Transform xpParent;
     public bool isSpawningEnemies = false;
+    private bool spawnAnArmor = false;
 
     private void Awake()
     {
@@ -50,11 +51,20 @@ public class EnemySpawner : MonoBehaviour
                 enemy.xpParent = xpParent;
                 enemy.transform.position = spawnPositions[location].position + (Vector3)(Random.insideUnitCircle * 1.5f);
 
-                if (Random.Range(0, 10) > 8)
+                if (Random.Range(0, 10) > 7)
                 {
                     Pickup pickup = Instantiate(pickupPrefab, transform);
                     pickup.transform.position = spawnPositions[location].position + (Vector3)(Random.insideUnitCircle * 1.5f);
-                    pickup.type = Random.Range(0, 5) == 0 ? Pickup.PickupType.Armor : Pickup.PickupType.Health;
+                    if (spawnAnArmor)
+                    {
+                        pickup.type = Pickup.PickupType.Armor;
+                        spawnAnArmor = false;
+                    }
+                    else
+                    {
+                        pickup.type = Pickup.PickupType.Health;
+                        spawnAnArmor = true;
+                    }
                 }
 
 
