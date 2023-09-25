@@ -21,7 +21,6 @@ public class Bullet : MonoBehaviour
     private void Start()
     {
         Destroy(gameObject, 8);
-        print(bulletType);
         if (bulletType == 1)
         {
             rb.velocity /= 5;

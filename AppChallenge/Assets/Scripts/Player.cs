@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
 
 		float moveX = Input.GetAxisRaw("Horizontal");
 		float moveY = Input.GetAxisRaw("Vertical");
-		float acc = Time.deltaTime * (3 + LevelUpScreen.instance.normalUpgradesGotten[7]);
+		float acc = Time.deltaTime * (3 + (LevelUpScreen.instance.normalUpgradesGotten[7] * 2));
 		float top = 1;
 
 
@@ -134,7 +134,7 @@ public class Player : MonoBehaviour
 
 	private void GetHit(float damage, float invincPeriod)
     {
-		health -= Mathf.Clamp(damage - armor, 0.1f, 1000);
+		health -= Mathf.Clamp(damage - (armor / 6f), 0.1f, 1000);
 		this.invincPeriod = invincPeriod * (1 + LevelUpScreen.instance.normalUpgradesGotten[7] * 0.25f);
 
 		if (health <= 0)
@@ -150,7 +150,7 @@ public class Player : MonoBehaviour
         {
 			if (!collision.GetComponent<Bullet>().isFriendly && invincPeriod < 0)
             {
-				GetHit(0.7f, 0.05f);
+				GetHit(0.7f * (1 + GameManager.nightsBeaten.FindAll(h => h == true).Count * 0.5f) * (1 + (collision.GetComponent<Bullet>().bulletType * 0.5f)), 0.02f);
 				Destroy(collision.gameObject);
 				cameraShakeTimer = 0.1f;
 
@@ -185,7 +185,7 @@ public class Player : MonoBehaviour
 		{
 			if (invincPeriod < 0)
 			{
-				GetHit(0.5f, 0.15f);
+				GetHit(0.5f * (1 + GameManager.nightsBeaten.FindAll(h => h == true).Count * 0.5f) * (1 + (collision.GetComponent<Enemy>().enemyTypeIndex * 0.5f)), 0.15f);
 
 			}
 		}
@@ -198,7 +198,7 @@ public class Player : MonoBehaviour
 
 				if (pickupType == Pickup.PickupType.Health)
                 {
-					health = Mathf.Clamp(health + maxHealth / 4, 0, maxHealth);
+					health = Mathf.Clamp(health + maxHealth / 6, 0, maxHealth);
                 }
 				else if (pickupType == Pickup.PickupType.Armor)
 				{

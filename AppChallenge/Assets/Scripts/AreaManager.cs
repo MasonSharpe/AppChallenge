@@ -28,8 +28,12 @@ public class AreaManager : MonoBehaviour
 
     public void LoadTriggered(AreaLoader areaLoader)
     {
-        SceneManager.LoadScene(areaLoader.sceneToLoad);
-        Player.instance.transform.position = areaLoader.positionToGo;
+        if (!NightCycle.instance.isNight)
+        {
+            SceneManager.LoadScene(areaLoader.sceneToLoad);
+            Player.instance.transform.position = areaLoader.positionToGo;
+        }
+
     /*foreach (GameObject gameObject in areaLoader.scenesToLoad)
         {
 

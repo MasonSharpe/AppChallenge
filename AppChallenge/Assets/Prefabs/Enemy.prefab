@@ -254,10 +254,15 @@ MonoBehaviour:
   spriteRenderer: {fileID: 7374326628906696951}
   hurtMask: {fileID: 6154747771949695877}
   animator: {fileID: 3571272530300460277}
+  animators:
+  - {fileID: 9100000, guid: e4b36a08952fdf24fb716713e72692ec, type: 2}
+  - {fileID: 9100000, guid: c2d014c61a9b81641858950e28e7fd74, type: 2}
+  - {fileID: 9100000, guid: e4b36a08952fdf24fb716713e72692ec, type: 2}
   maxHealth: 0
   health: 15
   bulletParent: {fileID: 0}
   xpParent: {fileID: 0}
+  enemyTypeIndex: 0
 --- !u!61 &7374326628906696947
 BoxCollider2D:
   m_ObjectHideFlags: 0
