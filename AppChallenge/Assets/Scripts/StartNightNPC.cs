@@ -13,11 +13,29 @@ public class StartNightNPC : MonoBehaviour
 
     private void Start()
     {
-        if (GameManager.nightsBeaten.FindAll(h => h == true).Count != 0)
+        int nights = GameManager.nightsBeaten.FindAll(h => h == true).Count;
+        if (nightIndex == -1)
+        {
+
+            if (nights == 3)
+            {
+                text.GetComponentInChildren<TextMeshProUGUI>().text = "A VERY powerful enemy lies ahead... Press E to continue.";
+            }
+            else
+            {
+                text.GetComponentInChildren<TextMeshProUGUI>().text = "A VERY powerful enemy lies ahead... There's still places you haven't been to yet! You may press E continue if you like, but it might be wise to come back later...";
+            }
+        }
+        else if (nights != 0)
         {
             text.GetComponentInChildren<TextMeshProUGUI>().text = "Press E to start the night.";
         }
+
+
     }
+
+
+
 
     private void Update()
     {

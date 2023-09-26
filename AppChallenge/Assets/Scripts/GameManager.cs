@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public static Vector3 savePosition = Vector3.zero;
     public static int saveLevel = 2;
     public static int saveXP = 1;
+    public static int saveArmor;
 
 
     private void Start()
@@ -24,17 +25,19 @@ public class GameManager : MonoBehaviour
         Player.instance.xp = saveXP;
         Player.instance.level = saveLevel;
         Player.instance.health = saveHealth;
+        Player.instance.armor = saveArmor;
 
         if (NightCycle.instance.isNight) NightCycle.instance.EndNight(false);
     }
 
-    public static void SetSpawn(float health, string location, Vector3 position, int level, int xp)
+    public static void SetSpawn(float health, string location, Vector3 position, int level, int xp, int armor)
     {
         saveHealth = health;
         saveLocation = location;
         savePosition = position;
         saveLevel = level;
         saveXP = xp;
+        saveArmor = armor;
     }
 
     public static float ScaleFromNightsBeaten(float number, float exponent)

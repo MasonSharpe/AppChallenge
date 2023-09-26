@@ -11,11 +11,10 @@ public class NightCycle : MonoBehaviour
     [SerializeField] private Image visual;
     public float nightLength;
     public bool isNight;
-    private Tilemap ground;
-    private Tilemap walls;
     public GameObject bulletHolder;
     public GameObject xpHolder;
     public int currentNightIndex = -1;
+    private Tilemap[] tilemaps;
 
     private void Awake()
     {
@@ -29,8 +28,13 @@ public class NightCycle : MonoBehaviour
         float colorAmount =  (amount / 2) + 0.25f;
         if (isNight)
         {
-            ground.color = new Color(colorAmount, colorAmount, colorAmount);
-            walls.color = new Color(colorAmount, colorAmount, colorAmount);
+            foreach (Tilemap tilemap in tilemaps)
+            {
+                tilemap.color = new Color(colorAmount, colorAmount, colorAmount);
+
+            }
+
+
         }
 
         if (amount >= 1 && isNight)
@@ -43,17 +47,22 @@ public class NightCycle : MonoBehaviour
 
     public void SetToNight()
     {
-        GameManager.SetSpawn(Player.instance.health, SceneManager.GetActiveScene().name,
-            Player.instance.transform.position, Player.instance.level, Player.instance.xp);
+        Fade.instance.Show(0.75f);
+        TimerManager.CreateTimer(1.5f, () =>
+        {
+            GameManager.SetSpawn(Player.instance.health, SceneManager.GetActiveScene().name,
+            Player.instance.transform.position, Player.instance.level, Player.instance.xp, Player.instance.armor);
 
-        isNight = true;
-        nightLength = 45 + 45 * currentNightIndex;
-        EnemySpawner.instance.isSpawningEnemies = true;
-        EnemySpawner.instance.levelTimer = 0;
-        visual.enabled = true;
-        Tilemap[] tilemaps = FindObjectsByType<Tilemap>(FindObjectsSortMode.InstanceID);
-        ground = tilemaps[0];
-        walls = tilemaps[1];
+            isNight = true;
+            nightLength = 45 + 45 * currentNightIndex;
+            EnemySpawner.instance.isSpawningEnemies = true;
+            EnemySpawner.instance.levelTimer = 0;
+            visual.enabled = true;
+            tilemaps = FindObjectsByType<Tilemap>(FindObjectsSortMode.None);
+            Fade.instance.Hide(0.5f);
+        });
+
+
     }
 
     public void EndNight(bool victorious)
@@ -66,7 +75,7 @@ public class NightCycle : MonoBehaviour
         {
             GameManager.nightsBeaten[currentNightIndex] = true;
             GameManager.SetSpawn(Player.instance.health, SceneManager.GetActiveScene().name,
-                Player.instance.transform.position, Player.instance.level, Player.instance.xp);
+                Player.instance.transform.position, Player.instance.level, Player.instance.xp, Player.instance.armor);
         }
         else
         {
