@@ -26,7 +26,7 @@ SpriteAtlas:
       m_MaxTextureSize: 4096
       m_ResizeAlgorithm: 0
       m_TextureFormat: -1
-      m_TextureCompression: 1
+      m_TextureCompression: 0
       m_CompressionQuality: 50
       m_CrunchedCompression: 0
       m_AllowsAlphaSplitting: 0
@@ -38,8 +38,8 @@ SpriteAtlas:
       padding: 4
       blockOffset: 1
       allowAlphaSplitting: 0
-      enableRotation: 1
-      enableTightPacking: 1
+      enableRotation: 0
+      enableTightPacking: 0
       enableAlphaDilation: 0
     secondaryTextureSettings: {}
     variantMultiplier: 1
@@ -52,6 +52,9 @@ SpriteAtlas:
   m_PackedSprites:
   - {fileID: 12205630, guid: abc7bbd1cd8fce14eac7e5a8f7d9e763, type: 3}
   - {fileID: 2078077046, guid: 2d8b35e2941d1b84190e82606ce17f90, type: 3}
+  - {fileID: -1360319708, guid: 959c19c3ff37298498d624a776f299aa, type: 3}
+  - {fileID: 1226923468, guid: 959c19c3ff37298498d624a776f299aa, type: 3}
+  - {fileID: 1705887152, guid: c275bed6d359dd44bbcb97ec3deee465, type: 3}
   - {fileID: -1099520748, guid: 0a63d4b740cd0a94295bff4d59395de3, type: 3}
   - {fileID: 1626084147, guid: db16f909edee38e4eaebdef114f89fec, type: 3}
   - {fileID: -1387699091, guid: db16f909edee38e4eaebdef114f89fec, type: 3}
@@ -81,6 +84,9 @@ SpriteAtlas:
   m_PackedSpriteNamesToIndex:
   - start menu buttons  (1)_0
   - Menu Board 2_0
+  - DropDown, and check_0
+  - DropDown, and check_1
+  - better buttton blue_0
   - start menu buttons_0
   - better buttton 3.0_4
   - better buttton 3.0_3
