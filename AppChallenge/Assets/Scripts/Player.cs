@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
 	static public Player instance;
 	public float health;
 	public float maxHealth;
-	public float armor;
+	public int armor;
 	public int xp;
 	public int level;
 	public float invincPeriod;
@@ -134,8 +134,8 @@ public class Player : MonoBehaviour
 
 	private void GetHit(float damage, float invincPeriod)
     {
-		health -= Mathf.Clamp(damage - (armor / 6f), 0.1f, 1000);
-		this.invincPeriod = invincPeriod * (1 + LevelUpScreen.instance.normalUpgradesGotten[7] * 0.25f);
+		health -= Mathf.Clamp(damage * (1 - armor / 40f), 0.1f, 1000);
+		this.invincPeriod = invincPeriod * (1 + LevelUpScreen.instance.normalUpgradesGotten[8] * 0.5f);
 
 		if (health <= 0)
         {
@@ -150,7 +150,7 @@ public class Player : MonoBehaviour
         {
 			if (!collision.GetComponent<Bullet>().isFriendly && invincPeriod < 0)
             {
-				GetHit(0.7f * (1 + GameManager.nightsBeaten.FindAll(h => h == true).Count * 0.5f) * (1 + (collision.GetComponent<Bullet>().bulletType * 0.5f)), 0.02f);
+				GetHit(1f * (1 + GameManager.nightsBeaten.FindAll(h => h == true).Count) * (1 + (collision.GetComponent<Bullet>().bulletType * 0.5f)), 0.05f);
 				Destroy(collision.gameObject);
 				cameraShakeTimer = 0.1f;
 
@@ -185,7 +185,7 @@ public class Player : MonoBehaviour
 		{
 			if (invincPeriod < 0)
 			{
-				GetHit(0.5f * (1 + GameManager.nightsBeaten.FindAll(h => h == true).Count * 0.5f) * (1 + (collision.GetComponent<Enemy>().enemyTypeIndex * 0.5f)), 0.15f);
+				GetHit(0.5f * (1 + GameManager.nightsBeaten.FindAll(h => h == true).Count) * (1 + (collision.GetComponent<Enemy>().enemyTypeIndex * 0.5f)), 0.15f);
 
 			}
 		}

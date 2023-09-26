@@ -15,6 +15,7 @@ public class EnemySpawner : MonoBehaviour
     public Transform xpParent;
     public bool isSpawningEnemies = false;
     private bool spawnAnArmor = false;
+    public float timeStrength;
 
     private void Awake()
     {
@@ -31,10 +32,11 @@ public class EnemySpawner : MonoBehaviour
     {
         spawnTimer -= Time.deltaTime;
         levelTimer += Time.deltaTime;
+        timeStrength = levelTimer / NightCycle.instance.nightLength;
 
         if (spawnTimer <= 0 && isSpawningEnemies)
         {
-            float spawnAmount = Random.Range(2, 2 + (levelTimer * 0.02f));
+            float spawnAmount = Random.Range(2, 2 + (5 * timeStrength));
             int location = Random.Range(0, spawnPositions.Length);
             for (int i = 0; i < 10; i++)
             {
@@ -51,7 +53,7 @@ public class EnemySpawner : MonoBehaviour
                 enemy.xpParent = xpParent;
                 enemy.transform.position = spawnPositions[location].position + (Vector3)(Random.insideUnitCircle * 1.5f);
 
-                if (Random.Range(0, 10) > 7)
+                if (Random.Range(0, 10) > 8)
                 {
                     Pickup pickup = Instantiate(pickupPrefab, transform);
                     pickup.transform.position = spawnPositions[location].position + (Vector3)(Random.insideUnitCircle * 1.5f);
@@ -71,7 +73,7 @@ public class EnemySpawner : MonoBehaviour
             }
 
 
-            spawnTimer = Random.Range(0.1f, 4 - (levelTimer * 0.01f)) + spawnAmount / 2;
+            spawnTimer = Random.Range(2 - (3 * timeStrength), 6 - (3 * timeStrength)) + spawnAmount / 2;
         }
     }
 

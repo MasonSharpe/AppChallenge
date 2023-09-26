@@ -29,9 +29,10 @@ public class Enemy : MonoBehaviour{
 
     private void Start()
     {
-        maxHealth = 3 + (int)(EnemySpawner.instance.levelTimer / 25f);
+
+        if (NightCycle.instance.isNight) enemyTypeIndex = Mathf.Clamp(GameManager.nightsBeaten.FindAll(h => h == true).Count + Random.Range(-2, 1), 0, 2);
+        maxHealth = 3 + (enemyTypeIndex + GameManager.nightsBeaten.FindAll(h => h == true).Count) * 3 + (int)(3 * EnemySpawner.instance.timeStrength);
         health = maxHealth;
-        if (NightCycle.instance.isNight) enemyTypeIndex = Mathf.Clamp(GameManager.nightsBeaten.FindAll(h => h == true).Count + Random.Range(-2, 2), 0, 2);
         animator.runtimeAnimatorController = animators[enemyTypeIndex];
     }
 
