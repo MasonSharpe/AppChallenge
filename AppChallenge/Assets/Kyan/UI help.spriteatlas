@@ -52,8 +52,10 @@ SpriteAtlas:
   m_PackedSprites:
   - {fileID: 12205630, guid: abc7bbd1cd8fce14eac7e5a8f7d9e763, type: 3}
   - {fileID: 2078077046, guid: 2d8b35e2941d1b84190e82606ce17f90, type: 3}
+  - {fileID: -603803629, guid: 89badaa3650a28c43b61572c931629e3, type: 3}
   - {fileID: -1360319708, guid: 959c19c3ff37298498d624a776f299aa, type: 3}
   - {fileID: 1226923468, guid: 959c19c3ff37298498d624a776f299aa, type: 3}
+  - {fileID: -744708711, guid: 5f5c22045f6597a48a022741232a3b80, type: 3}
   - {fileID: 1705887152, guid: c275bed6d359dd44bbcb97ec3deee465, type: 3}
   - {fileID: -1099520748, guid: 0a63d4b740cd0a94295bff4d59395de3, type: 3}
   - {fileID: 1626084147, guid: db16f909edee38e4eaebdef114f89fec, type: 3}
@@ -84,8 +86,10 @@ SpriteAtlas:
   m_PackedSpriteNamesToIndex:
   - start menu buttons  (1)_0
   - Menu Board 2_0
+  - Maain menu_0
   - DropDown, and check_0
   - DropDown, and check_1
+  - Maain menu _0
   - better buttton blue_0
   - start menu buttons_0
   - better buttton 3.0_4
