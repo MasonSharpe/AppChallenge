@@ -10,11 +10,12 @@ public class StartNightNPC : MonoBehaviour
     private bool playerIsClose;
     public int nightIndex;
     [SerializeField] GameObject spawnPositions;
+    [SerializeField] private BossEnemy bossPrefab = null;
 
     private void Start()
     {
         int nights = GameManager.nightsBeaten.FindAll(h => h == true).Count;
-        if (nightIndex == -1)
+        if (nightIndex == 3)
         {
 
             if (nights == 3)
@@ -45,11 +46,24 @@ public class StartNightNPC : MonoBehaviour
         {
             NightCycle.instance.currentNightIndex = nightIndex;
             EnemySpawner.instance.spawnPositions = spawnPositions.GetComponentsInChildren<Transform>();
-
-
+            if (bossPrefab != null) NightCycle.instance.isBoss = true;
             NightCycle.instance.SetToNight();
 
             text.SetActive(false);
+
+            if (bossPrefab != null)
+            {
+               BossEnemy boss = Instantiate(bossPrefab, spawnPositions.transform);
+                boss.transform.position = spawnPositions.GetComponentsInChildren<Transform>()[1].position;
+
+                Player.instance.boss = boss;
+                boss.enabled = false;
+                TimerManager.CreateTimer(1.5f, () =>
+                {
+                    boss.enabled = true;
+                    Player.instance.bossHealth.gameObject.SetActive(true);
+                });
+            }
 
         }
 

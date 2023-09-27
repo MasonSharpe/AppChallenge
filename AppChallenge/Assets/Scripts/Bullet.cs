@@ -37,6 +37,7 @@ public class Bullet : MonoBehaviour
             {
                 isFriendly = true;
                 currentStoredDamage = Sword.instance.parryDamage;
+                print(Sword.instance.parryDamage);
                 rb.velocity = (Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position)).normalized * Sword.instance.bulletParrySpeed;
                 spriteRenderer.color = Color.cyan;
                 hitSweetSpot = true;

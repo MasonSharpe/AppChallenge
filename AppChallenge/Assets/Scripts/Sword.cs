@@ -69,7 +69,7 @@ public class Sword : MonoBehaviour
             sweetBCollider.enabled = false;
             Bullet bullet = collision.GetComponent<Bullet>();
             bullet.isFriendly = true;
-            bullet.currentStoredDamage = parryDamage * LevelUpScreen.instance.normalUpgradesGotten[3] * 0.4f;
+            bullet.currentStoredDamage = parryDamage * (1 + LevelUpScreen.instance.normalUpgradesGotten[3] * 0.4f);
             swordCooldown -= LevelUpScreen.instance.normalUpgradesGotten[5] * 0.02f;
             bullet.rb.velocity = (Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position)).normalized * bulletParrySpeed;
             if (bullet.hitSweetSpot == false) bullet.spriteRenderer.color = new Color(0.58f, 0.47f, 1, 0.83f);

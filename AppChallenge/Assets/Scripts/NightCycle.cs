@@ -11,6 +11,7 @@ public class NightCycle : MonoBehaviour
     [SerializeField] private Image visual;
     public float nightLength;
     public bool isNight;
+    public bool isBoss = false;
     public GameObject bulletHolder;
     public GameObject xpHolder;
     public int currentNightIndex = -1;
@@ -54,10 +55,14 @@ public class NightCycle : MonoBehaviour
             Player.instance.transform.position, Player.instance.level, Player.instance.xp, Player.instance.armor);
 
             isNight = true;
-            nightLength = 45 + 45 * currentNightIndex;
-            EnemySpawner.instance.isSpawningEnemies = true;
+            if (!isBoss)
+            {
+                nightLength = 45 + 45 * currentNightIndex;
+                EnemySpawner.instance.isSpawningEnemies = true;
+                visual.enabled = true;
+            }
+
             EnemySpawner.instance.levelTimer = 0;
-            visual.enabled = true;
             tilemaps = FindObjectsByType<Tilemap>(FindObjectsSortMode.None);
             Fade.instance.Hide(0.5f);
         });
@@ -89,6 +94,7 @@ public class NightCycle : MonoBehaviour
             }
         }
 
+        Player.instance.bossHealth.gameObject.SetActive(false);
         Transform[] enemies = EnemySpawner.instance.gameObject.GetComponentsInChildren<Transform>();
         for (int i = 0; i < enemies.Length; i++)
         {

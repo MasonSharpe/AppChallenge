@@ -31,7 +31,7 @@ public class EnemySpawner : MonoBehaviour
     private void Update()
     {
         spawnTimer -= Time.deltaTime;
-        levelTimer += Time.deltaTime;
+        if (!NightCycle.instance.isBoss) levelTimer += Time.deltaTime;
         timeStrength = levelTimer / NightCycle.instance.nightLength;
 
         if (spawnTimer <= 0 && isSpawningEnemies)

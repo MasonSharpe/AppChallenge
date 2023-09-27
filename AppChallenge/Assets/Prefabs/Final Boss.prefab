@@ -152,13 +152,13 @@ GameObject:
   m_Component:
   - component: {fileID: 7374326628906696950}
   - component: {fileID: 7374326628906696951}
-  - component: {fileID: 7374326628906696949}
   - component: {fileID: 7374326628906696947}
   - component: {fileID: 7374326628906696948}
   - component: {fileID: 6154747771949695877}
   - component: {fileID: 3571272530300460277}
+  - component: {fileID: 1406913584450093030}
   m_Layer: 7
-  m_Name: Enemy
+  m_Name: Final Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -173,8 +173,8 @@ Transform:
   m_GameObject: {fileID: 7374326628906696904}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4059561563539279409}
   - {fileID: 3981462186874230669}
@@ -223,7 +223,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 802343279, guid: 1bad830d6726ed949bb2fb1848e986fe, type: 3}
-  m_Color: {r: 1, g: 0.9009434, b: 0.9009434, a: 1}
+  m_Color: {r: 0.54426956, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -233,36 +233,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7374326628906696949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7374326628906696904}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2432bf70734dd6f4cad8648ea7fba51a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  bulletSpeed: 9
-  bulletPrefab: {fileID: 8937682944150014530, guid: a8843ce0657a35d42aae5a372aac4ac0, type: 3}
-  xpPrefab: {fileID: 3720884284327579049, guid: e21ab9a31c665cf49a9d5b91242b68ab, type: 3}
-  rb: {fileID: 7374326628906696948}
-  hurtRenderer: {fileID: 1603444643701729160}
-  spriteRenderer: {fileID: 7374326628906696951}
-  hurtMask: {fileID: 6154747771949695877}
-  animator: {fileID: 3571272530300460277}
-  animators:
-  - {fileID: 9100000, guid: e4b36a08952fdf24fb716713e72692ec, type: 2}
-  - {fileID: 9100000, guid: c2d014c61a9b81641858950e28e7fd74, type: 2}
-  - {fileID: 9100000, guid: e4b36a08952fdf24fb716713e72692ec, type: 2}
-  maxHealth: 0
-  health: 15
-  bulletParent: {fileID: 0}
-  xpParent: {fileID: 0}
-  enemyTypeIndex: 0
 --- !u!61 &7374326628906696947
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -381,3 +351,31 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &1406913584450093030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7374326628906696904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46e1fbd8f08e08d4abe43f5ea9d67507, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
+  bulletSpeed: 15
+  bulletPrefab: {fileID: 8937682944150014530, guid: a8843ce0657a35d42aae5a372aac4ac0, type: 3}
+  rb: {fileID: 7374326628906696948}
+  hurtRenderer: {fileID: 1603444643701729160}
+  spriteRenderer: {fileID: 7374326628906696951}
+  hurtMask: {fileID: 6154747771949695877}
+  animator: {fileID: 3571272530300460277}
+  maxHealth: 100
+  health: 0
+  bulletParent: {fileID: 0}
+  xpParent: {fileID: 0}
+  phase: 1
+  bulletSpeeds:
+  - 15
+  - 15

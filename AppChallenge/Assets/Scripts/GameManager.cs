@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < 3; i++) nightsBeaten.Add(false);
+        for (int i = 0; i < 4; i++) nightsBeaten.Add(false);
     }
     public static void Respawn()
     {

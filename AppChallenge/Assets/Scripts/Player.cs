@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI levelText;
 	[SerializeField] private TextMeshProUGUI armorText;
 	[SerializeField] private GameObject loadedAreas;
+	public Slider bossHealth;
+	public BossEnemy boss;
 	static public Player instance;
 	public float health;
 	public float maxHealth;
@@ -26,9 +28,9 @@ public class Player : MonoBehaviour
 	public int level;
 	public float invincPeriod;
 	public float cameraShakeTimer;
-	[SerializeField] Rigidbody2D rb;
-	private float accelerationX;
-	private float accelerationY;
+	public Rigidbody2D rb;
+	public float accelerationX;
+	public float accelerationY;
 	[SerializeField] Animator animator;
 
 	//armor and health pickups, armor permanantly increases defense which decreases damage taken
@@ -84,6 +86,7 @@ public class Player : MonoBehaviour
 
 		healthSlider.value = health;
 		xpSlider.value = xp;
+		if (NightCycle.instance.isBoss) bossHealth.value = boss.health;
 		levelText.text = level.ToString();
 		armorText.text = armor.ToString();
 
@@ -134,7 +137,7 @@ public class Player : MonoBehaviour
 
 	private void GetHit(float damage, float invincPeriod)
     {
-		health -= Mathf.Clamp(damage * (1 - armor / 40f), 0.1f, 1000);
+		//health -= Mathf.Clamp(damage * (1 - armor / 40f), 0.1f, 1000);
 		this.invincPeriod = invincPeriod * (1 + LevelUpScreen.instance.normalUpgradesGotten[8] * 0.5f);
 
 		if (health <= 0)
@@ -150,7 +153,14 @@ public class Player : MonoBehaviour
         {
 			if (!collision.GetComponent<Bullet>().isFriendly && invincPeriod < 0)
             {
-				GetHit(1f * (1 + GameManager.nightsBeaten.FindAll(h => h == true).Count) * (1 + (collision.GetComponent<Bullet>().bulletType * 0.5f)), 0.05f);
+				if (NightCycle.instance.isBoss)
+				{
+					GetHit(4, 0.4f);
+				}
+				else
+				{
+					GetHit(1f * (1 + GameManager.nightsBeaten.FindAll(h => h == true).Count) * (1 + (collision.GetComponent<Bullet>().bulletType * 0.5f)), 0.05f);
+				}
 				Destroy(collision.gameObject);
 				cameraShakeTimer = 0.1f;
 
@@ -185,7 +195,14 @@ public class Player : MonoBehaviour
 		{
 			if (invincPeriod < 0)
 			{
-				GetHit(0.5f * (1 + GameManager.nightsBeaten.FindAll(h => h == true).Count) * (1 + (collision.GetComponent<Enemy>().enemyTypeIndex * 0.5f)), 0.15f);
+				if (NightCycle.instance.isBoss)
+                {
+					GetHit(5, 0.2f);
+                }
+                else
+                {
+					GetHit(0.5f * (1 + GameManager.nightsBeaten.FindAll(h => h == true).Count) * (1 + (collision.GetComponent<Enemy>().enemyTypeIndex * 0.5f)), 0.15f);
+				}
 
 			}
 		}

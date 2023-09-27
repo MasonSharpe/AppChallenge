@@ -2,19 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour{
+public class BossEnemy : MonoBehaviour{
 
     [SerializeField] private float moveSpeed = 5;
     [SerializeField] private float bulletSpeed = 150;
     private float shootCooldown = 0;
     [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private GameObject xpPrefab;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] private SpriteRenderer hurtRenderer;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private SpriteMask hurtMask;
     [SerializeField] private Animator animator;
-    [SerializeField] private RuntimeAnimatorController[] animators;
     private Vector3 randomDir = Vector3.right;
     private float randomDirTimer = 5;
 
@@ -23,41 +21,29 @@ public class Enemy : MonoBehaviour{
     public float health;
     public Transform bulletParent;
     public Transform xpParent;
-    public int enemyTypeIndex = 0;
+    public int phase = 1;
+    public float[] bulletSpeeds = new float[] {7, 7 };
 
-
+    /*PHASES
+     * 1. simple enemy1 AI, but with predictive shooting
+     * 2. stand in middle and shoot a bullet in all directions, then rotate a little bit, continue
+     * 3. move in circle around map and shoot enemy2 bullets VERY quickly
+     * 4. calamity style bullet hell, movement speed greatly decreased
+     * 5. move towards you while firing random spreads
+     * 6. death animation, close in circles of bullets with varying speed and position, increasing in speed, forcing parries
+     */
 
     private void Start()
     {
 
-        if (NightCycle.instance.isNight) enemyTypeIndex = Mathf.Clamp(GameManager.nightsBeaten.FindAll(h => h == true).Count + Random.Range(-2, 1), 0, 2);
-        maxHealth = 3 + (enemyTypeIndex + GameManager.nightsBeaten.FindAll(h => h == true).Count) * 3 + (int)(3 * EnemySpawner.instance.timeStrength);
         health = maxHealth;
-        animator.runtimeAnimatorController = animators[enemyTypeIndex];
     }
 
     private void Update()
     {
-        Vector2 dir;
-        if (enemyTypeIndex == 2)
-        {
-            dir = randomDir;
-            if (randomDirTimer <= 0)
-            {
-                randomDir = Random.insideUnitCircle.normalized;
-                randomDirTimer = 5;
-            }
-        }
-        else
-        {
-            dir = (Player.instance.transform.position - transform.position).normalized;
-        }
-        if (enemyTypeIndex == 1)
-        {
-            moveSpeed = Mathf.Clamp(10 - Vector3.Distance(Player.instance.transform.position, transform.position), 1, 10);
-        }
+        Vector2 dir = (Player.instance.transform.position - transform.position).normalized;
 
-        rb.velocity = moveSpeed * dir;
+       // rb.velocity = moveSpeed * dir;
 
 
         shootCooldown -= Time.deltaTime;
@@ -69,13 +55,21 @@ public class Enemy : MonoBehaviour{
         {
             Bullet bullet = Instantiate(bulletPrefab, bulletParent).GetComponent<Bullet>();
             bullet.transform.position = transform.position;
-            bullet.GetComponent<Rigidbody2D>().velocity = bulletSpeed * ((enemyTypeIndex == 2) ? Random.insideUnitCircle.normalized : dir);
+
+            Vector3 velocity;
+            if (phase == 1)
+            {
+                dir = ((Vector2)(Player.instance.transform.position - transform.position) + Player.instance.rb.velocity).normalized;
+            }
+            velocity = bulletSpeeds[phase] * dir;
+            bullet.GetComponent<Rigidbody2D>().velocity = velocity;
+
             bullet.isFriendly = false;
-            bullet.bulletType = enemyTypeIndex;
+            bullet.bulletType = phase + 3;
             bullet.speed = bulletSpeed;
 
 
-            shootCooldown = (enemyTypeIndex == 2) ? 0.25f : 1.5f;
+            shootCooldown = (phase == 2) ? 0.25f : 1.5f;
         }
 
         hurtRenderer.enabled = hurtTimer > 0 ? true : false;
@@ -88,11 +82,8 @@ public class Enemy : MonoBehaviour{
     private void GetHit(float damage)
     {
         health -= damage;
-        print(damage);
         if (health <= 0)
         {
-            GameObject xp = Instantiate(xpPrefab, xpParent);
-            xp.transform.position = transform.position;
             Destroy(gameObject);
         }
         hurtTimer = 0.1f;
@@ -103,7 +94,7 @@ public class Enemy : MonoBehaviour{
         //hit by sword
         if (collision.gameObject.layer == 3)
         {
-            GetHit(maxHealth / Mathf.Clamp(5 - (LevelUpScreen.instance.normalUpgradesGotten[0] * 0.4f), 1.1f, 5) + Sword.instance.swingDamage);
+            GetHit(maxHealth / Mathf.Clamp(1500 - (LevelUpScreen.instance.normalUpgradesGotten[0] * 50f), 1500, 150) + Sword.instance.swingDamage);
             Sword.instance.swordCooldown -= Mathf.Clamp(LevelUpScreen.instance.normalUpgradesGotten[1] * 0.02f, 0, 0.25f);
 
         }
@@ -120,12 +111,5 @@ public class Enemy : MonoBehaviour{
 
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer == 11 && enemyTypeIndex == 2)
-        {
-            randomDir = Random.insideUnitCircle.normalized;
-        }
-    }
 
 }
