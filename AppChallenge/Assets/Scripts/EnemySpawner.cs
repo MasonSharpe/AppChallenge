@@ -73,7 +73,7 @@ public class EnemySpawner : MonoBehaviour
             }
 
 
-            spawnTimer = Random.Range(2 - (3 * timeStrength), 6 - (3 * timeStrength)) + spawnAmount / 2;
+            spawnTimer = Random.Range(4 - (3 * timeStrength), 9 - (3 * timeStrength)) + spawnAmount / 2;
         }
     }
 
