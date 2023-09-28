@@ -40,9 +40,10 @@ public class StartNightNPC : MonoBehaviour
 
     private void Update()
     {
+        bool isNight = NightCycle.instance.isNight;
         playerIsClose = (Player.instance.transform.position - transform.position).magnitude < 5;
-        text.SetActive(playerIsClose && !NightCycle.instance.isNight);
-        if (Input.GetKeyDown(KeyCode.E) && playerIsClose)
+        text.SetActive(playerIsClose && !isNight);
+        if (Input.GetKeyDown(KeyCode.E) && playerIsClose && !isNight)
         {
             NightCycle.instance.currentNightIndex = nightIndex;
             EnemySpawner.instance.spawnPositions = spawnPositions.GetComponentsInChildren<Transform>();
@@ -67,7 +68,7 @@ public class StartNightNPC : MonoBehaviour
 
         }
 
-        enabled = !GameManager.nightsBeaten[nightIndex] && !NightCycle.instance.isNight;
+        enabled = !GameManager.nightsBeaten[nightIndex] && !isNight;
 
     }
 

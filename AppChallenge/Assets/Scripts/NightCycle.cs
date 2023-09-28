@@ -49,10 +49,13 @@ public class NightCycle : MonoBehaviour
     public void SetToNight()
     {
         Fade.instance.Show(0.75f);
+        Player.instance.canInteract = false;
+        Player.instance.rb.velocity = Vector3.zero;
         TimerManager.CreateTimer(1.5f, () =>
         {
             GameManager.SetSpawn(Player.instance.health, SceneManager.GetActiveScene().name,
             Player.instance.transform.position, Player.instance.level, Player.instance.xp, Player.instance.armor);
+            Player.instance.canInteract = true;
 
             isNight = true;
             if (!isBoss)

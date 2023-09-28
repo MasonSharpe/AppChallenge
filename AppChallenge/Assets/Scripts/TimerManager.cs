@@ -22,14 +22,15 @@ public class TimerManager : MonoBehaviour {
         public bool goesDown;
         public float endingTime;
         public Action action;
+        public Action frameAction;
         public bool doActionEveryFrame;
 
     }
 
-    public static Timer CreateTimer(float time, Action action = null, string name = "", bool actionEveryFrame = false) {
+    public static Timer CreateTimer(float time, Action action = null, Action frameAction = null, string name = "", bool actionEveryFrame = false) {
 
         Timer timer = new() {
-            name = name == "" ? "NA" + timerCount.ToString() : name, time = time, startingTime = time, action = action, uneasedTime = time, doActionEveryFrame = actionEveryFrame
+            name = name == "" ? "NA" + timerCount.ToString() : name, time = time, startingTime = time, action = action, uneasedTime = time, doActionEveryFrame = actionEveryFrame, frameAction = frameAction
         };
         timers.Add(timer);
         timerCount++;
@@ -54,11 +55,12 @@ public class TimerManager : MonoBehaviour {
             if (timer.time <= 0) {
 
                 timer.time = timer.endingTime;
-                timer.action();
                 DestroyTimer(timer.name);
+                timer.action();
                 i--;
 
-            }else if (timer.doActionEveryFrame) {
+            }
+            if (timer.doActionEveryFrame) {
                 timer.action();
             }
         }
