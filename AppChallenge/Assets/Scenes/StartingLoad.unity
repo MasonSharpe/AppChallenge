@@ -975,7 +975,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -17.518005, y: -11.943893}
+  m_AnchoredPosition: {x: -17.517975, y: -11.943878}
   m_SizeDelta: {x: 73.2568, y: 71.6643}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &270166094
@@ -2204,6 +2204,9 @@ MonoBehaviour:
   invincPeriod: 0
   cameraShakeTimer: 0
   rb: {fileID: 724472892}
+  accelerationX: 0
+  accelerationY: 0
+  canInteract: 0
   animator: {fileID: 2003169616}
 --- !u!4 &724472895
 Transform:
@@ -3395,7 +3398,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0.347
+  m_FillAmount: 0.26700002
   m_FillClockwise: 0
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -4066,7 +4069,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 10
   m_WholeNumbers: 0
-  m_Value: 3.47
+  m_Value: 2.67
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

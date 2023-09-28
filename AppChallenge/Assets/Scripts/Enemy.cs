@@ -88,7 +88,6 @@ public class Enemy : MonoBehaviour{
     private void GetHit(float damage)
     {
         health -= damage;
-        print(damage);
         if (health <= 0)
         {
             GameObject xp = Instantiate(xpPrefab, xpParent);

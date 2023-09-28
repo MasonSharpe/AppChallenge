@@ -364,7 +364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  bulletSpeed: 15
+  bulletSpeed: 17
   bulletPrefab: {fileID: 8937682944150014530, guid: a8843ce0657a35d42aae5a372aac4ac0, type: 3}
   rb: {fileID: 7374326628906696948}
   hurtRenderer: {fileID: 1603444643701729160}

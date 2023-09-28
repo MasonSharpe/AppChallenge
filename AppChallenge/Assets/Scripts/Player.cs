@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
 	public Rigidbody2D rb;
 	public float accelerationX;
 	public float accelerationY;
+	public bool canInteract;
 	[SerializeField] Animator animator;
 
 	//armor and health pickups, armor permanantly increases defense which decreases damage taken
@@ -52,6 +53,7 @@ public class Player : MonoBehaviour
 		level = 1;
 		xp = 0;
 		cameraShakeTimer = 0;
+		canInteract = true;
 	}
 
 
@@ -91,7 +93,7 @@ public class Player : MonoBehaviour
 		armorText.text = armor.ToString();
 
 		moveSpeed = 10 + LevelUpScreen.instance.normalUpgradesGotten[6] * 2.5f;
-		rb.velocity = moveSpeed * new Vector3(accelerationX, accelerationY);
+		if (canInteract) rb.velocity = moveSpeed * new Vector3(accelerationX, accelerationY);
 
 		Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
 		float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
