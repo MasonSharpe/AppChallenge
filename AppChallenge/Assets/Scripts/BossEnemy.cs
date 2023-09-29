@@ -22,7 +22,6 @@ public class BossEnemy : MonoBehaviour{
     public Transform xpParent;
     public int phase = 1;
     private bool canAttack;
-    public float[] bulletSpeeds = new float[] {7, 7 };
     private float alpha;
     private float alphaDirection;
 
@@ -54,7 +53,7 @@ public class BossEnemy : MonoBehaviour{
         {
             alphaDirection = 1;
             alpha = 0.01f;
-            if (phase == 2)
+            if (phase == 2 || phase == 5)
             {
                 transform.localPosition = new Vector3(0, -10, 0);
                 canAttack = true;
@@ -83,7 +82,6 @@ public class BossEnemy : MonoBehaviour{
 
         if (shootCooldown <= 0 && canAttack)
         {
-            print(phase);
             switch (phase)
             {
                 case 2:
@@ -112,11 +110,50 @@ public class BossEnemy : MonoBehaviour{
                         (Player.instance.transform.position - transform.position).normalized,
                         transform.position,
                         0.1f,
-                        5,
+                        10,
                         1
                         );
 
+
+                    break;
+                case 4:
+
+
+
+                    for (int i = 0; i < 20; i++)
+                    {
+                        Vector2 shootDir = Vector2.zero;
+                        float size = 30;
+                        if (Random.Range(0, 2) == 1) shootDir.x = (Random.Range(0, 2) * 2) - 1; else shootDir.y = (Random.Range(0, 2) * 2) - 1;
+                        SpawnBullet(
+                            shootDir,
+                            new Vector3(89, 52, 0) + new Vector3(-shootDir.x * size + Random.Range(-Mathf.Abs(shootDir.y) * size, Mathf.Abs(shootDir.y) * size), -shootDir.y * size + Random.Range(-Mathf.Abs(shootDir.x) * size, Mathf.Abs(shootDir.x) * size), 0),
+                            1f,
+                            9 + Random.Range(-2, 3),
+                            2
+                            );
+                    }
                     
+                    
+                    break;
+                case 5:
+                    float distance = Random.Range(6, 10);
+
+                    for (int i = 0; i < 6; i++)
+                    {
+                        Vector3 pos = Player.instance.transform.position + (Quaternion.Euler(0, 0, i * 60) * Vector2.one * distance);
+                        dir = ((Vector2)(Player.instance.transform.position - pos) + Player.instance.rb.velocity).normalized;
+                        SpawnBullet(
+                            dir,
+                            pos,
+                            0.75f,
+                            8 + Random.Range(-4, 1),
+                            4
+                            );
+                    }
+
+
+
                     break;
                 default:
 
@@ -126,15 +163,25 @@ public class BossEnemy : MonoBehaviour{
                         ((Vector2)(Player.instance.transform.position - transform.position) + Player.instance.rb.velocity).normalized,
                         transform.position,
                         0.2f,
-                        15,
+                        20,
                         4
                         ); break;
             }
 
 
 
+        }
+
+        if (phase == 3)
+        {
+            transform.localPosition = Quaternion.Euler(0, 0, phaseRotation) * Vector2.one * 17;
+            phaseRotation += (40 + Player.instance.rb.velocity.magnitude * 1.5f) * Time.deltaTime;
+        }else if (phase == 4)
+        {
+            rb.velocity = moveSpeed / 2 * dir;
 
         }
+
 
         if (health / maxHealth <= 1 - (phase * 0.2f)) TriggerPhase(phase + 1);
 
@@ -156,15 +203,28 @@ public class BossEnemy : MonoBehaviour{
             canAttack = false;
             rb.velocity = Vector3.zero;
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        }else if (phase == 3)
+        }
+        else if (phase == 3)
         {
             alphaDirection = -1;
             canAttack = false;
         }
+        else if (phase == 4)
+        {
+            canAttack = true;
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
+        else if (phase == 5)
+        {
+            alphaDirection = -1;
+            canAttack = false;
+            rb.velocity = Vector3.zero;
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
 
 
 
-        this.phase = phase;
+            this.phase = phase;
     }
 
     private void SpawnBullet(Vector2 dir, Vector3 position, float cooldown, float bulletSpeed, int bulletType)
@@ -199,7 +259,8 @@ public class BossEnemy : MonoBehaviour{
         //hit by sword
         if (collision.gameObject.layer == 3)
         {
-            GetHit(maxHealth / Mathf.Clamp(1500 - (LevelUpScreen.instance.normalUpgradesGotten[0] * 50f), 1500, 150) + Sword.instance.swingDamage);
+            print(maxHealth / Mathf.Clamp(1500 - (LevelUpScreen.instance.normalUpgradesGotten[0] * 300f), 50, 1500));
+            GetHit(maxHealth / Mathf.Clamp(1500 - (LevelUpScreen.instance.normalUpgradesGotten[0] * 50f), 50, 1500) + Sword.instance.swingDamage);
             Sword.instance.swordCooldown -= Mathf.Clamp(LevelUpScreen.instance.normalUpgradesGotten[1] * 0.02f, 0, 0.25f);
 
         }
