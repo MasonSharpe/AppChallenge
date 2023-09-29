@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: 2d0fce6500725ed4c923a366acb9a4cc
+=======
 guid: e9d3080559dea2e49a69d51a5e4a757a
+>>>>>>> 489404ee498f3a9389a59436d1b8e8a2a30bf705
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,7 +37,11 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
+<<<<<<< HEAD
+    filterMode: 1
+=======
     filterMode: 0
+>>>>>>> 489404ee498f3a9389a59436d1b8e8a2a30bf705
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -42,12 +50,20 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
+<<<<<<< HEAD
+  spriteMode: 1
+=======
   spriteMode: 2
+>>>>>>> 489404ee498f3a9389a59436d1b8e8a2a30bf705
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
+  spritePixelsToUnits: 100
+=======
   spritePixelsToUnits: 25
+>>>>>>> 489404ee498f3a9389a59436d1b8e8a2a30bf705
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -70,7 +86,11 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
+<<<<<<< HEAD
+    textureCompression: 1
+=======
     textureCompression: 0
+>>>>>>> 489404ee498f3a9389a59436d1b8e8a2a30bf705
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -115,6 +135,9 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
+<<<<<<< HEAD
+    sprites: []
+=======
     sprites:
     - serializedVersion: 2
       name: TallGuyEnemy 50x80_0
@@ -746,6 +769,7 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+>>>>>>> 489404ee498f3a9389a59436d1b8e8a2a30bf705
     outline: []
     physicsShape: []
     bones: []
@@ -756,6 +780,9 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+<<<<<<< HEAD
+    nameFileIdTable: {}
+=======
     nameFileIdTable:
       TallGuyEnemy 50x80_0: 917690836
       TallGuyEnemy 50x80_1: 855913516
@@ -787,6 +814,7 @@ TextureImporter:
       TallGuyEnemy 50x80_7: 333559813
       TallGuyEnemy 50x80_8: 659316579
       TallGuyEnemy 50x80_9: -1910217057
+>>>>>>> 489404ee498f3a9389a59436d1b8e8a2a30bf705
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
