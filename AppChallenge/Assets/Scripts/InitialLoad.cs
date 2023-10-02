@@ -12,7 +12,7 @@ public class InitialLoad : MonoBehaviour
         DontDestroyOnLoad(this);
 
 
-        SceneManager.LoadScene("Area1");
+        SceneManager.LoadScene("Tutorial");
     }
 
 

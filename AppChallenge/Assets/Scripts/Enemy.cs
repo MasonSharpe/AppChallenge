@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour{
     public Transform bulletParent;
     public Transform xpParent;
     public int enemyTypeIndex = 0;
+    public GameObject tutorialWall = null;
 
 
 
@@ -57,7 +58,7 @@ public class Enemy : MonoBehaviour{
             moveSpeed = Mathf.Clamp(10 - Vector3.Distance(Player.instance.transform.position, transform.position), 1, 10);
         }
 
-        rb.velocity = moveSpeed * dir;
+        if (tutorialWall == null) rb.velocity = moveSpeed * dir;
 
 
         shootCooldown -= Time.deltaTime;
@@ -65,7 +66,7 @@ public class Enemy : MonoBehaviour{
         randomDirTimer -= Time.deltaTime;
 
 
-        if (shootCooldown <= 0)
+        if (shootCooldown <= 0 && !(tutorialWall != null && (Player.instance.transform.position - transform.position).magnitude > 7))
         {
             Bullet bullet = Instantiate(bulletPrefab, bulletParent).GetComponent<Bullet>();
             bullet.transform.position = transform.position;
@@ -92,6 +93,11 @@ public class Enemy : MonoBehaviour{
         {
             GameObject xp = Instantiate(xpPrefab, xpParent);
             xp.transform.position = transform.position;
+            if (tutorialWall != null)
+            {
+                print("sda");
+                Destroy(tutorialWall);
+            }
             Destroy(gameObject);
         }
         hurtTimer = 0.1f;
