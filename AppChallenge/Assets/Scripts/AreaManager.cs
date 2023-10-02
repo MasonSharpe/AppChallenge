@@ -15,8 +15,8 @@ public class AreaManager : MonoBehaviour
         public string sceneToLoad;
         public Vector3 positionToGo;
         ///public bool unloads;
-       /// public int id;
-       /// public GameObject itself;
+        /// public int id;
+        /// public GameObject itself;
 
     }
 
@@ -34,37 +34,22 @@ public class AreaManager : MonoBehaviour
             Player.instance.transform.position = areaLoader.positionToGo;
         }
 
-    /*foreach (GameObject gameObject in areaLoader.scenesToLoad)
-        {
+        /*proccess for adding areas
+         * make new scene
+         * copy the main grid from the previous scene and paste it TWICE
+         * delete everything from the second grid and rename it to the new scene
+         * make the tilemap as normal
+         * go back to the previous scene and copy paste the main grid from the new scene
+         * bazinga you're done
+         */
 
-            AreaLoader areaExists = CheckIfAreaExists(areaLoader);
+        /*proccess for adding the triggers for the scenes
+         * add a load trigger to an area in the area scene
+         * make sure the destination is slightly ahead of where it should be
+         * cut and paste this trigger to the starting scene
+         * do the same thing but from the previous scene to this scene
+         * 
+         */
 
-            if (areaLoader.unloads)
-            {
-                if (areaExists != null) Destroy(areaExists.itself);
-            }
-            else
-            {
-                if (areaExists == null) Instantiate(gameObject, loadedAreas);
-            }
-        } */
     }
-
-    /*public AreaLoader CheckIfAreaExists(AreaLoader areaLoader)
-    {
-        AreaLoader doesExist = null;
-
-        foreach (Transform transform in GetComponentInChildren<Transform>())
-        {
-            AreaLoader loadedArea = transform.GetComponent<AreaLoader>();
-            if (loadedArea.id == areaLoader.id)
-            {
-                doesExist = loadedArea; break;
-            }
-        }
-        return doesExist;
-    }*/
-
-
-
 }

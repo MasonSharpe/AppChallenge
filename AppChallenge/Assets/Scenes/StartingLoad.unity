@@ -692,7 +692,7 @@ MonoBehaviour:
   isBoss: 0
   bulletHolder: {fileID: 1944559760}
   xpHolder: {fileID: 1046919987}
-  currentNightIndex: 0
+  currentNightIndex: -1
 --- !u!114 &203122588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2216,8 +2216,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 724472890}
-  m_LocalRotation: {x: -0, y: -0, z: 0.008726558, w: 0.999962}
-  m_LocalPosition: {x: -1.065033, y: -2.7131515, z: -4.6659684}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 21.204964, y: -18.55315, z: -4.363539}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
