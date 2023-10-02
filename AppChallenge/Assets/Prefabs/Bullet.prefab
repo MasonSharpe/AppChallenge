@@ -5068,5 +5068,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isFriendly: 0
   currentStoredDamage: 0
+  hitSweetSpot: 0
   rb: {fileID: 1873920214208651020}
   spriteRenderer: {fileID: 8955590043933051195}
+  ballRenderer: {fileID: 3917437062385297244}
+  bulletType: 0
+  timer: 0
+  magnitude: 1
+  speed: 0

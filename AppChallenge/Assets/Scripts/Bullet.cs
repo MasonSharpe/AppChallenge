@@ -9,8 +9,10 @@ public class Bullet : MonoBehaviour
     public bool hitSweetSpot = false;
     public Rigidbody2D rb;
     public SpriteRenderer spriteRenderer;
+    public SpriteRenderer ballRenderer;
     public int bulletType;
     public float timer = 0;
+    private float alphaTimer = 0;
     public float magnitude = 1;
     public float speed;
     
@@ -53,6 +55,10 @@ public class Bullet : MonoBehaviour
 
     private void Update()
     {
+        alphaTimer += Time.deltaTime;
+        ballRenderer.color = Helper.SetColorAlpla(Color.white, alphaTimer * 5);
+
+
         if (bulletType == 1 &&!isFriendly)
         {
             magnitude += (magnitude * Time.deltaTime);

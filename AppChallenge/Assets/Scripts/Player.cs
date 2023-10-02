@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class Player : MonoBehaviour
 {
@@ -18,6 +20,7 @@ public class Player : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI levelText;
 	[SerializeField] private TextMeshProUGUI armorText;
 	[SerializeField] private GameObject loadedAreas;
+	[SerializeField] private Volume volume;
 	public Slider bossHealth;
 	public BossEnemy boss;
 	static public Player instance;
@@ -85,6 +88,9 @@ public class Player : MonoBehaviour
 
 		hurtRenderer.enabled = invincPeriod > 0 ? true : false;
 		hurtMask.sprite = spriteRenderer.sprite;
+
+		volume.profile.TryGet(out Vignette vignette);
+		vignette.color.Override(new Color(Mathf.Clamp((0.5f - health / maxHealth) * (invincPeriod / 0.05f), 0, 1), 0, 0));
 
 		healthSlider.value = health;
 		xpSlider.value = xp;

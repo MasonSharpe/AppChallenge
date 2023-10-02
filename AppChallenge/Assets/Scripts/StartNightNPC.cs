@@ -43,7 +43,7 @@ public class StartNightNPC : MonoBehaviour
         bool isNight = NightCycle.instance.isNight;
         playerIsClose = (Player.instance.transform.position - transform.position).magnitude < 5;
         text.SetActive(playerIsClose && !isNight);
-        if (Input.GetKeyDown(KeyCode.E) && playerIsClose && !isNight)
+        if (Input.GetKeyDown(KeyCode.E) && playerIsClose && !(NightCycle.instance.currentNightIndex == nightIndex))
         {
             NightCycle.instance.currentNightIndex = nightIndex;
             EnemySpawner.instance.spawnPositions = spawnPositions.GetComponentsInChildren<Transform>();

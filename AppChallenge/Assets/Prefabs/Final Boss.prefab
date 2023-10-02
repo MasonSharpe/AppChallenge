@@ -371,11 +371,8 @@ MonoBehaviour:
   spriteRenderer: {fileID: 7374326628906696951}
   hurtMask: {fileID: 6154747771949695877}
   animator: {fileID: 3571272530300460277}
-  maxHealth: 100
+  maxHealth: 300
   health: 0
   bulletParent: {fileID: 0}
   xpParent: {fileID: 0}
   phase: 1
-  bulletSpeeds:
-  - 15
-  - 15
