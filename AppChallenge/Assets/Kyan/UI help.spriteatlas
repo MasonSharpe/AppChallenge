@@ -58,6 +58,8 @@ SpriteAtlas:
   - {fileID: -744708711, guid: 5f5c22045f6597a48a022741232a3b80, type: 3}
   - {fileID: 1705887152, guid: c275bed6d359dd44bbcb97ec3deee465, type: 3}
   - {fileID: -1099520748, guid: 0a63d4b740cd0a94295bff4d59395de3, type: 3}
+  - {fileID: 1325215201, guid: 185b8f78a4e3c944a937010b079dbe2a, type: 3}
+  - {fileID: -1914171794, guid: 185b8f78a4e3c944a937010b079dbe2a, type: 3}
   - {fileID: 1626084147, guid: db16f909edee38e4eaebdef114f89fec, type: 3}
   - {fileID: -1387699091, guid: db16f909edee38e4eaebdef114f89fec, type: 3}
   - {fileID: 1353122944, guid: db16f909edee38e4eaebdef114f89fec, type: 3}
@@ -71,6 +73,8 @@ SpriteAtlas:
   - {fileID: -116081765, guid: 1a982f795cc06c049b5ed81644fbfb98, type: 3}
   - {fileID: -55692330, guid: 1a982f795cc06c049b5ed81644fbfb98, type: 3}
   - {fileID: 907569384, guid: 1a982f795cc06c049b5ed81644fbfb98, type: 3}
+  - {fileID: 1339270736, guid: 1cf8cbc992ad256419adf64673d2dc81, type: 3}
+  - {fileID: 766732810, guid: 1cf8cbc992ad256419adf64673d2dc81, type: 3}
   - {fileID: -1605781810, guid: 628e182a4022f5f4a8c1f67d0fce01c6, type: 3}
   - {fileID: -1500197797, guid: 628e182a4022f5f4a8c1f67d0fce01c6, type: 3}
   - {fileID: 1855761406, guid: 628e182a4022f5f4a8c1f67d0fce01c6, type: 3}
@@ -92,6 +96,8 @@ SpriteAtlas:
   - Maain menu _0
   - better buttton blue_0
   - start menu buttons_0
+  - on off swicth_0
+  - on off swicth_1
   - better buttton 3.0_4
   - better buttton 3.0_3
   - better buttton 3.0_2
@@ -105,6 +111,8 @@ SpriteAtlas:
   - test exp_6
   - test exp_5
   - test exp_4
+  - Maain menu.1_0
+  - Maain menu.1_1
   - button yes and no_3
   - button yes and no_2
   - button yes and no_1
