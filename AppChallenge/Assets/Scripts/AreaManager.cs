@@ -13,7 +13,8 @@ public class AreaManager : MonoBehaviour
     {
 
         public string sceneToLoad;
-        public Vector3 positionToGo;
+        public float xToGo = -1;
+        public float yToGo = -1;
         ///public bool unloads;
         /// public int id;
         /// public GameObject itself;
@@ -31,7 +32,10 @@ public class AreaManager : MonoBehaviour
         if (!NightCycle.instance.isNight)
         {
             SceneManager.LoadScene(areaLoader.sceneToLoad);
-            Player.instance.transform.position = areaLoader.positionToGo;
+            Player.instance.transform.position = new Vector3(
+                areaLoader.xToGo != -1 ? areaLoader.xToGo : Player.instance.transform.position.x,
+                areaLoader.yToGo != -1 ? areaLoader.xToGo : Player.instance.transform.position.y,
+                0);
         }
 
         /*proccess for adding areas
