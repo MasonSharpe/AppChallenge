@@ -91,11 +91,14 @@ public class Enemy : MonoBehaviour{
         health -= damage;
         if (health <= 0)
         {
-            GameObject xp = Instantiate(xpPrefab, xpParent);
-            xp.transform.position = transform.position;
+            if (NightCycle.instance.isNight)
+            {
+                GameObject xp = Instantiate(xpPrefab, xpParent);
+                xp.transform.position = transform.position;
+            }
+
             if (tutorialWall != null)
             {
-                print("sda");
                 Destroy(tutorialWall);
             }
             Destroy(gameObject);

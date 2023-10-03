@@ -50,6 +50,7 @@ SpriteAtlas:
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 1528413783, guid: d222fb50e62b56843af64e6f220498bd, type: 3}
   - {fileID: 12205630, guid: abc7bbd1cd8fce14eac7e5a8f7d9e763, type: 3}
   - {fileID: 2078077046, guid: 2d8b35e2941d1b84190e82606ce17f90, type: 3}
   - {fileID: -603803629, guid: 89badaa3650a28c43b61572c931629e3, type: 3}
@@ -88,6 +89,7 @@ SpriteAtlas:
   - {fileID: -1627201574, guid: 8f6825ae43bf9c64898fb580a427984e, type: 3}
   - {fileID: 1820213958, guid: f95db4beab0dd18489112e205be4512b, type: 3}
   m_PackedSpriteNamesToIndex:
+  - death screen_0
   - start menu buttons  (1)_0
   - Menu Board 2_0
   - Maain menu_0
