@@ -12,7 +12,7 @@ public class InitialLoad : MonoBehaviour
         DontDestroyOnLoad(this);
 
 
-        SceneManager.LoadScene("Tutorial");
+        SceneManager.LoadScene("_FullMap");
     }
 
 

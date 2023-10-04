@@ -65,8 +65,10 @@ public class Enemy : MonoBehaviour{
         hurtTimer -= Time.deltaTime;
         randomDirTimer -= Time.deltaTime;
 
-
-        if (shootCooldown <= 0 && !(tutorialWall != null && (Player.instance.transform.position - transform.position).magnitude > 7))
+        bool shouldShoot;
+        float magnitude = (Player.instance.transform.position - transform.position).magnitude;
+        shouldShoot = (!(tutorialWall != null && magnitude > 7)) && (!(NightCycle.instance.isNight && magnitude > 14));
+        if (shootCooldown <= 0 && shouldShoot)
         {
             Bullet bullet = Instantiate(bulletPrefab, bulletParent).GetComponent<Bullet>();
             bullet.transform.position = transform.position;
