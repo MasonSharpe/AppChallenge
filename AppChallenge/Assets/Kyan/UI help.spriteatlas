@@ -52,6 +52,7 @@ SpriteAtlas:
   m_PackedSprites:
   - {fileID: 1528413783, guid: d222fb50e62b56843af64e6f220498bd, type: 3}
   - {fileID: 12205630, guid: abc7bbd1cd8fce14eac7e5a8f7d9e763, type: 3}
+  - {fileID: -807943101, guid: 0e53f5e175b7b4144832119b2824c5e2, type: 3}
   - {fileID: 2078077046, guid: 2d8b35e2941d1b84190e82606ce17f90, type: 3}
   - {fileID: -603803629, guid: 89badaa3650a28c43b61572c931629e3, type: 3}
   - {fileID: -1360319708, guid: 959c19c3ff37298498d624a776f299aa, type: 3}
@@ -91,6 +92,7 @@ SpriteAtlas:
   m_PackedSpriteNamesToIndex:
   - death screen_0
   - start menu buttons  (1)_0
+  - Leathure test_0
   - Menu Board 2_0
   - Maain menu_0
   - DropDown, and check_0
