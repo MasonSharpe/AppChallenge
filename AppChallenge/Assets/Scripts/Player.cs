@@ -55,6 +55,7 @@ public class Player : MonoBehaviour
 		health = maxHealth;
 		level = 1;
 		xp = 0;
+		xpSlider.maxValue = 4;
 		cameraShakeTimer = 0;
 		canInteract = true;
 	}
@@ -106,10 +107,7 @@ public class Player : MonoBehaviour
 		sword.transform.localRotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
 		sword.transform.position = transform.position;
 
-		if (Input.GetKeyDown(KeyCode.L))
-        {
-			LevelUp();
-        }
+
 
 		Camera.main.gameObject.transform.localPosition = new Vector3(0, 0, -10);
 		if (cameraShakeTimer > 0)
@@ -150,8 +148,15 @@ public class Player : MonoBehaviour
 
 		if (health <= 0)
         {
-			GameManager.Respawn();
-        }
+			if (transform.position.y > 50)
+            {
+				GameManager.Respawn();
+            }
+            else
+            {
+				health = 1;
+            }
+		}
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
@@ -159,7 +164,8 @@ public class Player : MonoBehaviour
 		//hit by bullet
         if (collision.gameObject.layer == 6)
         {
-			if (!collision.GetComponent<Bullet>().isFriendly && invincPeriod < 0)
+			Bullet bullet = collision.GetComponent<Bullet>();
+			if (!bullet.isFriendly && invincPeriod < 0)
             {
 				if (NightCycle.instance.isBoss)
 				{
@@ -167,7 +173,7 @@ public class Player : MonoBehaviour
 				}
 				else
 				{
-					GetHit(1f * (1 + GameManager.nightsBeaten.FindAll(h => h == true).Count) * (1 + (collision.GetComponent<Bullet>().bulletType * 0.5f)), 0.05f);
+					GetHit(bullet.currentStoredDamage * (1 + GameManager.nightsBeaten.FindAll(h => h == true).Count) * (1 + (collision.GetComponent<Bullet>().bulletType * 0.5f)), 0.05f);
 				}
 				Destroy(collision.gameObject);
 				cameraShakeTimer = 0.1f;
@@ -201,6 +207,7 @@ public class Player : MonoBehaviour
 		//touch enemy
 		if (collision.gameObject.layer == 7)
 		{
+			Enemy enemy = collision.GetComponent<Enemy>();
 			if (invincPeriod < 0)
 			{
 				if (NightCycle.instance.isBoss)
@@ -209,7 +216,7 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-					GetHit(0.5f * (1 + GameManager.nightsBeaten.FindAll(h => h == true).Count) * (1 + (collision.GetComponent<Enemy>().enemyTypeIndex * 0.5f)), 0.15f);
+					GetHit(enemy.damage / 2 * (1 + GameManager.nightsBeaten.FindAll(h => h == true).Count) * (1 + (enemy.enemyTypeIndex * 0.5f)), 0.15f);
 				}
 
 			}

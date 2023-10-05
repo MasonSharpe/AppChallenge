@@ -31,6 +31,7 @@ public class NightCycle : MonoBehaviour
         {
             foreach (Tilemap tilemap in tilemaps)
             {
+
                 tilemap.color = new Color(colorAmount, colorAmount, colorAmount);
 
             }
@@ -53,7 +54,7 @@ public class NightCycle : MonoBehaviour
         Player.instance.rb.velocity = Vector3.zero;
         TimerManager.CreateTimer(1.5f, () =>
         {
-            GameManager.SetSpawn(Player.instance.health, SceneManager.GetActiveScene().name,
+            GameManager.SetSpawn(Player.instance.health,
             Player.instance.transform.position, Player.instance.level, Player.instance.xp, Player.instance.armor);
             Player.instance.canInteract = true;
 
@@ -82,7 +83,7 @@ public class NightCycle : MonoBehaviour
         if (victorious)
         {
             GameManager.nightsBeaten[currentNightIndex] = true;
-            GameManager.SetSpawn(Player.instance.health, SceneManager.GetActiveScene().name,
+            GameManager.SetSpawn(Player.instance.health,
                 Player.instance.transform.position, Player.instance.level, Player.instance.xp, Player.instance.armor);
         }
         else

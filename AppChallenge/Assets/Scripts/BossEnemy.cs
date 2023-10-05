@@ -5,7 +5,6 @@ using UnityEngine;
 public class BossEnemy : MonoBehaviour{
 
     [SerializeField] private float moveSpeed = 5;
-    [SerializeField] private float bulletSpeed = 150;
     private float shootCooldown = 0;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] Rigidbody2D rb;

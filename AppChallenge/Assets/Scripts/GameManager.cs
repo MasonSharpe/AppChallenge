@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
 {
     public static List<bool> nightsBeaten = new();
     public static float saveHealth = 17;
-    public static string saveLocation = "Area1";
     public static Vector3 savePosition = Vector3.zero;
     public static int saveLevel = 2;
     public static int saveXP = 1;
@@ -17,10 +16,12 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         for (int i = 0; i < 4; i++) nightsBeaten.Add(false);
+
+
     }
     public static void Respawn()
     {
-        SceneManager.LoadScene(saveLocation);
+        SceneManager.LoadScene("_FullMap");
         Player.instance.gameObject.transform.position = savePosition;
         Player.instance.xp = saveXP;
         Player.instance.level = saveLevel;
@@ -30,10 +31,9 @@ public class GameManager : MonoBehaviour
         if (NightCycle.instance.isNight) NightCycle.instance.EndNight(false);
     }
 
-    public static void SetSpawn(float health, string location, Vector3 position, int level, int xp, int armor)
+    public static void SetSpawn(float health, Vector3 position, int level, int xp, int armor)
     {
         saveHealth = health;
-        saveLocation = location;
         savePosition = position;
         saveLevel = level;
         saveXP = xp;
