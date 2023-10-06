@@ -7,6 +7,7 @@ public class HealingFountain : MonoBehaviour
 
     [SerializeField] GameObject text;
     private bool playerIsClose;
+    public bool canHealFrom = false;
 
     private void Update()
     {
@@ -17,6 +18,7 @@ public class HealingFountain : MonoBehaviour
 
 
             Player.instance.health = Player.instance.maxHealth;
+            canHealFrom = false;
 
         }
 

@@ -11,6 +11,7 @@ public class StartNightNPC : MonoBehaviour
     public int nightIndex;
     [SerializeField] GameObject spawnPositions;
     [SerializeField] private BossEnemy bossPrefab = null;
+    [SerializeField] private HealingFountain fountain;
 
     private void Start()
     {
@@ -45,6 +46,7 @@ public class StartNightNPC : MonoBehaviour
         text.SetActive(playerIsClose && !isNight);
         if (Input.GetKeyDown(KeyCode.E) && playerIsClose && !(NightCycle.instance.currentNightIndex == nightIndex))
         {
+            NightCycle.instance.fountain = fountain;
             NightCycle.instance.currentNightIndex = nightIndex;
             EnemySpawner.instance.spawnPositions = spawnPositions.GetComponentsInChildren<Transform>();
             if (bossPrefab != null) NightCycle.instance.isBoss = true;

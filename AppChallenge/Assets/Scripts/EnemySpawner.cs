@@ -15,6 +15,7 @@ public class EnemySpawner : MonoBehaviour
     public Transform xpParent;
     public bool isSpawningEnemies = false;
     private bool spawnAnArmor = false;
+    private int spawnPickupCooldown;
     public float timeStrength;
 
     private void Awake()
@@ -52,28 +53,29 @@ public class EnemySpawner : MonoBehaviour
                 enemy.bulletParent = bulletParent;
                 enemy.xpParent = xpParent;
                 enemy.transform.position = spawnPositions[location].position + (Vector3)(Random.insideUnitCircle * 1.5f);
-
-                if (Random.Range(0, 10) > 8)
-                {
-                    Pickup pickup = Instantiate(pickupPrefab, transform);
-                    pickup.transform.position = spawnPositions[location].position + (Vector3)(Random.insideUnitCircle * 1.5f);
-                    if (spawnAnArmor)
-                    {
-                        pickup.type = Pickup.PickupType.Armor;
-                        spawnAnArmor = false;
-                    }
-                    else
-                    {
-                        pickup.type = Pickup.PickupType.Health;
-                        spawnAnArmor = true;
-                    }
-                }
-
+                enemy.isNighttimeEnemy = true;
 
             }
+            if (spawnPickupCooldown <= 0)
+            {
+                Pickup pickup = Instantiate(pickupPrefab, transform);
+                pickup.transform.position = spawnPositions[location].position + (Vector3)(Random.insideUnitCircle * 1.5f);
+                if (spawnAnArmor)
+                {
+                    pickup.type = Pickup.PickupType.Armor;
+                    spawnAnArmor = false;
+                }
+                else
+                {
+                    pickup.type = Pickup.PickupType.Health;
+                    spawnAnArmor = true;
+                }
+                spawnPickupCooldown = (int)GameManager.ScaleFromNightsBeaten(1, 1.5f);
+            }
+            spawnPickupCooldown--;
 
 
-            spawnTimer = Random.Range(4 - (3 * timeStrength), 9 - (3 * timeStrength)) + spawnAmount / 2;
+            spawnTimer = Random.Range(4 - (3 * timeStrength), 7 - (3 * timeStrength)) + spawnAmount / 2;
         }
     }
 

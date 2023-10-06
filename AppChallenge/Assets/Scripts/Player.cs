@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
 		health = maxHealth;
 		level = 1;
 		xp = 0;
-		xpSlider.maxValue = 4;
+		xpSlider.maxValue = 5;
 		cameraShakeTimer = 0;
 		canInteract = true;
 	}
@@ -137,7 +137,7 @@ public class Player : MonoBehaviour
 	{
 		level++;
 		xp = 0;
-		xpSlider.maxValue = Mathf.Pow(level, 1.5f) + 5;
+		xpSlider.maxValue = Mathf.Pow(level, 1.5f) + 4;
 		LevelUpScreen.instance.Show();
 	}
 
@@ -188,7 +188,7 @@ public class Player : MonoBehaviour
 		if (collision.gameObject.layer == 10)
         {
 			xp += 1 + Mathf.RoundToInt(Mathf.Pow(GameManager.nightsBeaten.FindAll( h => h == true ).Count, 2));
-			if (xp >= Mathf.RoundToInt(Mathf.Pow(level, 1.5f) + 5))
+			if (xp >= Mathf.RoundToInt(Mathf.Pow(level, 1.5f) + 4))
             {
 				LevelUp();
             }
@@ -216,7 +216,7 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-					GetHit(enemy.damage / 2 * (1 + GameManager.nightsBeaten.FindAll(h => h == true).Count) * (1 + (enemy.enemyTypeIndex * 0.5f)), 0.15f);
+					GetHit(enemy.damage / 3 * (1 + GameManager.nightsBeaten.FindAll(h => h == true).Count) * (1 + (enemy.enemyTypeIndex * 0.5f)), 0.15f);
 				}
 
 			}

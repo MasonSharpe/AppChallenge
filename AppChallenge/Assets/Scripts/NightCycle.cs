@@ -16,6 +16,8 @@ public class NightCycle : MonoBehaviour
     public GameObject xpHolder;
     public int currentNightIndex = -1;
     private Tilemap[] tilemaps;
+    public HealingFountain fountain;
+
 
     private void Awake()
     {
@@ -54,6 +56,8 @@ public class NightCycle : MonoBehaviour
         Player.instance.rb.velocity = Vector3.zero;
         TimerManager.CreateTimer(1.5f, () =>
         {
+            Player.instance.health = Player.instance.maxHealth;
+
             GameManager.SetSpawn(Player.instance.health,
             Player.instance.transform.position, Player.instance.level, Player.instance.xp, Player.instance.armor);
             Player.instance.canInteract = true;
@@ -61,7 +65,7 @@ public class NightCycle : MonoBehaviour
             isNight = true;
             if (!isBoss)
             {
-                nightLength = 45 + 45 * currentNightIndex;
+                nightLength = 50 + 50 * currentNightIndex;
                 EnemySpawner.instance.isSpawningEnemies = true;
                 visual.enabled = true;
             }
@@ -79,6 +83,7 @@ public class NightCycle : MonoBehaviour
         isNight = false;
         EnemySpawner.instance.isSpawningEnemies = false;
         EnemySpawner.instance.levelTimer = 0;
+        fountain.canHealFrom = true;
         visual.enabled = false;
         if (victorious)
         {

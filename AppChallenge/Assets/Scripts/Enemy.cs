@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour{
     [SerializeField] private RuntimeAnimatorController[] animators;
     private Vector3 randomDir = Vector3.right;
     private float randomDirTimer = 5;
+    public bool isNighttimeEnemy;
 
     private float hurtTimer = 0;
     public float health;
@@ -32,8 +33,12 @@ public class Enemy : MonoBehaviour{
     private void Start()
     {
 
-        if (NightCycle.instance.isNight) enemyTypeIndex = Mathf.Clamp(GameManager.nightsBeaten.FindAll(h => h == true).Count + Random.Range(-2, 1), 0, 2);
-        maxHealth = 3 + (enemyTypeIndex + GameManager.nightsBeaten.FindAll(h => h == true).Count) * 3 + (int)(3 * EnemySpawner.instance.timeStrength);
+        if (NightCycle.instance.isNight)
+        {
+            maxHealth = 5 + (enemyTypeIndex + GameManager.nightsBeaten.FindAll(h => h == true).Count) * 3 + (int)(3 * EnemySpawner.instance.timeStrength);
+            enemyTypeIndex = Mathf.Clamp(GameManager.nightsBeaten.FindAll(h => h == true).Count + Random.Range(-2, 1), 0, 2);
+
+        }
         health = maxHealth;
         animator.runtimeAnimatorController = animators[enemyTypeIndex];
     }
@@ -42,7 +47,7 @@ public class Enemy : MonoBehaviour{
     {
         Vector2 distance = Player.instance.transform.position - transform.position;
         float magnitude = distance.magnitude;
-        if (magnitude < 25)
+        if (magnitude < 25 || isNighttimeEnemy)
         {
             Vector2 dir;
             if (enemyTypeIndex == 2)
@@ -104,7 +109,7 @@ public class Enemy : MonoBehaviour{
             {
                 Destroy(tutorialWall);
             }
-            if (NightCycle.instance.isNight)
+            if (NightCycle.instance.isNight || Random.Range(0, 4) == 0)
             {
                 GameObject xp = Instantiate(xpPrefab, xpParent);
                 xp.transform.position = transform.position;
