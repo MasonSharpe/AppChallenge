@@ -14,7 +14,7 @@ public class InitialLoad : MonoBehaviour
 
         SceneManager.LoadScene("_FullMap");
 
-        GameManager.SetSpawn(Player.instance.health, new Vector3(125, 75, 0), Player.instance.level, Player.instance.xp, Player.instance.armor);
+        GameManager.SetSpawn(Player.instance.health, new Vector3(0, 0, 0), 1, 0, 0, new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 });
     }
 
 

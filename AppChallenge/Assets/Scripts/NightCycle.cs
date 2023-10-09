@@ -23,6 +23,7 @@ public class NightCycle : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        tilemaps = FindObjectsByType<Tilemap>(FindObjectsSortMode.None);
     }
 
     private void Update()
@@ -60,7 +61,7 @@ public class NightCycle : MonoBehaviour
             Player.instance.health = Player.instance.maxHealth;
 
             GameManager.SetSpawn(Player.instance.health,
-            Player.instance.transform.position, Player.instance.level, Player.instance.xp, Player.instance.armor);
+            Player.instance.transform.position, Player.instance.level, Player.instance.xp, Player.instance.armor, LevelUpScreen.instance.normalUpgradesGotten);
             Player.instance.canInteract = true;
 
             isNight = true;
@@ -73,7 +74,7 @@ public class NightCycle : MonoBehaviour
             }
 
             EnemySpawner.instance.levelTimer = 0;
-            tilemaps = FindObjectsByType<Tilemap>(FindObjectsSortMode.None);
+            
             Fade.instance.Hide(0.5f);
         });
 
@@ -92,7 +93,7 @@ public class NightCycle : MonoBehaviour
         {
             GameManager.nightsBeaten[currentNightIndex] = true;
             GameManager.SetSpawn(Player.instance.health,
-                Player.instance.transform.position, Player.instance.level, Player.instance.xp, Player.instance.armor);
+                Player.instance.transform.position, Player.instance.level, Player.instance.xp, Player.instance.armor, LevelUpScreen.instance.normalUpgradesGotten);
         }
         else
         {

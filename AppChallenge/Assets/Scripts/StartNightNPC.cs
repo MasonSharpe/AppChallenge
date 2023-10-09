@@ -28,9 +28,9 @@ public class StartNightNPC : MonoBehaviour
                 text.GetComponentInChildren<TextMeshProUGUI>().text = "A VERY powerful enemy lies ahead... There's still places you haven't been to yet! You may press E continue if you like, but it might be wise to come back later...";
             }
         }
-        else if (nights != 0)
+        else
         {
-            text.GetComponentInChildren<TextMeshProUGUI>().text = "Press E to start the night.";
+            text.GetComponentInChildren<TextMeshProUGUI>().text = "Press E to save and start the night.";
         }
 
 
