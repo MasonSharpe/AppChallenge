@@ -9,6 +9,7 @@ public class NightCycle : MonoBehaviour
 {
     public static NightCycle instance;
     [SerializeField] private Image visual;
+    [SerializeField] private Image visual2;
     public float nightLength;
     public bool isNight;
     public bool isBoss = false;
@@ -68,6 +69,7 @@ public class NightCycle : MonoBehaviour
                 nightLength = 50 + 50 * currentNightIndex;
                 EnemySpawner.instance.isSpawningEnemies = true;
                 visual.enabled = true;
+                visual2.enabled = true;
             }
 
             EnemySpawner.instance.levelTimer = 0;
@@ -85,6 +87,7 @@ public class NightCycle : MonoBehaviour
         EnemySpawner.instance.levelTimer = 0;
         fountain.canHealFrom = true;
         visual.enabled = false;
+        visual2.enabled = true;
         if (victorious)
         {
             GameManager.nightsBeaten[currentNightIndex] = true;
