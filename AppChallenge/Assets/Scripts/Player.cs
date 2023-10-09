@@ -138,6 +138,7 @@ public class Player : MonoBehaviour
 		level++;
 		xp = 0;
 		xpSlider.maxValue = Mathf.Pow(level, 1.5f) + 4;
+		health = Mathf.Clamp(health + (maxHealth * 0.75f), 0, maxHealth);
 		LevelUpScreen.instance.Show();
 	}
 

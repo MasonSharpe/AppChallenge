@@ -60,16 +60,8 @@ public class EnemySpawner : MonoBehaviour
             {
                 Pickup pickup = Instantiate(pickupPrefab, transform);
                 pickup.transform.position = spawnPositions[location].position + (Vector3)(Random.insideUnitCircle * 1.5f);
-                if (spawnAnArmor)
-                {
-                    pickup.type = Pickup.PickupType.Armor;
-                    spawnAnArmor = false;
-                }
-                else
-                {
-                    pickup.type = Pickup.PickupType.Health;
-                    spawnAnArmor = true;
-                }
+                pickup.type = Pickup.PickupType.Armor;
+
                 spawnPickupCooldown = (int)GameManager.ScaleFromNightsBeaten(1, 1.5f);
             }
             spawnPickupCooldown--;
