@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: DrylandAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: b78cbeec26ddc3a41b44116dca14702d, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 118585395, guid: b78cbeec26ddc3a41b44116dca14702d, type: 3}
+  - {fileID: -1372612232, guid: b78cbeec26ddc3a41b44116dca14702d, type: 3}
+  - {fileID: -881471899, guid: b78cbeec26ddc3a41b44116dca14702d, type: 3}
+  - {fileID: 1915155213, guid: b78cbeec26ddc3a41b44116dca14702d, type: 3}
+  - {fileID: 248063138, guid: b78cbeec26ddc3a41b44116dca14702d, type: 3}
+  - {fileID: -545906542, guid: b78cbeec26ddc3a41b44116dca14702d, type: 3}
+  - {fileID: -251665774, guid: b78cbeec26ddc3a41b44116dca14702d, type: 3}
+  - {fileID: -1610186304, guid: b78cbeec26ddc3a41b44116dca14702d, type: 3}
+  - {fileID: -634275075, guid: b78cbeec26ddc3a41b44116dca14702d, type: 3}
+  - {fileID: -1313940729, guid: b78cbeec26ddc3a41b44116dca14702d, type: 3}
+  - {fileID: -1757507473, guid: b78cbeec26ddc3a41b44116dca14702d, type: 3}
+  - {fileID: -422302193, guid: b78cbeec26ddc3a41b44116dca14702d, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - dead dry grass_5
+  - dead dry grass_4
+  - dead dry grass_7
+  - dead dry grass_6
+  - dead dry grass_1
+  - dead dry grass_0
+  - dead dry grass_3
+  - dead dry grass_2
+  - dead dry grass_10
+  - dead dry grass_11
+  - dead dry grass_9
+  - dead dry grass_8
+  m_RenderDataMap: {}
+  m_Tag: DrylandAtlas
+  m_IsVariant: 0

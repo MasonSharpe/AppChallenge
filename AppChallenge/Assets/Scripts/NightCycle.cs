@@ -23,7 +23,9 @@ public class NightCycle : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        tilemaps = FindObjectsByType<Tilemap>(FindObjectsSortMode.None);
+
+        
+
     }
 
     private void Update()
@@ -53,6 +55,7 @@ public class NightCycle : MonoBehaviour
 
     public void SetToNight()
     {
+        tilemaps = Tilemaps.tilemaps;
         Fade.instance.Show(0.75f);
         Player.instance.canInteract = false;
         Player.instance.rb.velocity = Vector3.zero;
@@ -67,7 +70,7 @@ public class NightCycle : MonoBehaviour
             isNight = true;
             if (!isBoss)
             {
-                nightLength = 50 + 50 * currentNightIndex;
+                nightLength = 5 + 5 * currentNightIndex;
                 EnemySpawner.instance.isSpawningEnemies = true;
                 visual.enabled = true;
                 visual2.enabled = true;
@@ -88,7 +91,7 @@ public class NightCycle : MonoBehaviour
         EnemySpawner.instance.levelTimer = 0;
         fountain.canHealFrom = true;
         visual.enabled = false;
-        visual2.enabled = true;
+        visual2.enabled = false;
         if (victorious)
         {
             GameManager.nightsBeaten[currentNightIndex] = true;

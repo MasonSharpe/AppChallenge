@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     public static void Respawn()
     {
         SceneManager.LoadScene("_FullMap");
+        print(Player.instance.health);
+        print(saveHealth);
         Player.instance.gameObject.transform.position = savePosition;
         Player.instance.xp = saveXP;
         Player.instance.level = saveLevel;
