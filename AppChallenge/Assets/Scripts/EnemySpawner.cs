@@ -62,7 +62,7 @@ public class EnemySpawner : MonoBehaviour
                 pickup.transform.position = spawnPositions[location].position + (Vector3)(Random.insideUnitCircle * 1.5f);
                 pickup.type = Pickup.PickupType.Armor;
 
-                spawnPickupCooldown = (int)GameManager.ScaleFromNightsBeaten(1, 1.5f);
+                spawnPickupCooldown = (int)GameManager.ScaleFromNightsBeaten(3, 1.5f);
             }
             spawnPickupCooldown--;
 

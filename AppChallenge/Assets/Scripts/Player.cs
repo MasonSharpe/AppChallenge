@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
 	public int xp;
 	public int level;
 	public float invincPeriod;
+	private float footstepTimer;
 	public float cameraShakeTimer;
 	public Rigidbody2D rb;
 	public float accelerationX;
@@ -57,6 +58,7 @@ public class Player : MonoBehaviour
 		xp = 0;
 		xpSlider.maxValue = 5;
 		cameraShakeTimer = 0;
+		footstepTimer = 1;
 		canInteract = true;
 	}
 
@@ -92,6 +94,17 @@ public class Player : MonoBehaviour
 
 		volume.profile.TryGet(out Vignette vignette);
 		vignette.color.Override(new Color(Mathf.Clamp((0.5f - health / maxHealth) * (invincPeriod / 0.05f), 0, 1), 0, 0));
+
+		if (footstepTimer > 0 && new Vector2(accelerationX, accelerationY).magnitude != 0)
+        {
+			footstepTimer -= Time.deltaTime;
+
+			if (footstepTimer <= 0)
+            {
+				SfxManager.instance.PlaySoundEffect(1, 1 + (LevelUpScreen.instance.normalUpgradesGotten[7] / 5), Random.Range(0.8f, 1.2f));
+				footstepTimer = 0.6f - (LevelUpScreen.instance.normalUpgradesGotten[7] / 20);
+			}
+        }
 
 		healthSlider.value = health;
 		xpSlider.value = xp;
@@ -139,6 +152,7 @@ public class Player : MonoBehaviour
 		xp = 0;
 		xpSlider.maxValue = Mathf.Pow(level, 1.5f) + 4;
 		health = Mathf.Clamp(health + (maxHealth * 0.75f), 0, maxHealth);
+		SfxManager.instance.PlaySoundEffect(4, 1, Random.Range(0.9f, 1.1f));
 		LevelUpScreen.instance.Show();
 	}
 
@@ -146,6 +160,7 @@ public class Player : MonoBehaviour
     {
 		health -= Mathf.Clamp(damage * (1 - armor / 40f), 0.1f, 1000);
 		this.invincPeriod = invincPeriod * (1 + LevelUpScreen.instance.normalUpgradesGotten[8] * 0.5f);
+		SfxManager.instance.PlaySoundEffect(3, 1, Random.Range(0.9f, 1.1f));
 
 		if (health <= 0)
         {
@@ -195,12 +210,9 @@ public class Player : MonoBehaviour
             }
 
 			Destroy(collision.gameObject);
+			SfxManager.instance.PlaySoundEffect(6, 1, Random.Range(0.8f, 1.2f));
 		}
-		//areaTrigger
-		if (collision.gameObject.layer == 12)
-        {
-			AreaManager.instance.LoadTriggered(collision.GetComponent<AreaTrigger>().areaLoader);
-        }
+
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -227,6 +239,7 @@ public class Player : MonoBehaviour
 		{
 			if (invincPeriod < 0)
 			{
+				SfxManager.instance.PlaySoundEffect(6, 1, Random.Range(0.8f, 1.2f));
 				Pickup.PickupType pickupType = collision.GetComponent<Pickup>().type;
 
 				if (pickupType == Pickup.PickupType.Health)

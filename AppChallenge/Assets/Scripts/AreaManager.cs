@@ -27,7 +27,7 @@ public class AreaManager : MonoBehaviour
         instance = this;
     }
 
-    public void LoadTriggered(AreaLoader areaLoader)
+    /*public void LoadTriggered(AreaLoader areaLoader)
     {
         if (!NightCycle.instance.isNight)
         {
@@ -38,22 +38,22 @@ public class AreaManager : MonoBehaviour
                 0);
         }
 
-        /*proccess for adding areas
+        proccess for adding areas
          * make new scene
          * copy the main grid from the previous scene and paste it TWICE
          * delete everything from the second grid and rename it to the new scene
          * make the tilemap as normal
          * go back to the previous scene and copy paste the main grid from the new scene
          * bazinga you're done
-         */
+         
 
-        /*proccess for adding the triggers for the scenes
+        proccess for adding the triggers for the scenes
          * add a load trigger to an area in the area scene
          * make sure the destination is slightly ahead of where it should be
          * cut and paste this trigger to the starting scene
          * do the same thing but from the previous scene to this scene
          * 
-         */
+         
 
-    }
+    }*/
 }

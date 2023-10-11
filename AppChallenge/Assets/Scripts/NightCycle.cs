@@ -16,8 +16,9 @@ public class NightCycle : MonoBehaviour
     public GameObject bulletHolder;
     public GameObject xpHolder;
     public int currentNightIndex = -1;
-    private Tilemap[] tilemaps;
     public HealingFountain fountain;
+
+
 
 
     private void Awake()
@@ -35,10 +36,17 @@ public class NightCycle : MonoBehaviour
         float colorAmount =  (amount / 2) + 0.25f;
         if (isNight)
         {
-            foreach (Tilemap tilemap in tilemaps)
+            for (int i = 0; i < Tilemaps.tilemaps.Length; i++)
             {
+                if (Tilemaps.tilemaps[i] == null)
+                {
+                    print(i);
+                }
+                else
+                {
+                    Tilemaps.tilemaps[i].color = new Color(colorAmount, colorAmount, colorAmount);
 
-                tilemap.color = new Color(colorAmount, colorAmount, colorAmount);
+                }
 
             }
 
@@ -55,7 +63,7 @@ public class NightCycle : MonoBehaviour
 
     public void SetToNight()
     {
-        tilemaps = Tilemaps.tilemaps;
+        Fade.instance.battleMusic.Play(0);
         Fade.instance.Show(0.75f);
         Player.instance.canInteract = false;
         Player.instance.rb.velocity = Vector3.zero;
@@ -70,7 +78,7 @@ public class NightCycle : MonoBehaviour
             isNight = true;
             if (!isBoss)
             {
-                nightLength = 5 + 5 * currentNightIndex;
+                nightLength = 50 + 50 * currentNightIndex;
                 EnemySpawner.instance.isSpawningEnemies = true;
                 visual.enabled = true;
                 visual2.enabled = true;
@@ -117,6 +125,13 @@ public class NightCycle : MonoBehaviour
             if (enemies[i].name != "EnemyHolder") Destroy(enemies[i].gameObject);
         }
 
+        Fade.instance.exploreMusic.time = 0;
+        TimerManager.CreateTimer(2, () => { Fade.instance.battleMusic.Stop(); print("sd"); }, () =>
+        {
+            Fade.instance.battleMusic.volume -= Time.deltaTime / 2;
+            Fade.instance.exploreMusic.volume += Time.deltaTime / 2;
+            print("b");
+        }, "", true);
 
     }
 }

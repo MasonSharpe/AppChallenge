@@ -49,7 +49,7 @@ public class Sword : MonoBehaviour
 
         if (Input.GetMouseButton(0) && swordCooldown <= 0)
         {
-
+            SfxManager.instance.PlaySoundEffect(5, 0.5f, Random.Range(0.9f, 1.1f));
             swordCooldown = 1f;
             swordActiveTime = 0.2f;
             canDealDamage = true;
@@ -65,6 +65,7 @@ public class Sword : MonoBehaviour
         //parry bullet
         if (collision.gameObject.layer == 6)
         {
+            SfxManager.instance.PlaySoundEffect(8, 0.7f, Random.Range(0.6f, 0.8f));
             canDealDamage = false;
             sweetBCollider.enabled = false;
             Bullet bullet = collision.GetComponent<Bullet>();

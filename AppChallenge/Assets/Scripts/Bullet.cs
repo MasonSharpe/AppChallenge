@@ -38,6 +38,7 @@ public class Bullet : MonoBehaviour
             if (!isFriendly)
             {
                 isFriendly = true;
+                SfxManager.instance.PlaySoundEffect(8, 1, Random.Range(0.9f, 1.2f));
                 currentStoredDamage = Sword.instance.parryDamage;
                 rb.velocity = (Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position)).normalized * Sword.instance.bulletParrySpeed;
                 spriteRenderer.color = Color.cyan;
