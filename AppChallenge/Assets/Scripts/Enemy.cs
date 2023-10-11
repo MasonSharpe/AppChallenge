@@ -87,6 +87,7 @@ public class Enemy : MonoBehaviour{
                 bullet.speed = bulletSpeed;
                 bullet.currentStoredDamage = damage;
 
+                SfxManager.instance.PlaySoundEffect(0, 1, Random.Range(0.9f, 1.1f));
 
                 shootCooldown = (enemyTypeIndex == 2) ? 0.25f : 1.5f;
             }
@@ -105,9 +106,10 @@ public class Enemy : MonoBehaviour{
         health -= damage;
         if (health <= 0)
         {
+            SfxManager.instance.PlaySoundEffect(7, 1, Random.Range(0.9f, 1.1f));
             if (tutorialWall != null)
             {
-                Destroy(tutorialWall);
+                tutorialWall.gameObject.SetActive(false);
             }
             if (NightCycle.instance.isNight || Random.Range(0, 4) == 0)
             {
@@ -122,6 +124,10 @@ public class Enemy : MonoBehaviour{
             }
 
 
+        }
+        else
+        {
+            SfxManager.instance.PlaySoundEffect(2, 1, Random.Range(0.9f, 1.1f));
         }
         hurtTimer = 0.1f;
     }

@@ -7,12 +7,16 @@ public class Fade : MonoBehaviour {
 
     public static Fade instance;
     [SerializeField] private RawImage sprite;
-    private float fadeTimer;
+    private float fadeTimer = -1;
     private bool isShowing;
     private float duration;
 
+    public AudioSource exploreMusic;
+    public AudioSource battleMusic;
+
     private void Awake() {
         instance = this;
+        exploreMusic.Play();
     }
 
     public void Show(float duration = 0.2f) {
@@ -28,6 +32,12 @@ public class Fade : MonoBehaviour {
 
     private void Update() {
         fadeTimer -= Time.deltaTime;
-        sprite.color = Helper.SetColorAlpla(Color.black, isShowing ? (duration - fadeTimer) / duration : fadeTimer / duration);
+        if (fadeTimer > -1)
+        {
+            sprite.color = Helper.SetColorAlpla(Color.black, isShowing ? (duration - fadeTimer) / duration : fadeTimer / duration);
+            if (!isShowing) exploreMusic.volume = fadeTimer / duration;
+            if (isShowing) battleMusic.volume = (duration - fadeTimer) / duration;
+        }
+
     }
 }

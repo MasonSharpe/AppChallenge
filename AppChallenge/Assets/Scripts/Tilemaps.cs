@@ -10,4 +10,6 @@ public class Tilemaps : MonoBehaviour
     {
         tilemaps = GetComponentsInChildren<Tilemap>();
     }
+
+
 }
