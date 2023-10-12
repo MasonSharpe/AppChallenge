@@ -156,7 +156,7 @@ public class Player : MonoBehaviour
 		level++;
 		xp = 0;
 		xpSlider.maxValue = Mathf.Pow(level, 1.5f) + 4;
-		health = Mathf.Clamp(health + (maxHealth * 0.75f), 0, maxHealth);
+		health = Mathf.Clamp(health + (maxHealth * (NightCycle.instance.isNight ? 0.25f : 0.65f)), 0, maxHealth);
 		SfxManager.instance.PlaySoundEffect(4, 1, Random.Range(0.9f, 1.1f));
 		LevelUpScreen.instance.Show();
 	}
@@ -209,7 +209,7 @@ public class Player : MonoBehaviour
 		if (collision.gameObject.layer == 10)
         {
 			xp += 1 + Mathf.RoundToInt(Mathf.Pow(GameManager.nightsBeaten.FindAll( h => h == true ).Count, 2));
-			if (xp >= Mathf.RoundToInt(Mathf.Pow(level, 1.5f) + 4))
+			if (xp >= Mathf.RoundToInt(Mathf.Pow(level, 1.6f) + 4))
             {
 				LevelUp();
             }

@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public static int saveXP = 1;
     public static int saveArmor = 2;
     public static int[] saveUpgrades = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    public static Pickup[] savePickupsObtained = new Pickup[5];
+    public static Enemy[] saveEnemiesKilled = new Enemy[5];
 
 
     private void Start()
@@ -23,19 +25,17 @@ public class GameManager : MonoBehaviour
     public static void Respawn()
     {
         SceneManager.LoadScene("_FullMap");
-        print(Player.instance.health);
-        print(saveHealth);
         Player.instance.gameObject.transform.position = savePosition;
         Player.instance.xp = saveXP;
         Player.instance.level = saveLevel;
         Player.instance.health = saveHealth;
         Player.instance.armor = saveArmor;
         LevelUpScreen.instance.normalUpgradesGotten = saveUpgrades;
-
+        if (Player.instance.health > Player.instance.maxHealth) Player.instance.health = Player.instance.maxHealth;
         if (NightCycle.instance.isNight) NightCycle.instance.EndNight(false);
     }
 
-    public static void SetSpawn(float health, Vector3 position, int level, int xp, int armor, int[] upgrades)
+    public static void SetSpawn(float health, Vector3 position, int level, int xp, int armor, int[] upgrades, Enemy[] enemiesKilled, Pickup[] pickupsObtained)
     {
         saveHealth = health;
         savePosition = position;
@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
         saveXP = xp;
         saveArmor = armor;
         saveUpgrades = upgrades;
+        saveEnemiesKilled = enemiesKilled;
+        savePickupsObtained = pickupsObtained;
     }
 
     public static float ScaleFromNightsBeaten(float number, float exponent)

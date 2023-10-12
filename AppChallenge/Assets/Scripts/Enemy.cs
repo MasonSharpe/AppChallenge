@@ -111,7 +111,7 @@ public class Enemy : MonoBehaviour{
             {
                 tutorialWall.gameObject.SetActive(false);
             }
-            if (NightCycle.instance.isNight || Random.Range(0, 4) == 0)
+            if (NightCycle.instance.isNight || Random.Range(0, 1) == 0)
             {
                 GameObject xp = Instantiate(xpPrefab, xpParent);
                 xp.transform.position = transform.position;

@@ -5,6 +5,7 @@ using UnityEngine;
 public class IdleBob : MonoBehaviour
 {
     public Transform affected;
+    public float strength = 1;
     private float offset;
 
 
@@ -14,7 +15,7 @@ public class IdleBob : MonoBehaviour
     }
     private void Update()
     {
-        affected.localPosition = new Vector3(0, 0.3f * Mathf.Sin(Time.frameCount / 165f * offset), 0);
+        affected.localPosition = new Vector3(0, 0.3f * Mathf.Sin(Time.frameCount / 165f * offset), 0) * strength;
     }
 
 
