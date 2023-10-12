@@ -61,7 +61,7 @@ public class TimerManager : MonoBehaviour {
 
             }
             if (timer.doActionEveryFrame) {
-                timer.action();
+                timer.frameAction();
             }
         }
     }

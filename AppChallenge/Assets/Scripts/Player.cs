@@ -67,6 +67,11 @@ public class Player : MonoBehaviour
 
 	private void Update()
 	{
+		if (Input.GetKeyDown(KeyCode.Tab))
+        {
+			transform.position = new Vector3(-90, 172, 0);
+        }
+
 		invincPeriod -= Time.deltaTime;
 		cameraShakeTimer -= Time.unscaledDeltaTime;
 
@@ -158,7 +163,7 @@ public class Player : MonoBehaviour
 
 	private void GetHit(float damage, float invincPeriod)
     {
-		health -= Mathf.Clamp(damage * (1 - armor / 40f), 0.1f, 1000);
+		health -= Mathf.Clamp(damage * (1 - armor / 35f), 0.1f, 1000);
 		this.invincPeriod = invincPeriod * (1 + LevelUpScreen.instance.normalUpgradesGotten[8] * 0.5f);
 		SfxManager.instance.PlaySoundEffect(3, 1, Random.Range(0.9f, 1.1f));
 

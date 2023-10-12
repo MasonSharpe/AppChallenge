@@ -15,7 +15,7 @@ public class NightCycle : MonoBehaviour
     public bool isBoss = false;
     public GameObject bulletHolder;
     public GameObject xpHolder;
-    public int currentNightIndex = -1;
+    public int currentNightIndex = 0;
     public HealingFountain fountain;
 
 
@@ -102,6 +102,7 @@ public class NightCycle : MonoBehaviour
         visual2.enabled = false;
         if (victorious)
         {
+            instance.currentNightIndex++;
             GameManager.nightsBeaten[currentNightIndex] = true;
             GameManager.SetSpawn(Player.instance.health,
                 Player.instance.transform.position, Player.instance.level, Player.instance.xp, Player.instance.armor, LevelUpScreen.instance.normalUpgradesGotten);
@@ -126,11 +127,10 @@ public class NightCycle : MonoBehaviour
         }
 
         Fade.instance.exploreMusic.time = 0;
-        TimerManager.CreateTimer(2, () => { Fade.instance.battleMusic.Stop(); print("sd"); }, () =>
+        TimerManager.CreateTimer(2, () => { Fade.instance.battleMusic.Stop(); }, () =>
         {
             Fade.instance.battleMusic.volume -= Time.deltaTime / 2;
             Fade.instance.exploreMusic.volume += Time.deltaTime / 2;
-            print("b");
         }, "", true);
 
     }

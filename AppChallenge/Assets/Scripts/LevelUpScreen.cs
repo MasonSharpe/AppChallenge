@@ -21,13 +21,10 @@ public class LevelUpScreen : MonoBehaviour
     public static LevelUpScreen instance;
 
     public Upgrade[] allNormalUpgrades;
-    public Upgrade[] allSuperUpgrades;
 
-    private List<Upgrade> superUpgradesYetToGet;
     //NORMAL UPGRADES: hitting enemies reduces cooldown, bigger sword, more sword damage, more parry damage, more sweetspot damage
     //parrying reduces cooldown, max speed increase, acceleration increase, invinciblility frame increase
     public int[] normalUpgradesGotten;
-    private List<Upgrade> superUpgradesGotten;
 
     private Upgrade[] screenUpgrades;
 

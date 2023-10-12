@@ -15,7 +15,7 @@ public class HealingFountain : MonoBehaviour
         text.SetActive(playerIsClose && !NightCycle.instance.isNight);
         if (Input.GetKeyDown(KeyCode.E) && playerIsClose && !NightCycle.instance.isNight)
         {
-
+            SfxManager.instance.PlaySoundEffect(4, 1);
 
             Player.instance.health = Player.instance.maxHealth;
             canHealFrom = false;

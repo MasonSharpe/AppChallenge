@@ -62,7 +62,7 @@ public class Bullet : MonoBehaviour
 
         if (bulletType == 1 &&!isFriendly)
         {
-            magnitude += (magnitude * Time.deltaTime);
+            magnitude += (magnitude * Time.deltaTime * (speed / 4 - 1.5f));
 
             if (timer < 1)
             {
