@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Tilemaps;
 
 public class StartNightNPC : MonoBehaviour
 {
@@ -12,9 +13,11 @@ public class StartNightNPC : MonoBehaviour
     [SerializeField] GameObject spawnPositions;
     [SerializeField] private BossEnemy bossPrefab = null;
     [SerializeField] private HealingFountain fountain;
+    [SerializeField] private Tilemap border;
 
     private void Start()
     {
+        border.enabled = false;
         int nights = GameManager.nightsBeaten.FindAll(h => h == true).Count;
         if (nightIndex == 3)
         {
@@ -46,6 +49,8 @@ public class StartNightNPC : MonoBehaviour
         if (!GameManager.nightsBeaten[nightIndex]) text.SetActive(playerIsClose && !isNight);
         if (Input.GetKeyDown(KeyCode.E) && playerIsClose && !(GameManager.nightsBeaten[nightIndex]))
         {
+            NightCycle.instance.border = border;
+            border.enabled = true;
             SfxManager.instance.PlaySoundEffect(4, 1);
             NightCycle.instance.fountain = fountain;
             EnemySpawner.instance.spawnPositions = spawnPositions.GetComponentsInChildren<Transform>();

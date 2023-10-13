@@ -17,6 +17,7 @@ public class NightCycle : MonoBehaviour
     public GameObject xpHolder;
     public int currentNightIndex = 0;
     public HealingFountain fountain;
+    public Tilemap border;
 
 
 
@@ -93,6 +94,7 @@ public class NightCycle : MonoBehaviour
 
     public void EndNight(bool victorious)
     {
+        border.enabled = false;
         isNight = false;
         EnemySpawner.instance.isSpawningEnemies = false;
         EnemySpawner.instance.levelTimer = 0;
