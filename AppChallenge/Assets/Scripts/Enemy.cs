@@ -47,7 +47,7 @@ public class Enemy : MonoBehaviour{
     {
         Vector2 distance = Player.instance.transform.position - transform.position;
         float magnitude = distance.magnitude;
-        if (magnitude < 25 || isNighttimeEnemy)
+        if (magnitude < 20 || isNighttimeEnemy)
         {
             Vector2 dir;
             if (enemyTypeIndex == 2)
@@ -76,7 +76,7 @@ public class Enemy : MonoBehaviour{
             randomDirTimer -= Time.deltaTime;
 
             bool shouldShoot;
-            shouldShoot = (!(tutorialWall != null && magnitude > 7)) && (!(NightCycle.instance.isNight && magnitude > 14));
+            shouldShoot = (!(tutorialWall != null && magnitude > 7)) && (!(NightCycle.instance.isNight && magnitude > 14)) && (!(NightCycle.instance.isNight && !isNighttimeEnemy));
             if (shootCooldown <= 0 && shouldShoot)
             {
                 Bullet bullet = Instantiate(bulletPrefab, bulletParent).GetComponent<Bullet>();

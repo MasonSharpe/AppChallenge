@@ -43,7 +43,7 @@ public class StartNightNPC : MonoBehaviour
     {
         bool isNight = NightCycle.instance.isNight;
         playerIsClose = (Player.instance.transform.position - transform.position).magnitude < 5;
-        text.SetActive(playerIsClose && !isNight);
+        if (!GameManager.nightsBeaten[nightIndex]) text.SetActive(playerIsClose && !isNight);
         if (Input.GetKeyDown(KeyCode.E) && playerIsClose && !(GameManager.nightsBeaten[nightIndex]))
         {
             SfxManager.instance.PlaySoundEffect(4, 1);
@@ -69,8 +69,6 @@ public class StartNightNPC : MonoBehaviour
             }
 
         }
-
-        enabled = !GameManager.nightsBeaten[nightIndex] && !isNight;
 
     }
 

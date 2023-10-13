@@ -77,7 +77,7 @@ public class NightCycle : MonoBehaviour
             isNight = true;
             if (!isBoss)
             {
-                nightLength = 50 + 50 * currentNightIndex;
+                nightLength = 5 + 5 * currentNightIndex;
                 EnemySpawner.instance.isSpawningEnemies = true;
                 visual.enabled = true;
                 visual2.enabled = true;
