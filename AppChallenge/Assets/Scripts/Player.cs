@@ -209,7 +209,7 @@ public class Player : MonoBehaviour
 		//xp
 		if (collision.gameObject.layer == 10)
         {
-			xp += 1 + Mathf.RoundToInt(Mathf.Pow(GameManager.nightsBeaten.FindAll( h => h == true ).Count, 2));
+			xp += 1 + Mathf.RoundToInt(Mathf.Pow(GameManager.nightsBeaten.FindAll( h => h == true ).Count, 2.3f));
 			if (xp >= Mathf.RoundToInt(Mathf.Pow(level, 1.5f) + 4))
             {
 				LevelUp();

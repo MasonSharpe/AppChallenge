@@ -12,7 +12,7 @@ public class InitialLoad : MonoBehaviour
         DontDestroyOnLoad(this);
 
 
-        SceneManager.LoadScene("_FullMap");
+        SceneManager.LoadScene("MainMenu");
         Fade.instance.battleMusic.Stop();
         Player.instance.enabled = false;
         Sword.instance.enabled = false;

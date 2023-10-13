@@ -67,7 +67,7 @@ public class EnemySpawner : MonoBehaviour
             spawnPickupCooldown--;
 
 
-            spawnTimer = Random.Range(4 - (3 * timeStrength), 7 - (3 * timeStrength)) + spawnAmount / 2;
+            spawnTimer = Random.Range(3.5f - (3 * timeStrength), 6 - (3 * timeStrength)) + spawnAmount / 2;
         }
     }
 

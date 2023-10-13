@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour{
     public Transform xpParent;
     public int enemyTypeIndex = 0;
     public GameObject tutorialWall = null;
+    private bool canDropXp = true;
 
 
 
@@ -111,17 +112,14 @@ public class Enemy : MonoBehaviour{
             {
                 tutorialWall.gameObject.SetActive(false);
             }
-            if (NightCycle.instance.isNight || Random.Range(0, 1) == 0)
+            if (NightCycle.instance.isNight || Random.Range(0, 1) == 0 && canDropXp)
             {
                 GameObject xp = Instantiate(xpPrefab, xpParent);
                 xp.transform.position = transform.position;
-                Destroy(gameObject);
+                canDropXp = false;
 
             }
-            else
-            {
-                gameObject.SetActive(false);
-            }
+            Destroy(gameObject);
 
 
         }

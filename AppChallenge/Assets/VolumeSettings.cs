@@ -19,8 +19,10 @@ public class VolumeSettings : MonoBehaviour
             SetSFXVolume();
         }
 
-            
+        Fade.instance.sprite.color = Helper.SetColorAlpla(Color.black, 0);
     }
+
+
     public void SetMusicVolume()
     {
         float volume = musicSlider.value;

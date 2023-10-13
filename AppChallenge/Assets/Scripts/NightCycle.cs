@@ -17,7 +17,7 @@ public class NightCycle : MonoBehaviour
     public GameObject xpHolder;
     public int currentNightIndex = 0;
     public HealingFountain fountain;
-    public Tilemap border;
+    public TilemapCollider2D border;
 
 
 

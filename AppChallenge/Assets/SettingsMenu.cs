@@ -11,6 +11,8 @@ public class SettingsMenu : MonoBehaviour
     public Dropdown resolutionDropdown;
 
     Resolution[] resolutions;
+
+    private Vector2 defaultResolution = new(1920, 1080);
     void Start()
     {
         resolutions = Screen.resolutions; 
@@ -37,9 +39,16 @@ public class SettingsMenu : MonoBehaviour
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
     }
+
+    private void Update()
+    {
+        Screen.SetResolution(1920, 1080, Screen.fullScreen);
+    }
+
     public void SetResolution (int resulationIndex)
     {
         Resolution resolution = resolutions[resulationIndex];
+        defaultResolution = new Vector2(resolution.width, resolution.height);
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
     public void SetVolume(float volume)

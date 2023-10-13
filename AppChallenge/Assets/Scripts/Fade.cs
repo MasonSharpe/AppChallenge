@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Fade : MonoBehaviour {
 
     public static Fade instance;
-    [SerializeField] private RawImage sprite;
+    public RawImage sprite;
     private float fadeTimer = -1;
     private bool isShowing;
     private float duration;

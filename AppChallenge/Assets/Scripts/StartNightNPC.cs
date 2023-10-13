@@ -13,7 +13,7 @@ public class StartNightNPC : MonoBehaviour
     [SerializeField] GameObject spawnPositions;
     [SerializeField] private BossEnemy bossPrefab = null;
     [SerializeField] private HealingFountain fountain;
-    [SerializeField] private Tilemap border;
+    [SerializeField] private TilemapCollider2D border;
 
     private void Start()
     {
