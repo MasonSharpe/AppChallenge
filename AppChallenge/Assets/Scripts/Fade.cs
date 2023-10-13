@@ -16,7 +16,6 @@ public class Fade : MonoBehaviour {
 
     private void Awake() {
         instance = this;
-        exploreMusic.Play();
     }
 
     public void Show(float duration = 0.2f) {

@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour{
 
         if (NightCycle.instance.isNight)
         {
-            maxHealth = 5 + (enemyTypeIndex + GameManager.nightsBeaten.FindAll(h => h == true).Count) * 3 + (int)(3 * EnemySpawner.instance.timeStrength);
+            maxHealth = 8 + (enemyTypeIndex + GameManager.nightsBeaten.FindAll(h => h == true).Count) * 3 + (int)(3 * EnemySpawner.instance.timeStrength);
             enemyTypeIndex = Mathf.Clamp(GameManager.nightsBeaten.FindAll(h => h == true).Count + Random.Range(-2, 1), 0, 2);
 
         }
@@ -106,7 +106,7 @@ public class Enemy : MonoBehaviour{
         health -= damage;
         if (health <= 0)
         {
-            SfxManager.instance.PlaySoundEffect(7, 1, Random.Range(0.9f, 1.1f));
+            SfxManager.instance.PlaySoundEffect(7, 0.6f, Random.Range(0.9f, 1.1f));
             if (tutorialWall != null)
             {
                 tutorialWall.gameObject.SetActive(false);
@@ -127,7 +127,7 @@ public class Enemy : MonoBehaviour{
         }
         else
         {
-            SfxManager.instance.PlaySoundEffect(2, 1, Random.Range(0.9f, 1.1f));
+            SfxManager.instance.PlaySoundEffect(2, 0.5f, Random.Range(0.9f, 1.1f));
         }
         hurtTimer = 0.1f;
     }

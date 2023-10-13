@@ -20,7 +20,9 @@ public class MMloader : MonoBehaviour
     public void Loadgame()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene("Level1");
+        Player.instance.enabled = true;
+        Sword.instance.enabled = true;
+        SceneManager.LoadScene("_FullMap");
     }
 
     public void QuitGame()

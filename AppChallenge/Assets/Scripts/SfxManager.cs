@@ -8,6 +8,7 @@ public class SfxManager : MonoBehaviour {
 
     public static SfxManager instance;
     public AudioClip[] clips;
+    public AudioMixerGroup mixerGroup;
 
 
     private void Awake() {
@@ -20,6 +21,7 @@ public class SfxManager : MonoBehaviour {
         audioSource.pitch = pitch;
         audioSource.panStereo = pan;
         audioSource.priority = priority;
+        audioSource.outputAudioMixerGroup = mixerGroup;
         audioSource.PlayOneShot(clips[clipIndex]);
         Destroy(audioSource, clips[clipIndex].length);
     }

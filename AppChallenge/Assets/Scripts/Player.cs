@@ -163,7 +163,7 @@ public class Player : MonoBehaviour
 
 	private void GetHit(float damage, float invincPeriod)
     {
-		health -= Mathf.Clamp(damage * (1 - armor / 35f), 0.1f, 1000);
+		health -= Mathf.Clamp(damage * (1 - armor / 20f), 0.1f, 1000);
 		this.invincPeriod = invincPeriod * (1 + LevelUpScreen.instance.normalUpgradesGotten[8] * 0.5f);
 		SfxManager.instance.PlaySoundEffect(3, 1, Random.Range(0.9f, 1.1f));
 
@@ -209,7 +209,7 @@ public class Player : MonoBehaviour
 		if (collision.gameObject.layer == 10)
         {
 			xp += 1 + Mathf.RoundToInt(Mathf.Pow(GameManager.nightsBeaten.FindAll( h => h == true ).Count, 2));
-			if (xp >= Mathf.RoundToInt(Mathf.Pow(level, 1.6f) + 4))
+			if (xp >= Mathf.RoundToInt(Mathf.Pow(level, 1.5f) + 4))
             {
 				LevelUp();
             }

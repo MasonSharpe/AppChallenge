@@ -12,9 +12,11 @@ public class InitialLoad : MonoBehaviour
         DontDestroyOnLoad(this);
 
 
-        SceneManager.LoadScene("_FullMap");
+        SceneManager.LoadScene("MainMenu");
+        Fade.instance.battleMusic.Stop();
+        Player.instance.enabled = false;
+        Sword.instance.enabled = false;
 
-        GameManager.SetSpawn(Player.instance.health, new Vector3(0, 0, 0), 1, 0, 0, new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 });
     }
 
 

@@ -20,8 +20,7 @@ public class TutorialSave : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && playerIsClose)
         {
             SfxManager.instance.PlaySoundEffect(4, 1);
-            GameManager.SetSpawn(Player.instance.health,
-            Player.instance.transform.position, Player.instance.level, Player.instance.xp, Player.instance.armor, LevelUpScreen.instance.normalUpgradesGotten);
+            GameManager.SetSpawn();
 
         }
 

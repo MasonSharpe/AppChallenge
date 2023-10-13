@@ -71,8 +71,7 @@ public class NightCycle : MonoBehaviour
         {
             Player.instance.health = Player.instance.maxHealth;
 
-            GameManager.SetSpawn(Player.instance.health,
-            Player.instance.transform.position, Player.instance.level, Player.instance.xp, Player.instance.armor, LevelUpScreen.instance.normalUpgradesGotten);
+            GameManager.SetSpawn();
             Player.instance.canInteract = true;
 
             isNight = true;
@@ -104,8 +103,7 @@ public class NightCycle : MonoBehaviour
         {
             instance.currentNightIndex++;
             GameManager.nightsBeaten[currentNightIndex] = true;
-            GameManager.SetSpawn(Player.instance.health,
-                Player.instance.transform.position, Player.instance.level, Player.instance.xp, Player.instance.armor, LevelUpScreen.instance.normalUpgradesGotten);
+            GameManager.SetSpawn();
         }
         else
         {
