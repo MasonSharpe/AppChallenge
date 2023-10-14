@@ -48,6 +48,7 @@ public class LevelUpScreen : MonoBehaviour
     {
         canvas.enabled = true;
         Time.timeScale = 0;
+        Fade.instance.SetFilter(true);
 
         screenUpgrades = new Upgrade[3];
 
@@ -72,6 +73,7 @@ public class LevelUpScreen : MonoBehaviour
         normalUpgradesGotten[screenUpgrades[index].effectIndex] += 1;
 
         canvas.enabled = false;
+        Fade.instance.SetFilter(false);
         Time.timeScale = 1;
     }
 

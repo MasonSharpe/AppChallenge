@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BossEnemy : MonoBehaviour{
 
@@ -250,8 +251,12 @@ public class BossEnemy : MonoBehaviour{
         SfxManager.instance.PlaySoundEffect(7, 0.6f, Random.Range(0.9f, 1.1f));
         if (health <= 0)
         {
-            Destroy(gameObject);
+            Fade.instance.Show(3);
+            Player.instance.invincPeriod = 4;
+            TimerManager.CreateTimer(3, () => { SceneManager.LoadScene("EndingCutscene"); });
             SfxManager.instance.PlaySoundEffect(2, 0.5f, Random.Range(0.9f, 1.1f));
+
+            gameObject.SetActive(false);
         }
         hurtTimer = 0.1f;
     }

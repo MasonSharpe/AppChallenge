@@ -4,12 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Tilemaps;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class NightCycle : MonoBehaviour
 {
     public static NightCycle instance;
     [SerializeField] private Image visual;
     [SerializeField] private Image visual2;
+    [SerializeField] private TextMeshProUGUI dayText;
     public float nightLength;
     public bool isNight;
     public bool isBoss = false;
@@ -68,6 +70,7 @@ public class NightCycle : MonoBehaviour
         Fade.instance.battleMusic.Play(0);
         Fade.instance.Show(0.75f);
         Player.instance.canInteract = false;
+        Player.instance.invincPeriod = 2;
         Player.instance.rb.velocity = Vector3.zero;
         TimerManager.CreateTimer(1.5f, () =>
         {
@@ -106,6 +109,7 @@ public class NightCycle : MonoBehaviour
         {
             instance.currentNightIndex++;
             GameManager.nightsBeaten[nightNPC.nightIndex] = true;
+            dayText.text = "Day " + (int)GameManager.ScaleFromNightsBeaten(0, 1);
             GameManager.SetSpawn();
         }
         else

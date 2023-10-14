@@ -44,6 +44,7 @@ public class NewDeathScript : MonoBehaviour {
         Time.timeScale = 0;
         fadeTimer = 0;
         fadeDirection = 3f;
+        Fade.instance.SetFilter(true);
 
         foreach (var sprite in sprites) {
             sprite.color = Helper.SetColorAlpla(sprite.color, 0);
@@ -57,16 +58,22 @@ public class NewDeathScript : MonoBehaviour {
 
     public void Resume() {
         Time.timeScale = 1;
+        Fade.instance.SetFilter(false);
+
         GetComponent<Canvas>().enabled = false;
     }
 
     public void Restart() {
 
         Time.timeScale = 1;
+        Fade.instance.SetFilter(false);
+
         GetComponent<Canvas>().enabled = false;
         GameManager.Respawn();
     }
     public void LoadMainMenu() {
+        Fade.instance.SetFilter(false);
+
         SceneManager.LoadScene("MainMenu");
     }
 

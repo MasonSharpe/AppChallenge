@@ -11,25 +11,28 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 946e5dcd7f5d1ac4a93c9f3420ee083a
+  - enabled: 1
+    path: Assets/Scenes/_FullMap.unity
+    guid: c0f95149b895f6541a55054854e1b974
+  - enabled: 1
+    path: Assets/Scenes/EndingCutscene.unity
+    guid: 72cb3335ae5d4bd49b3eb6d62383d818
   - enabled: 0
-    path: Assets/Scenes/OLDArea1.unity
+    path: Assets/Scenes/Unused/OLDArea1.unity
     guid: 554feb4d4a2fdda42a2b1da02bfe88f0
   - enabled: 0
-    path: Assets/Scenes/OLDCamp1.unity
+    path: Assets/Scenes/Unused/OLDCamp1.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 0
-    path: Assets/Scenes/Level1.unity
+    path: Assets/Scenes/Unused/Level1.unity
     guid: c8649dae6826ba64dabaeac68dc23ac8
   - enabled: 0
-    path: Assets/Scenes/Tutorial.unity
+    path: Assets/Scenes/Unused/Tutorial.unity
     guid: 951df0623c480024ca40fda5219c8bb1
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
-    path: Assets/Scenes/_FullMap.unity
-    guid: c0f95149b895f6541a55054854e1b974
   - enabled: 0
-    path: Assets/Scenes/OLDCamp2.unity
+    path: Assets/Scenes/Unused/OLDCamp2.unity
     guid: 87bd0cbf6ec41e3459b1ebb65c2c22aa
   m_configObjects: {}

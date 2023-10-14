@@ -27,6 +27,7 @@ public class NewPauseMenu : MonoBehaviour
             {
                 Time.timeScale = 0;
                 GetComponent<Canvas>().enabled = true;
+                Fade.instance.SetFilter(true);
             } else {
                 Resume();
             }
@@ -41,18 +42,20 @@ public class NewPauseMenu : MonoBehaviour
     {
         Time.timeScale = 1;
         GetComponent<Canvas>().enabled = false;
+        Fade.instance.SetFilter(false);
     }
 
     public void Restart()
     {
         Time.timeScale = 1;
-
+        Fade.instance.SetFilter(false);
         GameManager.Respawn();
     }
     public void LoadMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
         Time.timeScale = 1;
+        Fade.instance.SetFilter(false);
         GetComponent<Canvas>().enabled = false;
     }
 

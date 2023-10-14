@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
 	{
 
 		moveSpeed = 10;
-		invincPeriod = 0;
+		invincPeriod = -1;
 		maxHealth = 10;
 		armor = 0;
 		health = maxHealth;
@@ -67,6 +67,7 @@ public class Player : MonoBehaviour
 
 	private void Update()
 	{
+
         if (Input.GetKeyDown(KeyCode.Tab))
         {
 			transform.position = new Vector3(-90, 172, 0);
@@ -163,21 +164,20 @@ public class Player : MonoBehaviour
 
 	private void GetHit(float damage, float invincPeriod)
     {
-		health -= Mathf.Clamp(damage * (1 - armor / 20f), 1f, 1000);
-		this.invincPeriod = invincPeriod * (1 + LevelUpScreen.instance.normalUpgradesGotten[8] * 0.5f);
-		SfxManager.instance.PlaySoundEffect(3, 1, Random.Range(0.9f, 1.1f));
+		if (this.invincPeriod < 0) {
+            health -= Mathf.Clamp(damage * (1 - armor / 20f), 1f, 1000);
+            this.invincPeriod = invincPeriod * (1 + LevelUpScreen.instance.normalUpgradesGotten[8] * 0.5f);
+            SfxManager.instance.PlaySoundEffect(3, 1, Random.Range(0.9f, 1.1f));
 
-		if (health <= 0)
-        {
-			if (transform.position.y > 50)
-            {
-				NewDeathScript.instance.Show();
+            if (health <= 0) {
+                if (transform.position.y > 50) {
+                    NewDeathScript.instance.Show();
+                } else {
+                    health = 1;
+                }
             }
-            else
-            {
-				health = 1;
-            }
-		}
+        }
+
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
@@ -186,7 +186,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.layer == 6)
         {
 			Bullet bullet = collision.GetComponent<Bullet>();
-			if (!bullet.isFriendly && invincPeriod < 0)
+			if (!bullet.isFriendly)
             {
 				if (NightCycle.instance.isBoss)
 				{
@@ -226,38 +226,24 @@ public class Player : MonoBehaviour
 		if (collision.gameObject.layer == 7)
 		{
 			Enemy enemy = collision.GetComponent<Enemy>();
-			if (invincPeriod < 0)
-			{
-				if (NightCycle.instance.isBoss)
-                {
-					GetHit(5, 0.2f);
-                }
-                else
-                {
-					GetHit(enemy.damage / 2 * (1 + GameManager.nightsBeaten.FindAll(h => h == true).Count) * (1 + (enemy.enemyTypeIndex * 0.5f)), 0.15f);
-				}
-
-			}
-		}
+            if (NightCycle.instance.isBoss) {
+                GetHit(5, 0.2f);
+            } else {
+                GetHit(enemy.damage / 2 * (1 + GameManager.nightsBeaten.FindAll(h => h == true).Count) * (1 + (enemy.enemyTypeIndex * 0.5f)), 0.15f);
+            }
+        }
 		//touch pickup
 		if (collision.gameObject.layer == 14)
 		{
-			if (invincPeriod < 0)
-			{
-				SfxManager.instance.PlaySoundEffect(6, 1, Random.Range(0.8f, 1.2f));
-				Pickup.PickupType pickupType = collision.GetComponent<Pickup>().type;
+            SfxManager.instance.PlaySoundEffect(6, 1, Random.Range(0.8f, 1.2f));
+            Pickup.PickupType pickupType = collision.GetComponent<Pickup>().type;
 
-				if (pickupType == Pickup.PickupType.Health)
-                {
-					health = Mathf.Clamp(health + maxHealth / 6, 0, maxHealth);
-                }
-				else if (pickupType == Pickup.PickupType.Armor)
-				{
-					armor++;
-				}
-
-			}
-			Destroy(collision.gameObject);
+            if (pickupType == Pickup.PickupType.Health) {
+                health = Mathf.Clamp(health + maxHealth / 6, 0, maxHealth);
+            } else if (pickupType == Pickup.PickupType.Armor) {
+                armor++;
+            }
+            Destroy(collision.gameObject);
 		}
 	}
 }

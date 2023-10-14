@@ -21,6 +21,7 @@ public class PauseMenu : MonoBehaviour
                 Time.timeScale = 0;
                 Cursor.visible = true;
                 GetComponent<Canvas>().enabled = true;
+                Fade.instance.SetFilter(true);
             }
             else
             {
@@ -37,6 +38,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1;
         Cursor.visible = false;
         GetComponent<Canvas>().enabled = false;
+        Fade.instance.SetFilter(false);
     }
 
     public void Restart()
@@ -44,10 +46,12 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1;
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
+        Fade.instance.SetFilter(false);
     }
     public void LoadMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+        Fade.instance.SetFilter(false);
     }
     public void QuitGame()
     {

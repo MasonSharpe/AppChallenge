@@ -13,6 +13,8 @@ public class Fade : MonoBehaviour {
 
     public AudioSource exploreMusic;
     public AudioSource battleMusic;
+    public AudioLowPassFilter exploreFilter;
+    public AudioLowPassFilter battleFilter;
 
     private void Awake() {
         instance = this;
@@ -35,8 +37,17 @@ public class Fade : MonoBehaviour {
         {
             sprite.color = Helper.SetColorAlpla(Color.black, isShowing ? (duration - fadeTimer) / duration : fadeTimer / duration);
             if (!isShowing) exploreMusic.volume = fadeTimer / duration;
-            if (isShowing) battleMusic.volume = (duration - fadeTimer) / duration;
+            if (isShowing || duration == 3) battleMusic.volume = (duration - fadeTimer) / duration;
         }
 
+    }
+
+    public void SetFilter(bool value) {
+        float amount = value ? 1000 : 22000;
+        if (NightCycle.instance.isNight) {
+            battleFilter.cutoffFrequency = amount;
+        } else {
+            exploreFilter.cutoffFrequency = amount;
+        }
     }
 }
