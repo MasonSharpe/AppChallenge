@@ -67,7 +67,6 @@ public class Player : MonoBehaviour
 
 	private void Update()
 	{
-
         if (Input.GetKeyDown(KeyCode.Tab))
         {
 			transform.position = new Vector3(-90, 172, 0);
@@ -123,7 +122,7 @@ public class Player : MonoBehaviour
 
 		Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
 		float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-		sword.transform.localRotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+		if (Time.timeScale == 1) sword.transform.localRotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
 		sword.transform.position = transform.position;
 
 
@@ -157,7 +156,7 @@ public class Player : MonoBehaviour
 		level++;
 		xp = 0;
 		xpSlider.maxValue = Mathf.Pow(level, 1.5f) + 4;
-		health = Mathf.Clamp(health + (maxHealth * (NightCycle.instance.isNight ? 0.25f : 0.65f)), 0, maxHealth);
+		health = Mathf.Clamp(health + (maxHealth * (NightCycle.instance.isNight ? 0.1f : 0.5f)), 0, maxHealth);
 		SfxManager.instance.PlaySoundEffect(4, 1, Random.Range(0.9f, 1.1f));
 		LevelUpScreen.instance.Show();
 	}
@@ -172,7 +171,7 @@ public class Player : MonoBehaviour
         {
 			if (transform.position.y > 50)
             {
-				GameManager.Respawn();
+				NewDeathScript.instance.Show();
             }
             else
             {
@@ -209,7 +208,7 @@ public class Player : MonoBehaviour
 		//xp
 		if (collision.gameObject.layer == 10)
         {
-			xp += 1 + Mathf.RoundToInt(Mathf.Pow(GameManager.nightsBeaten.FindAll( h => h == true ).Count, 2.3f));
+			xp += 1 + Mathf.RoundToInt(Mathf.Pow(GameManager.nightsBeaten.FindAll( h => h == true ).Count, 2f));
 			if (xp >= Mathf.RoundToInt(Mathf.Pow(level, 1.5f) + 4))
             {
 				LevelUp();
@@ -235,7 +234,7 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-					GetHit(enemy.damage / 3 * (1 + GameManager.nightsBeaten.FindAll(h => h == true).Count) * (1 + (enemy.enemyTypeIndex * 0.5f)), 0.15f);
+					GetHit(enemy.damage / 2 * (1 + GameManager.nightsBeaten.FindAll(h => h == true).Count) * (1 + (enemy.enemyTypeIndex * 0.5f)), 0.15f);
 				}
 
 			}

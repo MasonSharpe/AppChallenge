@@ -12,7 +12,6 @@ public class SettingsMenu : MonoBehaviour
 
     Resolution[] resolutions;
 
-    private Vector2 defaultResolution = new(1920, 1080);
     void Start()
     {
         resolutions = Screen.resolutions; 
@@ -48,7 +47,6 @@ public class SettingsMenu : MonoBehaviour
     public void SetResolution (int resulationIndex)
     {
         Resolution resolution = resolutions[resulationIndex];
-        defaultResolution = new Vector2(resolution.width, resolution.height);
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
     public void SetVolume(float volume)
@@ -62,5 +60,16 @@ public class SettingsMenu : MonoBehaviour
     public void SetFullscreen (bool isFullscreen)
     {
         Screen.fullScreen = isFullscreen;
+    }
+
+    public void EraseGameData() {
+        GameManager.saveHealth = 30;
+        GameManager.savePosition = Vector3.zero;
+        GameManager.saveLevel = 1;
+        GameManager.saveXP = 0;
+        GameManager.saveArmor = 0;
+        GameManager.saveUpgrades = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        GameManager.saveEnemiesKilled = new Enemy[5];
+        GameManager.savePickupsObtained = new Pickup[5];
     }
 }

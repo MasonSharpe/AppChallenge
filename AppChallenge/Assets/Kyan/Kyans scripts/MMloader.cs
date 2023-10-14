@@ -5,17 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class MMloader : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
-        
+        Player.instance.enabled = false;
+        Sword.instance.enabled = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 
     public void Loadgame()
     {

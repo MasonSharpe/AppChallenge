@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour{
 
         if (NightCycle.instance.isNight)
         {
-            maxHealth = 8 + (enemyTypeIndex + GameManager.nightsBeaten.FindAll(h => h == true).Count) * 3 + (int)(3 * EnemySpawner.instance.timeStrength);
+            maxHealth = 15 * (enemyTypeIndex + GameManager.nightsBeaten.FindAll(h => h == true).Count) * (int)(1 + EnemySpawner.instance.timeStrength);
             enemyTypeIndex = Mathf.Clamp(GameManager.nightsBeaten.FindAll(h => h == true).Count + Random.Range(-2, 1), 0, 2);
 
         }
@@ -77,7 +77,7 @@ public class Enemy : MonoBehaviour{
             randomDirTimer -= Time.deltaTime;
 
             bool shouldShoot;
-            shouldShoot = (!(tutorialWall != null && magnitude > 7)) && (!(NightCycle.instance.isNight && magnitude > 14)) && (!(NightCycle.instance.isNight && !isNighttimeEnemy));
+            shouldShoot = (!(tutorialWall != null && magnitude > 7)) && (!(NightCycle.instance.isNight && !isNighttimeEnemy));
             if (shootCooldown <= 0 && shouldShoot)
             {
                 Bullet bullet = Instantiate(bulletPrefab, bulletParent).GetComponent<Bullet>();
@@ -90,7 +90,7 @@ public class Enemy : MonoBehaviour{
 
                 SfxManager.instance.PlaySoundEffect(0, 1, Random.Range(0.9f, 1.1f));
 
-                shootCooldown = (enemyTypeIndex == 2) ? 0.25f : 1.5f;
+                shootCooldown = (enemyTypeIndex == 2) ? 0.25f : (enemyTypeIndex == 1 ? 5 * (1 / (bulletSpeed + 3)) : 1.5f);
             }
 
             hurtRenderer.enabled = hurtTimer > 0 ? true : false;

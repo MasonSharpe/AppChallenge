@@ -5,14 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class NewPauseMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    public static NewPauseMenu instance;
+
+
+    private void Awake() {
+        instance = this;
+    }
+
     void Start()
     {
         
         GetComponent<Canvas>().enabled = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -21,6 +27,8 @@ public class NewPauseMenu : MonoBehaviour
             {
                 Time.timeScale = 0;
                 GetComponent<Canvas>().enabled = true;
+            } else {
+                Resume();
             }
             
 
@@ -38,17 +46,15 @@ public class NewPauseMenu : MonoBehaviour
     public void Restart()
     {
         Time.timeScale = 1;
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.name);
+
+        GameManager.Respawn();
     }
     public void LoadMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1;
+        GetComponent<Canvas>().enabled = false;
     }
-    public void QuitGame()
-    {
-        Debug.Log("quit");
-        Application.Quit();
-    }
+
     
 }

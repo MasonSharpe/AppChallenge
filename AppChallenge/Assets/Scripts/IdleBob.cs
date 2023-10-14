@@ -7,6 +7,7 @@ public class IdleBob : MonoBehaviour
     public Transform affected;
     public float strength = 1;
     private float offset;
+    private float totalFrameCount = 0;
 
 
     private void Start()
@@ -15,7 +16,8 @@ public class IdleBob : MonoBehaviour
     }
     private void Update()
     {
-        affected.localPosition = new Vector3(0, 0.3f * Mathf.Sin(Time.frameCount / 165f * offset), 0) * strength;
+        totalFrameCount++;
+        affected.localPosition = new Vector3(0, 0.3f * Mathf.Sin(totalFrameCount / 165f * offset), 0) * strength;
     }
 
 

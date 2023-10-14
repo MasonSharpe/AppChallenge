@@ -17,7 +17,8 @@ public class NightCycle : MonoBehaviour
     public GameObject xpHolder;
     public int currentNightIndex = 0;
     public HealingFountain fountain;
-    public TilemapCollider2D border;
+    public Rigidbody2D border;
+    public StartNightNPC nightNPC;
 
 
 
@@ -78,7 +79,7 @@ public class NightCycle : MonoBehaviour
             isNight = true;
             if (!isBoss)
             {
-                nightLength = 5 + 5 * currentNightIndex;
+                nightLength = 50 + 50 * currentNightIndex;
                 EnemySpawner.instance.isSpawningEnemies = true;
                 visual.enabled = true;
                 visual2.enabled = true;
@@ -94,7 +95,7 @@ public class NightCycle : MonoBehaviour
 
     public void EndNight(bool victorious)
     {
-        border.enabled = false;
+        border.simulated = false;
         isNight = false;
         EnemySpawner.instance.isSpawningEnemies = false;
         EnemySpawner.instance.levelTimer = 0;
@@ -104,7 +105,7 @@ public class NightCycle : MonoBehaviour
         if (victorious)
         {
             instance.currentNightIndex++;
-            GameManager.nightsBeaten[currentNightIndex] = true;
+            GameManager.nightsBeaten[nightNPC.nightIndex] = true;
             GameManager.SetSpawn();
         }
         else
