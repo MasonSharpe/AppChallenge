@@ -54,11 +54,11 @@ public class BossEnemy : MonoBehaviour{
             alpha = 0.01f;
             if (phase == 2 || phase == 5)
             {
-                transform.localPosition = new Vector3(0, -10, 0);
+                transform.localPosition = new Vector3(23, 0, 0);
                 canAttack = true;
             } else if (phase == 3)
             {
-                transform.localPosition = new Vector3(0, 5, 0);
+                transform.localPosition = new Vector3(20, 0, 0);
                 canAttack = true;
             }
 
@@ -98,7 +98,7 @@ public class BossEnemy : MonoBehaviour{
                         (Player.instance.transform.position - transform.position).normalized,
                         transform.position,
                         0.75f,
-                        16,
+                        12,
                         1
                         );
 
@@ -126,7 +126,7 @@ public class BossEnemy : MonoBehaviour{
                         if (Random.Range(0, 2) == 1) shootDir.x = (Random.Range(0, 2) * 2) - 1; else shootDir.y = (Random.Range(0, 2) * 2) - 1;
                         SpawnBullet(
                             shootDir,
-                            new Vector3(89, 52, 0) + new Vector3(-shootDir.x * size + Random.Range(-Mathf.Abs(shootDir.y) * size, Mathf.Abs(shootDir.y) * size), -shootDir.y * size + Random.Range(-Mathf.Abs(shootDir.x) * size, Mathf.Abs(shootDir.x) * size), 0),
+                            new Vector3(-90, 172, 0) + new Vector3(-shootDir.x * size + Random.Range(-Mathf.Abs(shootDir.y) * size, Mathf.Abs(shootDir.y) * size), -shootDir.y * size + Random.Range(-Mathf.Abs(shootDir.x) * size, Mathf.Abs(shootDir.x) * size), 0),
                             1f,
                             9 + Random.Range(-2, 3),
                             2
@@ -173,7 +173,7 @@ public class BossEnemy : MonoBehaviour{
 
         if (phase == 3)
         {
-            transform.localPosition = Quaternion.Euler(0, 0, phaseRotation) * Vector2.one * 17;
+            transform.localPosition = Quaternion.Euler(0, 0, phaseRotation) * Vector2.one * 17 + new Vector3(21, 0, 0);
             phaseRotation += (40 + Player.instance.rb.velocity.magnitude * 1.5f) * Time.deltaTime;
         }else if (phase == 4)
         {
@@ -226,14 +226,15 @@ public class BossEnemy : MonoBehaviour{
             this.phase = phase;
     }
 
-    private void SpawnBullet(Vector2 dir, Vector3 position, float cooldown, float bulletSpeed, int bulletType)
-    {
+    private void SpawnBullet(Vector2 dir, Vector3 position, float cooldown, float bulletSpeed, int bulletType) {
 
         Bullet bullet = Instantiate(bulletPrefab, bulletParent).GetComponent<Bullet>();
         bullet.transform.position = position;
 
 
         bullet.GetComponent<Rigidbody2D>().velocity = bulletSpeed * dir;
+
+        if (phase != 2 && phase != 4) SfxManager.instance.PlaySoundEffect(0, 0.6f, Random.Range(0.9f, 1.1f));
 
         bullet.isFriendly = false;
         bullet.bulletType = bulletType;
@@ -246,9 +247,11 @@ public class BossEnemy : MonoBehaviour{
     private void GetHit(float damage)
     {
         health -= damage;
+        SfxManager.instance.PlaySoundEffect(7, 0.6f, Random.Range(0.9f, 1.1f));
         if (health <= 0)
         {
             Destroy(gameObject);
+            SfxManager.instance.PlaySoundEffect(2, 0.5f, Random.Range(0.9f, 1.1f));
         }
         hurtTimer = 0.1f;
     }
@@ -258,7 +261,7 @@ public class BossEnemy : MonoBehaviour{
         //hit by sword
         if (collision.gameObject.layer == 3)
         {
-            GetHit(maxHealth / Mathf.Clamp(1500 - (LevelUpScreen.instance.normalUpgradesGotten[0] * 50f), 50, 1500) + Sword.instance.swingDamage);
+            GetHit(maxHealth / Mathf.Clamp(1500 - (LevelUpScreen.instance.normalUpgradesGotten[0] * 100f), 50, 1500) + Sword.instance.swingDamage + 1);
             Sword.instance.swordCooldown -= Mathf.Clamp(LevelUpScreen.instance.normalUpgradesGotten[1] * 0.02f, 0, 0.25f);
 
         }

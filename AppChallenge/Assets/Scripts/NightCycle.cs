@@ -128,7 +128,7 @@ public class NightCycle : MonoBehaviour
         }
 
         Fade.instance.exploreMusic.time = 0;
-        TimerManager.CreateTimer(2, () => { Fade.instance.battleMusic.Stop(); }, () =>
+        TimerManager.CreateTimer(2, () => { if (isNight) Fade.instance.battleMusic.Stop(); }, () =>
         {
             Fade.instance.battleMusic.volume -= Time.deltaTime / 2;
             Fade.instance.exploreMusic.volume += Time.deltaTime / 2;

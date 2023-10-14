@@ -42,6 +42,7 @@ public class NewDeathScript : MonoBehaviour {
 
     public void Show() {
         Time.timeScale = 0;
+        fadeTimer = 0;
         fadeDirection = 3f;
 
         foreach (var sprite in sprites) {
