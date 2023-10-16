@@ -7,7 +7,7 @@ using TMPro;
 public class LevelUpScreen : MonoBehaviour
 {
 
-    [SerializeField] private Canvas canvas;
+    public Canvas canvas;
 
     [System.Serializable]
     public class Upgrade
