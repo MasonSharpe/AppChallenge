@@ -3670,6 +3670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e920c57434b864041957706b60242a8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 728875500}
 --- !u!114 &728875498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5459,6 +5460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84f775efa77dd734f90d85ba6610ea90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 1280902177}
 --- !u!1 &1315475301
 GameObject:
   m_ObjectHideFlags: 0

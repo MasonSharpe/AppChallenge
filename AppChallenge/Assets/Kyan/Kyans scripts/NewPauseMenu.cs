@@ -7,6 +7,7 @@ public class NewPauseMenu : MonoBehaviour
 {
 
     public static NewPauseMenu instance;
+    public Canvas canvas;
 
 
     private void Awake() {
@@ -15,8 +16,8 @@ public class NewPauseMenu : MonoBehaviour
 
     void Start()
     {
-        
-        GetComponent<Canvas>().enabled = false;
+
+        canvas.enabled = false;
     }
 
     void Update()
@@ -26,7 +27,7 @@ public class NewPauseMenu : MonoBehaviour
             if (Time.timeScale > 0)
             {
                 Time.timeScale = 0;
-                GetComponent<Canvas>().enabled = true;
+                canvas.enabled = true;
                 Fade.instance.SetFilter(true);
             } else {
                 Resume();
@@ -41,7 +42,7 @@ public class NewPauseMenu : MonoBehaviour
     public void Resume()
     {
         Time.timeScale = 1;
-        GetComponent<Canvas>().enabled = false;
+        canvas.enabled = false;
         Fade.instance.SetFilter(false);
     }
 
@@ -56,7 +57,7 @@ public class NewPauseMenu : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
         Time.timeScale = 1;
         Fade.instance.SetFilter(false);
-        GetComponent<Canvas>().enabled = false;
+        canvas.enabled = false;
     }
 
     

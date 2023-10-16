@@ -10,6 +10,7 @@ public class NewDeathScript : MonoBehaviour {
     private float fadeDirection;
     private Image[] sprites;
     private Text[] text;
+    public Canvas canvas;
 
     public static NewDeathScript instance;
 
@@ -20,7 +21,7 @@ public class NewDeathScript : MonoBehaviour {
 
     void Start() {
 
-        GetComponent<Canvas>().enabled = false;
+        canvas.enabled = false;
         fadeTimer = 0;
         fadeDirection = 0;
         sprites = GetComponentsInChildren<Image>();
@@ -53,14 +54,14 @@ public class NewDeathScript : MonoBehaviour {
             text.color = Helper.SetColorAlpla(text.color, fadeTimer);
         }
 
-        GetComponent<Canvas>().enabled = true;
+        canvas.enabled = true;
     }
 
     public void Resume() {
         Time.timeScale = 1;
         Fade.instance.SetFilter(false);
 
-        GetComponent<Canvas>().enabled = false;
+        canvas.enabled = false;
     }
 
     public void Restart() {
@@ -68,7 +69,7 @@ public class NewDeathScript : MonoBehaviour {
         Time.timeScale = 1;
         Fade.instance.SetFilter(false);
 
-        GetComponent<Canvas>().enabled = false;
+        canvas.enabled = false;
         GameManager.Respawn();
     }
     public void LoadMainMenu() {
