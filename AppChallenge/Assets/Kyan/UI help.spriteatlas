@@ -87,6 +87,20 @@ SpriteAtlas:
   - {fileID: 571661, guid: 189847dd20cf6f74e819c4298f8cd137, type: 3}
   - {fileID: -632446262, guid: 189847dd20cf6f74e819c4298f8cd137, type: 3}
   - {fileID: 205678796, guid: 189847dd20cf6f74e819c4298f8cd137, type: 3}
+  - {fileID: -1203533319, guid: 88f4113e46716324d9c79d4e7f4e16be, type: 3}
+  - {fileID: -248914148, guid: 88f4113e46716324d9c79d4e7f4e16be, type: 3}
+  - {fileID: 1647873172, guid: 88f4113e46716324d9c79d4e7f4e16be, type: 3}
+  - {fileID: -1522268665, guid: 88f4113e46716324d9c79d4e7f4e16be, type: 3}
+  - {fileID: 1281936205, guid: 88f4113e46716324d9c79d4e7f4e16be, type: 3}
+  - {fileID: -1345818100, guid: 88f4113e46716324d9c79d4e7f4e16be, type: 3}
+  - {fileID: 1961354631, guid: 88f4113e46716324d9c79d4e7f4e16be, type: 3}
+  - {fileID: 1761716241, guid: 88f4113e46716324d9c79d4e7f4e16be, type: 3}
+  - {fileID: -1719108465, guid: 88f4113e46716324d9c79d4e7f4e16be, type: 3}
+  - {fileID: -1776181071, guid: 88f4113e46716324d9c79d4e7f4e16be, type: 3}
+  - {fileID: -69391240, guid: 88f4113e46716324d9c79d4e7f4e16be, type: 3}
+  - {fileID: 1468877255, guid: 88f4113e46716324d9c79d4e7f4e16be, type: 3}
+  - {fileID: -93087581, guid: 88f4113e46716324d9c79d4e7f4e16be, type: 3}
+  - {fileID: 1261444351, guid: 88f4113e46716324d9c79d4e7f4e16be, type: 3}
   - {fileID: -1627201574, guid: 8f6825ae43bf9c64898fb580a427984e, type: 3}
   - {fileID: 1820213958, guid: f95db4beab0dd18489112e205be4512b, type: 3}
   m_PackedSpriteNamesToIndex:
@@ -127,6 +141,20 @@ SpriteAtlas:
   - button yes and no 1.0_1
   - button yes and no 1.0_2
   - button yes and no 1.0_3
+  - Campfire_5
+  - Campfire_4
+  - Campfire_7
+  - Campfire_6
+  - Campfire_1
+  - Campfire_0
+  - Campfire_3
+  - Campfire_2
+  - Campfire_9
+  - Campfire_8
+  - Campfire_10
+  - Campfire_11
+  - Campfire_12
+  - Campfire_13
   - start menu buttons _0
   - Menu Board_0
   m_RenderDataMap: {}
