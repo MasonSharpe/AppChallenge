@@ -83,6 +83,7 @@ SpriteAtlas:
   - {fileID: -1105744233, guid: 628e182a4022f5f4a8c1f67d0fce01c6, type: 3}
   - {fileID: 421975887, guid: 628e182a4022f5f4a8c1f67d0fce01c6, type: 3}
   - {fileID: 22897900, guid: 628e182a4022f5f4a8c1f67d0fce01c6, type: 3}
+  - {fileID: 21300000, guid: df92ca1cd1e12af4cb5c28382c00e7cb, type: 3}
   - {fileID: 1597209558, guid: 189847dd20cf6f74e819c4298f8cd137, type: 3}
   - {fileID: 571661, guid: 189847dd20cf6f74e819c4298f8cd137, type: 3}
   - {fileID: -632446262, guid: 189847dd20cf6f74e819c4298f8cd137, type: 3}
@@ -137,6 +138,7 @@ SpriteAtlas:
   - button yes and no_0
   - button yes and no_5
   - button yes and no_4
+  - Sheild
   - button yes and no 1.0_0
   - button yes and no 1.0_1
   - button yes and no 1.0_2
