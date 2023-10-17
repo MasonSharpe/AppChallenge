@@ -42,15 +42,7 @@ public class NightCycle : MonoBehaviour
         {
             for (int i = 0; i < Tilemaps.tilemaps.Length; i++)
             {
-                if (Tilemaps.tilemaps[i] == null)
-                {
-                    print(i);
-                }
-                else
-                {
-                    Tilemaps.tilemaps[i].color = new Color(colorAmount, colorAmount, colorAmount);
-
-                }
+                if (SceneManager.GetActiveScene().name == "_FullMap" && Tilemaps.tilemaps[i] == null) Tilemaps.tilemaps[i].color = new Color(colorAmount, colorAmount, colorAmount);
 
             }
 
@@ -98,7 +90,7 @@ public class NightCycle : MonoBehaviour
 
     public void EndNight(bool victorious)
     {
-        border.simulated = false;
+        if (SceneManager.GetActiveScene().name == "_FullMap") border.simulated = false;
         isNight = false;
         EnemySpawner.instance.isSpawningEnemies = false;
         EnemySpawner.instance.levelTimer = 0;

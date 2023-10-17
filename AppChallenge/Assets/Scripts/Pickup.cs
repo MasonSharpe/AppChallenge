@@ -13,6 +13,7 @@ public class Pickup : MonoBehaviour
     }
 
     public PickupType type;
+    public int ID;
 
     private void Start()
     {

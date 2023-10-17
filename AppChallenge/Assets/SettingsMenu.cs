@@ -64,12 +64,12 @@ public class SettingsMenu : MonoBehaviour
 
     public void EraseGameData() {
         GameManager.saveHealth = 30;
-        GameManager.savePosition = Vector3.zero;
+        GameManager.savePosition = new Vector3(8, 5, 0);
         GameManager.saveLevel = 1;
         GameManager.saveXP = 0;
         GameManager.saveArmor = 0;
         GameManager.saveUpgrades = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-        GameManager.saveEnemiesAlive = new Enemy[0];
-        GameManager.savePickupsLeft = new Pickup[0];
+        GameManager.saveEnemiesAlive = new int[0];
+        GameManager.savePickupsLeft = new int[0];
     }
 }

@@ -13,8 +13,8 @@ public class GameManager : MonoBehaviour
     public static int saveXP = 0;
     public static int saveArmor = 0;
     public static int[] saveUpgrades = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-    public static Pickup[] savePickupsLeft = new Pickup[0];
-    public static Enemy[] saveEnemiesAlive = new Enemy[0];
+    public static int[] savePickupsLeft = new int[0];
+    public static int[] saveEnemiesAlive = new int[0];
     public static List<bool> saveNightsBeaten = new();
 
 
@@ -52,9 +52,19 @@ public class GameManager : MonoBehaviour
         saveXP = Player.instance.xp;
         saveArmor = Player.instance.armor;
         saveUpgrades = (int[])LevelUpScreen.instance.normalUpgradesGotten.Clone();
-        saveEnemiesAlive = Map.instance.enemyHolder.GetComponentsInChildren<Enemy>();
-        savePickupsLeft = Map.instance.pickupHolder.GetComponentsInChildren<Pickup>();
         saveNightsBeaten = new List<bool>(nightsBeaten);
+
+        Enemy[] enemies = Map.instance.enemyHolder.GetComponentsInChildren<Enemy>();
+        saveEnemiesAlive = new int[enemies.Length];
+        for (int i = 0; i < enemies.Length; i++) {
+            saveEnemiesAlive[i] = enemies[i].ID;
+        }
+
+        Pickup[] pickups = Map.instance.pickupHolder.GetComponentsInChildren<Pickup>();
+        savePickupsLeft = new int[pickups.Length];
+        for (int i = 0; i < pickups.Length; i++) {
+            savePickupsLeft[i] = pickups[i].ID;
+        }
     }
 
     public static float ScaleFromNightsBeaten(float number, float exponent)

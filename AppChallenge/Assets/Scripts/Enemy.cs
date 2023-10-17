@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour{
     private Vector3 randomDir = Vector3.right;
     private float randomDirTimer = 5;
     public bool isNighttimeEnemy;
+    public int ID;
 
     private float hurtTimer = 0;
     public float health;

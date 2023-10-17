@@ -23,13 +23,14 @@ public class Map : MonoBehaviour {
 
         }
 
+
+
+
         foreach (Enemy enemy in enemyHolder.GetComponentsInChildren<Enemy>()) {
-            if (!GameManager.saveEnemiesAlive.Contains(enemy)) {
-                enemy.gameObject.SetActive(false);
-            }
+            if (GameManager.saveEnemiesAlive.ToList().Find(element => element == enemy.ID) == 0) enemy.gameObject.SetActive(false);
         }
         foreach (Pickup pickup in pickupHolder.GetComponentsInChildren<Pickup>()) {
-            if (!GameManager.savePickupsLeft.Contains(pickup)) pickup.gameObject.SetActive(false);
+            if (GameManager.savePickupsLeft.ToList().Find(element => element == pickup.ID) == 0) pickup.gameObject.SetActive(false);
         }
     }
 }

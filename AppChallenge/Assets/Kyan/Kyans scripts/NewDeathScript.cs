@@ -74,6 +74,8 @@ public class NewDeathScript : MonoBehaviour {
     }
     public void LoadMainMenu() {
         Fade.instance.SetFilter(false);
+        canvas.enabled = false;
+        Time.timeScale = 1;
 
         SceneManager.LoadScene("MainMenu");
     }

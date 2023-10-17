@@ -44,10 +44,11 @@ public class StartNightNPC : MonoBehaviour
 
     private void Update()
     {
-        bool isNight = NightCycle.instance.isNight;
         playerIsClose = (Player.instance.transform.position - transform.position).magnitude < 5;
-        if (!GameManager.nightsBeaten[nightIndex]) text.SetActive(playerIsClose && !isNight);
-        if (Input.GetKeyDown(KeyCode.E) && playerIsClose && !(GameManager.nightsBeaten[nightIndex]) && Player.instance.canInteract)
+        bool canInteract = !GameManager.nightsBeaten[nightIndex] && Player.instance.canInteract && !NightCycle.instance.isNight;
+
+        text.SetActive(playerIsClose && canInteract);
+        if (Input.GetKeyDown(KeyCode.E) && playerIsClose && canInteract)
         {
             NightCycle.instance.border = border;
             NightCycle.instance.nightNPC = this;
