@@ -103,12 +103,12 @@ public class Player : MonoBehaviour
 
 		if (footstepTimer > 0 && new Vector2(accelerationX, accelerationY).magnitude != 0)
         {
-			footstepTimer -= Time.deltaTime;
+			footstepTimer -= Time.deltaTime * (1 + (LevelUpScreen.instance.normalUpgradesGotten[7] * 0.25f));
 
 			if (footstepTimer <= 0)
             {
 				SfxManager.instance.PlaySoundEffect(1, 1 + (LevelUpScreen.instance.normalUpgradesGotten[7] / 5), Random.Range(0.8f, 1.2f));
-				footstepTimer = 0.6f - (LevelUpScreen.instance.normalUpgradesGotten[7] / 20);
+				footstepTimer = 0.6f;
 			}
         }
 

@@ -109,7 +109,7 @@ public class NightCycle : MonoBehaviour
         {
             instance.currentNightIndex++;
             GameManager.nightsBeaten[nightNPC.nightIndex] = true;
-            dayText.text = "Day " + GameManager.nightsBeaten.FindAll(h => h == true).Count;
+            dayText.text = "Day " + (GameManager.nightsBeaten.FindAll(h => h == true).Count + 1);
             GameManager.SetSpawn();
         }
         else

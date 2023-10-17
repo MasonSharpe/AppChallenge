@@ -69,7 +69,7 @@ public class SettingsMenu : MonoBehaviour
         GameManager.saveXP = 0;
         GameManager.saveArmor = 0;
         GameManager.saveUpgrades = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-        GameManager.saveEnemiesKilled = new Enemy[5];
-        GameManager.savePickupsObtained = new Pickup[5];
+        GameManager.saveEnemiesAlive = new Enemy[0];
+        GameManager.savePickupsLeft = new Pickup[0];
     }
 }

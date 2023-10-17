@@ -13,15 +13,16 @@ public class GameManager : MonoBehaviour
     public static int saveXP = 0;
     public static int saveArmor = 0;
     public static int[] saveUpgrades = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-    public static Pickup[] savePickupsObtained = new Pickup[5];
-    public static Enemy[] saveEnemiesKilled = new Enemy[5];
+    public static Pickup[] savePickupsLeft = new Pickup[0];
+    public static Enemy[] saveEnemiesAlive = new Enemy[0];
     public static List<bool> saveNightsBeaten = new();
 
 
     private void Start()
     {
         for (int i = 0; i < 4; i++) nightsBeaten.Add(false);
-
+        for (int i = 0; i < 4; i++) saveNightsBeaten.Add(false);
+        savePosition = new Vector3(8, 5, 0);
 
     }
     public static void Respawn() {
@@ -33,19 +34,14 @@ public class GameManager : MonoBehaviour
         Player.instance.armor = saveArmor;
         LevelUpScreen.instance.normalUpgradesGotten = (int[])saveUpgrades.Clone();
 
-        foreach (Enemy enemy in Map.instance.enemyHolder.GetComponentsInChildren<Enemy>()) {
-            if (saveEnemiesKilled.Contains(enemy)) enemy.enabled = false;
-        }
-        foreach (Pickup pickup in Map.instance.pickupHolder.GetComponentsInChildren<Pickup>()) {
-            if (savePickupsObtained.Contains(pickup)) pickup.enabled = false;
-        }
+
 
         if (Player.instance.health > Player.instance.maxHealth) Player.instance.health = Player.instance.maxHealth;
         if (NightCycle.instance.isNight) NightCycle.instance.EndNight(false);
 
         nightsBeaten = new List<bool>(saveNightsBeaten);
 
-        NightCycle.instance.dayText.text = "Day " + nightsBeaten.FindAll(h => h == true).Count;
+        NightCycle.instance.dayText.text = "Day " + (nightsBeaten.FindAll(h => h == true).Count + 1);
     }
 
     public static void SetSpawn()
@@ -56,8 +52,8 @@ public class GameManager : MonoBehaviour
         saveXP = Player.instance.xp;
         saveArmor = Player.instance.armor;
         saveUpgrades = (int[])LevelUpScreen.instance.normalUpgradesGotten.Clone();
-        saveEnemiesKilled = Map.instance.enemyHolder.GetComponentsInChildren<Enemy>();
-        savePickupsObtained = Map.instance.pickupHolder.GetComponentsInChildren<Pickup>();
+        saveEnemiesAlive = Map.instance.enemyHolder.GetComponentsInChildren<Enemy>();
+        savePickupsLeft = Map.instance.pickupHolder.GetComponentsInChildren<Pickup>();
         saveNightsBeaten = new List<bool>(nightsBeaten);
     }
 
