@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public static int[] saveUpgrades = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     public static Pickup[] savePickupsObtained = new Pickup[5];
     public static Enemy[] saveEnemiesKilled = new Enemy[5];
+    public static List<bool> saveNightsBeaten = new();
 
 
     private void Start()
@@ -23,15 +24,14 @@ public class GameManager : MonoBehaviour
 
 
     }
-    public static void Respawn()
-    {
+    public static void Respawn() {
         SceneManager.LoadScene("_FullMap");
         Player.instance.gameObject.transform.position = savePosition;
         Player.instance.xp = saveXP;
         Player.instance.level = saveLevel;
         Player.instance.health = saveHealth;
         Player.instance.armor = saveArmor;
-        LevelUpScreen.instance.normalUpgradesGotten = saveUpgrades;
+        LevelUpScreen.instance.normalUpgradesGotten = (int[])saveUpgrades.Clone();
 
         foreach (Enemy enemy in Map.instance.enemyHolder.GetComponentsInChildren<Enemy>()) {
             if (saveEnemiesKilled.Contains(enemy)) enemy.enabled = false;
@@ -42,6 +42,10 @@ public class GameManager : MonoBehaviour
 
         if (Player.instance.health > Player.instance.maxHealth) Player.instance.health = Player.instance.maxHealth;
         if (NightCycle.instance.isNight) NightCycle.instance.EndNight(false);
+
+        nightsBeaten = new List<bool>(saveNightsBeaten);
+
+        NightCycle.instance.dayText.text = "Day " + nightsBeaten.FindAll(h => h == true).Count;
     }
 
     public static void SetSpawn()
@@ -51,9 +55,10 @@ public class GameManager : MonoBehaviour
         saveLevel = Player.instance.level;
         saveXP = Player.instance.xp;
         saveArmor = Player.instance.armor;
-        saveUpgrades = LevelUpScreen.instance.normalUpgradesGotten;
+        saveUpgrades = (int[])LevelUpScreen.instance.normalUpgradesGotten.Clone();
         saveEnemiesKilled = Map.instance.enemyHolder.GetComponentsInChildren<Enemy>();
         savePickupsObtained = Map.instance.pickupHolder.GetComponentsInChildren<Pickup>();
+        saveNightsBeaten = new List<bool>(nightsBeaten);
     }
 
     public static float ScaleFromNightsBeaten(float number, float exponent)

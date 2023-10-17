@@ -11,7 +11,7 @@ public class NightCycle : MonoBehaviour
     public static NightCycle instance;
     [SerializeField] private Image visual;
     [SerializeField] private Image visual2;
-    [SerializeField] private TextMeshProUGUI dayText;
+    public TextMeshProUGUI dayText;
     public float nightLength;
     public bool isNight;
     public bool isBoss = false;
@@ -109,7 +109,7 @@ public class NightCycle : MonoBehaviour
         {
             instance.currentNightIndex++;
             GameManager.nightsBeaten[nightNPC.nightIndex] = true;
-            dayText.text = "Day " + (int)GameManager.ScaleFromNightsBeaten(0, 1);
+            dayText.text = "Day " + GameManager.nightsBeaten.FindAll(h => h == true).Count;
             GameManager.SetSpawn();
         }
         else

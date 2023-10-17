@@ -13,9 +13,7 @@ public class Buttonsanimations : MonoBehaviour
 
     public void AnimateButton()
     {
-        // Scale up the button
         myButton.transform.localScale = originalScale * 1.2f;
 
-        // You can also change other properties like color, position, etc.
     }
 }

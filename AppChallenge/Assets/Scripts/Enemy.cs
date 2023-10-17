@@ -90,7 +90,7 @@ public class Enemy : MonoBehaviour{
 
                 SfxManager.instance.PlaySoundEffect(0, 1, Random.Range(0.9f, 1.1f));
 
-                shootCooldown = (enemyTypeIndex == 2) ? 0.25f : (enemyTypeIndex == 1 ? 5 * (1 / (bulletSpeed + 3)) : 1.5f);
+                shootCooldown = (enemyTypeIndex == 2) ? 0.25f : (enemyTypeIndex == 1 ? 5 * (1 / (bulletSpeed + 3)) + 0.75f : 1.5f);
             }
 
             hurtRenderer.enabled = hurtTimer > 0 ? true : false;

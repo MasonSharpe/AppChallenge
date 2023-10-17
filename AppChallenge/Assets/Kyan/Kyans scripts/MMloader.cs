@@ -18,7 +18,7 @@ public class MMloader : MonoBehaviour
         Time.timeScale = 1;
         Player.instance.enabled = true;
         Sword.instance.enabled = true;
-        SceneManager.LoadScene("_FullMap");
+        GameManager.Respawn();
     }
 
     public void QuitGame()
