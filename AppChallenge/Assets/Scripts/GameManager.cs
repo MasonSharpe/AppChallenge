@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static List<bool> nightsBeaten = new();
-    public static float saveHealth = 30;
+    public static float saveHealth = 20;
     public static Vector3 savePosition = Vector3.zero;
     public static int saveLevel = 1;
     public static int saveXP = 0;

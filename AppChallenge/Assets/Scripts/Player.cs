@@ -51,8 +51,8 @@ public class Player : MonoBehaviour
 
 		moveSpeed = 10;
 		invincPeriod = -1;
-		maxHealth = 10;
 		armor = 0;
+		maxHealth = 20;
 		health = maxHealth;
 		level = 1;
 		xp = 0;
@@ -98,8 +98,7 @@ public class Player : MonoBehaviour
 		hurtRenderer.enabled = invincPeriod > 0 ? true : false;
 		hurtMask.sprite = spriteRenderer.sprite;
 
-		volume.profile.TryGet(out Vignette vignette);
-		vignette.color.Override(new Color(Mathf.Clamp((0.5f - health / maxHealth) * (invincPeriod / 0.05f), 0, 1), 0, 0));
+
 
 		if (footstepTimer > 0 && new Vector2(accelerationX, accelerationY).magnitude != 0)
         {

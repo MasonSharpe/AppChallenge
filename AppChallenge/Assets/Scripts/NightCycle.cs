@@ -102,6 +102,7 @@ public class NightCycle : MonoBehaviour
             instance.currentNightIndex++;
             GameManager.nightsBeaten[nightNPC.nightIndex] = true;
             dayText.text = "Day " + (GameManager.nightsBeaten.FindAll(h => h == true).Count + 1);
+            Player.instance.health = Player.instance.maxHealth;
             GameManager.SetSpawn();
         }
         else
