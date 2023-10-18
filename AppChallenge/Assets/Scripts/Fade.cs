@@ -11,6 +11,8 @@ public class Fade : MonoBehaviour {
     private bool isShowing;
     private float duration;
 
+    public AudioClip battleClip;
+    public AudioClip bossClip;
     public AudioSource exploreMusic;
     public AudioSource battleMusic;
     public AudioLowPassFilter exploreFilter;
@@ -43,7 +45,7 @@ public class Fade : MonoBehaviour {
     }
 
     public void SetFilter(bool value) {
-        float amount = value ? 1000 : 22000;
+        float amount = value ? 1400 : 22000;
         if (NightCycle.instance.isNight) {
             battleFilter.cutoffFrequency = amount;
         } else {

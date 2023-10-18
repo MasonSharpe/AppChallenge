@@ -55,7 +55,17 @@ public class StartNightNPC : MonoBehaviour
             SfxManager.instance.PlaySoundEffect(4, 1);
             NightCycle.instance.fountain = fountain;
             EnemySpawner.instance.spawnPositions = spawnPositions.GetComponentsInChildren<Transform>();
-            if (bossPrefab != null) NightCycle.instance.isBoss = true;
+            if (bossPrefab != null)
+            {
+                NightCycle.instance.isBoss = true;
+                Fade.instance.battleMusic.clip = Fade.instance.bossClip;
+
+            }
+            else
+            {
+                Fade.instance.battleMusic.clip = Fade.instance.battleClip;
+            }
+
             NightCycle.instance.SetToNight();
 
             text.SetActive(false);

@@ -67,7 +67,10 @@ public class Player : MonoBehaviour
 
 	private void Update()
 	{
-        if (Input.GetKeyDown(KeyCode.Tab))
+
+
+
+		if (Input.GetKeyDown(KeyCode.Tab))
         {
 			transform.position = new Vector3(-90, 172, 0);
         }
@@ -123,8 +126,6 @@ public class Player : MonoBehaviour
 		float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 		if (Time.timeScale == 1) sword.transform.localRotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
 		sword.transform.position = transform.position;
-
-
 
 		Camera.main.gameObject.transform.localPosition = new Vector3(0, 0, -10);
 		if (cameraShakeTimer > 0)

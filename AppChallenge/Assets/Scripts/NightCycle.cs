@@ -80,6 +80,7 @@ public class NightCycle : MonoBehaviour
                 visual2.enabled = true;
             }
 
+
             EnemySpawner.instance.levelTimer = 0;
             
             Fade.instance.Hide(0.5f);
@@ -97,6 +98,7 @@ public class NightCycle : MonoBehaviour
         fountain.canHealFrom = true;
         visual.enabled = false;
         visual2.enabled = false;
+        isBoss = false;
         if (victorious)
         {
             instance.currentNightIndex++;

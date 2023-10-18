@@ -349,7 +349,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1.25
+  m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
@@ -452,7 +452,7 @@ MonoBehaviour:
   - You are hansomely rewarded, and prestige is brought upon you. Your adventure
     has truly begun.
   - The End.
-  music: {fileID: 8300000, guid: 6ed648bf210165648ba2abc0ae56ec92, type: 3}
+  music: {fileID: 8300000, guid: 413e993d117d8c64490e1fb59621e796, type: 3}
   source: {fileID: 681044477}
 --- !u!1 &780207193
 GameObject:

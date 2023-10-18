@@ -40,9 +40,7 @@ public class Cutscene : MonoBehaviour
                 charIndex++;
             }
             if (Input.GetKeyDown(KeyCode.E)) {
-                print(lineIndex);
                 if (lineIndex > lines.Length - 2) {
-                    print("assd");
                     doStuff = false;
                     TimerManager.CreateTimer(1, () => { SceneManager.LoadScene("MainMenu"); }, () => { source.volume -= Time.deltaTime; }, "", true);
                 }

@@ -14,6 +14,6 @@ public class DebugText : MonoBehaviour
     }
     private void Update()
     {
-        text.text = Sword.instance.enabled.ToString();
+        text.text = Time.timeScale.ToString();
     }
 }
