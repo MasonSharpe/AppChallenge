@@ -42,7 +42,7 @@ public class NightCycle : MonoBehaviour
         {
             for (int i = 0; i < Tilemaps.tilemaps.Length; i++)
             {
-                if (SceneManager.GetActiveScene().name == "_FullMap" && Tilemaps.tilemaps[i] == null) Tilemaps.tilemaps[i].color = new Color(colorAmount, colorAmount, colorAmount);
+                if (SceneManager.GetActiveScene().name == "_FullMap") Tilemaps.tilemaps[i].color = new Color(colorAmount, colorAmount, colorAmount);
 
             }
 
