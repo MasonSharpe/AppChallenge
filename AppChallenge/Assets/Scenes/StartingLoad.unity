@@ -4025,12 +4025,12 @@ MonoBehaviour:
     description: Increased damage on reflected projectiles that hit enemies.
     effectIndex: 3
   - name: Perfect Parry
-    description: Further increases damage bonus on parrying bullets from the tip
-      of the sword.
+    description: Further increases damage bonus on parrying projectiles from the
+      tip of the sword.
     effectIndex: 4
   - name: Parry Rejuvination
-    description: Reduces the cooldown of swinging your sword for every bullet you
-      reflect.
+    description: Reduces the cooldown of swinging your sword for every projectile
+      you reflect.
     effectIndex: 5
   - name: Swift Movement
     description: Increases maximum movement speed.

@@ -17,6 +17,8 @@ public class Map : MonoBehaviour {
 
     private void Start() {
         Fade.instance.exploreMusic.Play(0);
+        Player.instance.canInteract = true;
+        Player.instance.enabled = true;
 
         if (GameManager.savePosition.y == 5) {
             GameManager.SetSpawn();
