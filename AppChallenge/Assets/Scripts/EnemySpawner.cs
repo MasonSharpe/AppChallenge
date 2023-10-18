@@ -14,7 +14,6 @@ public class EnemySpawner : MonoBehaviour
     public Transform bulletParent;
     public Transform xpParent;
     public bool isSpawningEnemies = false;
-    private bool spawnAnArmor = false;
     private int spawnPickupCooldown;
     public float timeStrength;
 

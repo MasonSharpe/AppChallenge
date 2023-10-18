@@ -16,7 +16,6 @@ public class Cutscene : MonoBehaviour
     string currentLine = "";
     int lineIndex = 0;
     int charIndex = 0;
-    float moveTimer = 0;
     public AudioClip music;
     public AudioSource source;
     bool doStuff;
@@ -35,21 +34,20 @@ public class Cutscene : MonoBehaviour
     {
         if (doStuff)
         {
-            moveTimer += Time.deltaTime;
             if (text.text.Length < lines[lineIndex].Length) {
                 text.text = currentLine + lines[lineIndex][charIndex];
                 currentLine = text.text;
                 charIndex++;
             }
-            if (moveTimer > 4.5f || Input.GetKeyDown(KeyCode.Escape)) {
+            if (Input.GetKeyDown(KeyCode.E)) {
+                print(lineIndex);
                 if (lineIndex > lines.Length - 2) {
-
+                    print("assd");
                     doStuff = false;
                     TimerManager.CreateTimer(1, () => { SceneManager.LoadScene("MainMenu"); }, () => { source.volume -= Time.deltaTime; }, "", true);
                 }
                 lineIndex++;
                 charIndex = 0;
-                moveTimer = 0;
                 currentLine = "";
                 text.text = "";
             }
