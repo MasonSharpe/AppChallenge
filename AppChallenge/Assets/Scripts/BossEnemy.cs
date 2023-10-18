@@ -253,7 +253,7 @@ public class BossEnemy : MonoBehaviour{
         {
             Fade.instance.Show(3);
             Player.instance.invincPeriod = 4;
-            TimerManager.CreateTimer(3, () => { SceneManager.LoadScene("EndingCutscene"); });
+            TimerManager.CreateTimer(3, () => { SceneManager.LoadScene("EndingCutscene"); }, () => { Fade.instance.battleMusic.volume -= Time.deltaTime / 3; });
             SfxManager.instance.PlaySoundEffect(2, 0.5f, Random.Range(0.9f, 1.1f));
 
             gameObject.SetActive(false);

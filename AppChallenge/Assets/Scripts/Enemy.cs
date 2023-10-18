@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour{
 
         if (NightCycle.instance.isNight)
         {
-            maxHealth = 15 * (enemyTypeIndex + GameManager.nightsBeaten.FindAll(h => h == true).Count) * (int)(1 + EnemySpawner.instance.timeStrength);
+            maxHealth = 20 * (enemyTypeIndex + GameManager.nightsBeaten.FindAll(h => h == true).Count + 1) * (int)(1 + EnemySpawner.instance.timeStrength);
             enemyTypeIndex = Mathf.Clamp(GameManager.nightsBeaten.FindAll(h => h == true).Count + Random.Range(-2, 1), 0, 2);
 
         }

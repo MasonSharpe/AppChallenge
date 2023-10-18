@@ -46,7 +46,6 @@ public class StartNightNPC : MonoBehaviour
     {
         playerIsClose = (Player.instance.transform.position - transform.position).magnitude < 5;
         bool canInteract = !GameManager.nightsBeaten[nightIndex] && Player.instance.canInteract && !NightCycle.instance.isNight;
-
         text.SetActive(playerIsClose && canInteract);
         if (Input.GetKeyDown(KeyCode.E) && playerIsClose && canInteract)
         {

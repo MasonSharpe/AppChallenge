@@ -14,6 +14,9 @@ public class SettingsMenu : MonoBehaviour
 
     void Start()
     {
+        Fade.instance.battleMusic.Stop();
+        Fade.instance.exploreMusic.Stop();
+
         resolutions = Screen.resolutions; 
 
         resolutionDropdown.ClearOptions();

@@ -16,15 +16,16 @@ public class Map : MonoBehaviour {
     }
 
     private void Start() {
+        Fade.instance.exploreMusic.Play(0);
+
         if (GameManager.savePosition.y == 5) {
             GameManager.SetSpawn();
             
-            Fade.instance.exploreMusic.Play(0);
 
         }
 
 
-
+        NightCycle.instance.dayText.text = "Day " + (GameManager.nightsBeaten.FindAll(h => h == true).Count + 1);
 
         foreach (Enemy enemy in enemyHolder.GetComponentsInChildren<Enemy>()) {
             if (GameManager.saveEnemiesAlive.ToList().Find(element => element == enemy.ID) == 0) enemy.gameObject.SetActive(false);

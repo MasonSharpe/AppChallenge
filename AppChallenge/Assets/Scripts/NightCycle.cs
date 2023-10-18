@@ -42,7 +42,7 @@ public class NightCycle : MonoBehaviour
         {
             for (int i = 0; i < Tilemaps.tilemaps.Length; i++)
             {
-                if (SceneManager.GetActiveScene().name == "_FullMap" && Tilemaps.tilemaps[i] == null) Tilemaps.tilemaps[i].color = new Color(colorAmount, colorAmount, colorAmount);
+                if (SceneManager.GetActiveScene().name == "_FullMap") Tilemaps.tilemaps[i].color = new Color(colorAmount, colorAmount, colorAmount);
 
             }
 
@@ -74,7 +74,7 @@ public class NightCycle : MonoBehaviour
             isNight = true;
             if (!isBoss)
             {
-                nightLength = 50 + 50 * currentNightIndex;
+                nightLength = 40 + 40 * currentNightIndex;
                 EnemySpawner.instance.isSpawningEnemies = true;
                 visual.enabled = true;
                 visual2.enabled = true;
@@ -102,6 +102,7 @@ public class NightCycle : MonoBehaviour
             instance.currentNightIndex++;
             GameManager.nightsBeaten[nightNPC.nightIndex] = true;
             dayText.text = "Day " + (GameManager.nightsBeaten.FindAll(h => h == true).Count + 1);
+            Player.instance.health = Player.instance.maxHealth;
             GameManager.SetSpawn();
         }
         else
