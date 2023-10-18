@@ -49,7 +49,7 @@ public class Sword : MonoBehaviour
 
         if (Input.GetMouseButton(0) && swordCooldown <= 0 && Time.timeScale == 1)
         {
-            SfxManager.instance.PlaySoundEffect(5, 0.5f, Random.Range(0.9f, 1.1f));
+            SfxManager.instance.PlaySoundEffect(5, 0.3f, Random.Range(0.9f, 1.1f));
             swordCooldown = 1f;
             swordActiveTime = 0.2f;
             canDealDamage = true;

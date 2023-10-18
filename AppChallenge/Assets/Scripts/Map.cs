@@ -15,10 +15,13 @@ public class Map : MonoBehaviour {
         instance = this;
     }
 
+
+
     private void Start() {
         Fade.instance.exploreMusic.Play(0);
         Player.instance.canInteract = true;
         Player.instance.enabled = true;
+        Sword.instance.enabled = true;
 
         if (GameManager.savePosition.y == 5) {
             GameManager.SetSpawn();

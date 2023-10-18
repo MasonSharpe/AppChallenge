@@ -67,7 +67,6 @@ public class Player : MonoBehaviour
 
 	private void Update()
 	{
-
         if (Input.GetKeyDown(KeyCode.Tab))
         {
 			transform.position = new Vector3(-90, 172, 0);
@@ -214,7 +213,7 @@ public class Player : MonoBehaviour
             }
 
 			Destroy(collision.gameObject);
-			SfxManager.instance.PlaySoundEffect(6, 1, Random.Range(0.8f, 1.2f));
+			SfxManager.instance.PlaySoundEffect(6, 0.7f, Random.Range(0.8f, 1.2f));
 		}
 
     }

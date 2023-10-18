@@ -89,7 +89,7 @@ public class Enemy : MonoBehaviour{
                 bullet.speed = bulletSpeed;
                 bullet.currentStoredDamage = damage;
 
-                SfxManager.instance.PlaySoundEffect(0, 1, Random.Range(0.9f, 1.1f));
+                SfxManager.instance.PlaySoundEffect(0, 0.5f, Random.Range(0.9f, 1.1f));
 
                 shootCooldown = (enemyTypeIndex == 2) ? 0.25f : (enemyTypeIndex == 1 ? 5 * (1 / (bulletSpeed + 3)) + 0.75f : 1.5f);
             }
@@ -108,7 +108,7 @@ public class Enemy : MonoBehaviour{
         health -= damage;
         if (health <= 0)
         {
-            SfxManager.instance.PlaySoundEffect(7, 0.6f, Random.Range(0.9f, 1.1f));
+            SfxManager.instance.PlaySoundEffect(7, 0.4f, Random.Range(0.9f, 1.1f));
             if (tutorialWall != null)
             {
                 tutorialWall.gameObject.SetActive(false);
@@ -126,7 +126,7 @@ public class Enemy : MonoBehaviour{
         }
         else
         {
-            SfxManager.instance.PlaySoundEffect(2, 0.5f, Random.Range(0.9f, 1.1f));
+            SfxManager.instance.PlaySoundEffect(2, 0.4f, Random.Range(0.9f, 1.1f));
         }
         hurtTimer = 0.1f;
     }
