@@ -12,7 +12,7 @@ public class InitialLoad : MonoBehaviour
         DontDestroyOnLoad(this);
 
 
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("StartingCutscene");
         Fade.instance.battleMusic.Stop();
         Player.instance.enabled = false;
         Sword.instance.enabled = false;

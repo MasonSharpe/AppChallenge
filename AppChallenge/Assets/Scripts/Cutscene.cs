@@ -19,11 +19,13 @@ public class Cutscene : MonoBehaviour
     float moveTimer = 0;
     public AudioClip music;
     public AudioSource source;
+    bool doStuff;
     void Start()
     {
         text.text = "";
        source.clip = music;
         source.Play(0);
+        doStuff = true;
     }
 
 
@@ -31,26 +33,27 @@ public class Cutscene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moveTimer += Time.deltaTime;
-        if (text.text.Length < lines[lineIndex].Length)
+        if (doStuff)
         {
-            text.text = currentLine + lines[lineIndex][charIndex];
-            currentLine = text.text;
-            charIndex++;
-        }
-        if (moveTimer > 4.5f || Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (lineIndex > lines.Length - 2)
-            {
-
-
-                TimerManager.CreateTimer(1, () => { SceneManager.LoadScene("MainMenu"); }, () => { source.volume -= Time.deltaTime; }, "", true);
+            moveTimer += Time.deltaTime;
+            if (text.text.Length < lines[lineIndex].Length) {
+                text.text = currentLine + lines[lineIndex][charIndex];
+                currentLine = text.text;
+                charIndex++;
             }
-            lineIndex++;
-            charIndex = 0;
-            moveTimer = 0;
-            currentLine = "";
-            text.text = "";
+            if (moveTimer > 4.5f || Input.GetKeyDown(KeyCode.Escape)) {
+                if (lineIndex > lines.Length - 2) {
+
+                    doStuff = false;
+                    TimerManager.CreateTimer(1, () => { SceneManager.LoadScene("MainMenu"); }, () => { source.volume -= Time.deltaTime; }, "", true);
+                }
+                lineIndex++;
+                charIndex = 0;
+                moveTimer = 0;
+                currentLine = "";
+                text.text = "";
+            }
         }
+
     }
 }

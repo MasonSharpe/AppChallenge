@@ -17,7 +17,7 @@ public class HealingFountain : MonoBehaviour
         {
             SfxManager.instance.PlaySoundEffect(4, 1);
 
-            Player.instance.health = Player.instance.maxHealth;
+            Player.instance.gameObject.transform.position = new Vector3(123, 85, 0);
             canHealFrom = false;
 
         }
