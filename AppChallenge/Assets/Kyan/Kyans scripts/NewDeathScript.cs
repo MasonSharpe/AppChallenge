@@ -67,12 +67,14 @@ public class NewDeathScript : MonoBehaviour {
     public void Restart() {
 
         Time.timeScale = 1;
+        NightCycle.instance.EndNight(false);
         Fade.instance.SetFilter(false);
 
         canvas.enabled = false;
         GameManager.Respawn();
     }
     public void LoadMainMenu() {
+        NightCycle.instance.EndNight(false);
         Fade.instance.SetFilter(false);
         canvas.enabled = false;
         Time.timeScale = 1;

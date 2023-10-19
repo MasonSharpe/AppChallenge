@@ -18,6 +18,7 @@ public class StartNightNPC : MonoBehaviour
     private void Start()
     {
         border.simulated = false;
+        border.GetComponent<TilemapRenderer>().enabled = false;
         int nights = GameManager.nightsBeaten.FindAll(h => h == true).Count;
         if (nightIndex == 3)
         {
@@ -45,13 +46,14 @@ public class StartNightNPC : MonoBehaviour
     private void Update()
     {
         playerIsClose = (Player.instance.transform.position - transform.position).magnitude < 5;
-        bool canInteract = !GameManager.nightsBeaten[nightIndex] && Player.instance.canInteract && !NightCycle.instance.isNight;
+        bool canInteract = !GameManager.nightsBeaten[nightIndex] && Player.instance.canInteract && !NightCycle.instance.isNight && Time.timeScale == 1;
         text.SetActive(playerIsClose && canInteract);
         if (Input.GetKeyDown(KeyCode.E) && playerIsClose && canInteract)
         {
             NightCycle.instance.border = border;
             NightCycle.instance.nightNPC = this;
             border.simulated = true;
+            border.GetComponent<TilemapRenderer>().enabled = true;
             SfxManager.instance.PlaySoundEffect(4, 1);
             NightCycle.instance.fountain = fountain;
             EnemySpawner.instance.spawnPositions = spawnPositions.GetComponentsInChildren<Transform>();

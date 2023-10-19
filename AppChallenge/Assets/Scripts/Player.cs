@@ -69,7 +69,6 @@ public class Player : MonoBehaviour
 	{
 
 
-
 		if (Input.GetKeyDown(KeyCode.Tab))
         {
 			transform.position = new Vector3(-90, 172, 0);
@@ -156,7 +155,7 @@ public class Player : MonoBehaviour
 		level++;
 		xp = 0;
 		xpSlider.maxValue = Mathf.Pow(level, 1.7f) + 4;
-		health = Mathf.Clamp(health + (maxHealth * (NightCycle.instance.isNight ? 0.1f : 0.25f)), 0, maxHealth);
+		health = Mathf.Clamp(health + (maxHealth * (NightCycle.instance.isNight ? 0.35f : 0.5f)), 0, maxHealth);
 		SfxManager.instance.PlaySoundEffect(4, 1, Random.Range(0.9f, 1.1f));
 		LevelUpScreen.instance.Show();
 	}
@@ -193,7 +192,7 @@ public class Player : MonoBehaviour
 				}
 				else
 				{
-					GetHit(bullet.currentStoredDamage * (1 + GameManager.nightsBeaten.FindAll(h => h == true).Count) * (1 + (collision.GetComponent<Bullet>().bulletType * 0.5f)), 0.05f);
+					GetHit(bullet.currentStoredDamage * (1 + GameManager.nightsBeaten.FindAll(h => h == true).Count * 0.75f), 0.05f);
 				}
 				Destroy(collision.gameObject);
 				cameraShakeTimer = 0.1f;
@@ -228,7 +227,7 @@ public class Player : MonoBehaviour
             if (NightCycle.instance.isBoss) {
                 GetHit(5, 0.2f);
             } else {
-                GetHit(enemy.damage / 2 * (1 + GameManager.nightsBeaten.FindAll(h => h == true).Count) * (1 + (enemy.enemyTypeIndex * 0.5f)), 0.15f);
+                GetHit(enemy.damage / 2 * (1 + GameManager.nightsBeaten.FindAll(h => h == true).Count * 0.5f) * (1 + (enemy.enemyTypeIndex * 0.5f)), 0.15f);
             }
         }
 		//touch pickup

@@ -71,7 +71,7 @@ public class Sword : MonoBehaviour
             Bullet bullet = collision.GetComponent<Bullet>();
             bullet.isFriendly = true;
             bullet.currentStoredDamage = parryDamage * (1 + LevelUpScreen.instance.normalUpgradesGotten[3] * 0.4f);
-            swordCooldown -= LevelUpScreen.instance.normalUpgradesGotten[5] * 0.02f;
+            swordCooldown -= LevelUpScreen.instance.normalUpgradesGotten[5] * 0.1f;
             bullet.rb.velocity = (Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position)).normalized * bulletParrySpeed;
             if (bullet.hitSweetSpot == false) bullet.spriteRenderer.color = new Color(0.58f, 0.47f, 1, 0.83f);
             Player.instance.cameraShakeTimer = 0.1f;

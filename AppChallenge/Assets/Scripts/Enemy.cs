@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour{
     {
         Vector2 distance = Player.instance.transform.position - transform.position;
         float magnitude = distance.magnitude;
-        if (magnitude < 20 || isNighttimeEnemy)
+        if (magnitude < 20)
         {
             Vector2 dir;
             if (enemyTypeIndex == 2)
@@ -78,7 +78,7 @@ public class Enemy : MonoBehaviour{
             randomDirTimer -= Time.deltaTime;
 
             bool shouldShoot;
-            shouldShoot = (!(tutorialWall != null && magnitude > 7)) && (!(NightCycle.instance.isNight && !isNighttimeEnemy));
+            shouldShoot = (!(tutorialWall != null && magnitude > 7.5f)) && (!(NightCycle.instance.isNight && !isNighttimeEnemy));
             if (shootCooldown <= 0 && shouldShoot)
             {
                 Bullet bullet = Instantiate(bulletPrefab, bulletParent).GetComponent<Bullet>();
@@ -137,7 +137,7 @@ public class Enemy : MonoBehaviour{
         if (collision.gameObject.layer == 3)
         {
             GetHit(maxHealth / Mathf.Clamp(4 - (LevelUpScreen.instance.normalUpgradesGotten[0] * 0.4f), 1.1f, 4) + Sword.instance.swingDamage);
-            Sword.instance.swordCooldown -= Mathf.Clamp(LevelUpScreen.instance.normalUpgradesGotten[1] * 0.02f, 0, 0.25f);
+            Sword.instance.swordCooldown -= Mathf.Clamp(LevelUpScreen.instance.normalUpgradesGotten[1] * 0.1f, 0, 0.75f);
 
         }
 

@@ -29,7 +29,8 @@ public class NewPauseMenu : MonoBehaviour
                 Time.timeScale = 0;
                 canvas.enabled = true;
                 Fade.instance.SetFilter(true);
-            } else {
+            } else if (canvas.enabled)
+            {
                 Resume();
             }
             
@@ -50,11 +51,13 @@ public class NewPauseMenu : MonoBehaviour
     {
         Time.timeScale = 1;
         Fade.instance.SetFilter(false);
+        NightCycle.instance.EndNight(false);
         GameManager.Respawn();
     }
     public void LoadMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+        NightCycle.instance.EndNight(false);
         Time.timeScale = 1;
         Fade.instance.SetFilter(false);
         canvas.enabled = false;

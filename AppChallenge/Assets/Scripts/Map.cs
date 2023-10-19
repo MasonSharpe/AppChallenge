@@ -19,6 +19,7 @@ public class Map : MonoBehaviour {
 
     private void Start() {
         Fade.instance.exploreMusic.Play(0);
+        Fade.instance.SetFilter(false);
         Player.instance.canInteract = true;
         Player.instance.enabled = true;
         Sword.instance.enabled = true;

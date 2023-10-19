@@ -8,16 +8,14 @@ public class SettingsMenu : MonoBehaviour
 {
     public AudioMixer audioMixer;
 
-    public Dropdown resolutionDropdown;
 
-    Resolution[] resolutions;
 
     void Start()
     {
         Fade.instance.battleMusic.Stop();
         Fade.instance.exploreMusic.Stop();
 
-        resolutions = Screen.resolutions; 
+        /*resolutions = Screen.resolutions; 
 
         resolutionDropdown.ClearOptions();
 
@@ -44,14 +42,16 @@ public class SettingsMenu : MonoBehaviour
 
     private void Update()
     {
-        Screen.SetResolution(1920, 1080, Screen.fullScreen);
+        
     }
 
     public void SetResolution (int resulationIndex)
     {
         Resolution resolution = resolutions[resulationIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        */
     }
+
     public void SetVolume(float volume)
     {
         audioMixer.SetFloat("Volume", volume);

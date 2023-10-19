@@ -13,7 +13,7 @@ public class HealingFountain : MonoBehaviour
     {
         playerIsClose = (Player.instance.transform.position - transform.position).magnitude < 5;
         text.SetActive(playerIsClose && !NightCycle.instance.isNight);
-        if (Input.GetKeyDown(KeyCode.E) && playerIsClose && !NightCycle.instance.isNight)
+        if (Input.GetKeyDown(KeyCode.E) && playerIsClose && !NightCycle.instance.isNight && Time.timeScale == 1)
         {
             SfxManager.instance.PlaySoundEffect(4, 1);
 

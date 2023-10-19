@@ -15,16 +15,6 @@ public class Pickup : MonoBehaviour
     public PickupType type;
     public int ID;
 
-    private void Start()
-    {
-        switch (type){
-            case PickupType.Health:
-                spriteRenderer.color = Color.green; break;
-            case PickupType.Armor:
-                spriteRenderer.color = Color.yellow; break;
-
-        }
-    }
 
 
 }

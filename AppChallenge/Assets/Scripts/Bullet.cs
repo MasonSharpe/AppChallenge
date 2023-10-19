@@ -64,7 +64,7 @@ public class Bullet : MonoBehaviour
         {
             magnitude += (magnitude * Time.deltaTime * (speed / 4 - 1.5f));
 
-            if (timer < 1)
+            if (timer < 0.6f)
             {
                 newVelocity = (Player.instance.transform.position - transform.position).normalized;
             }else if (isInFirstState)
@@ -73,8 +73,7 @@ public class Bullet : MonoBehaviour
                 isInFirstState = false;
             }
 
-            rb.velocity = magnitude * newVelocity;
-
+            if (rb.velocity.magnitude < 32) rb.velocity = magnitude * newVelocity;
 
             timer += Time.deltaTime;
 

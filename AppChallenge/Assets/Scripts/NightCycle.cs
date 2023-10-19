@@ -21,6 +21,8 @@ public class NightCycle : MonoBehaviour
     public HealingFountain fountain;
     public Rigidbody2D border;
     public StartNightNPC nightNPC;
+    [SerializeField] ParticleSystem dayParticles;
+
 
 
 
@@ -35,6 +37,7 @@ public class NightCycle : MonoBehaviour
 
     private void Update()
     {
+        dayText.text = "Day " + (GameManager.nightsBeaten.FindAll(h => h == true).Count + 1);
         float amount = EnemySpawner.instance.levelTimer / nightLength;
         visual.fillAmount = 1 - amount;
         float colorAmount =  (amount / 2) + 0.25f;
@@ -59,6 +62,7 @@ public class NightCycle : MonoBehaviour
 
     public void SetToNight()
     {
+        dayParticles.Stop();
         Fade.instance.battleMusic.Play(0);
         Fade.instance.Show(0.75f);
         Player.instance.canInteract = false;
@@ -91,47 +95,58 @@ public class NightCycle : MonoBehaviour
 
     public void EndNight(bool victorious)
     {
-        if (SceneManager.GetActiveScene().name == "_FullMap") border.simulated = false;
-        isNight = false;
-        EnemySpawner.instance.isSpawningEnemies = false;
-        EnemySpawner.instance.levelTimer = 0;
-        fountain.canHealFrom = true;
-        visual.enabled = false;
-        visual2.enabled = false;
-        isBoss = false;
-        if (victorious)
+        dayParticles.Play();
+        if (isNight)
         {
-            instance.currentNightIndex++;
-            GameManager.nightsBeaten[nightNPC.nightIndex] = true;
-            dayText.text = "Day " + (GameManager.nightsBeaten.FindAll(h => h == true).Count + 1);
-            Player.instance.health = Player.instance.maxHealth;
-            GameManager.SetSpawn();
-        }
-        else
-        {
-            foreach (Transform bullet in bulletHolder.GetComponentsInChildren<Transform>())
+            Fade.instance.SetFilter(false);
+            if (SceneManager.GetActiveScene().name == "_FullMap")
             {
-                if (bullet.name != "BulletHolder") Destroy(bullet.gameObject);
+                border.simulated = false;
+                border.GetComponent<TilemapRenderer>().enabled = false;
             }
-            foreach (Transform xp in xpHolder.GetComponentsInChildren<Transform>())
+            isNight = false;
+            EnemySpawner.instance.isSpawningEnemies = false;
+            EnemySpawner.instance.levelTimer = 0;
+            fountain.canHealFrom = true;
+            visual.enabled = false;
+            visual2.enabled = false;
+            isBoss = false;
+            if (victorious)
             {
-                if (xp.name != "XPHolder") Destroy(xp.gameObject);
+                instance.currentNightIndex++;
+                GameManager.nightsBeaten[nightNPC.nightIndex] = true;
+                Player.instance.health = Player.instance.maxHealth;
+                GameManager.SetSpawn();
             }
+            else
+            {
+                foreach (Transform bullet in bulletHolder.GetComponentsInChildren<Transform>())
+                {
+                    if (bullet.name != "BulletHolder") Destroy(bullet.gameObject);
+                }
+                foreach (Transform xp in xpHolder.GetComponentsInChildren<Transform>())
+                {
+                    if (xp.name != "XPHolder") Destroy(xp.gameObject);
+                }
+            }
+
+            Player.instance.bossHealth.gameObject.SetActive(false);
+
+            Transform[] enemies = EnemySpawner.instance.gameObject.GetComponentsInChildren<Transform>();
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                if (enemies[i].name != "EnemyHolder") Destroy(enemies[i].gameObject);
+            }
+
+            Fade.instance.exploreMusic.time = 0;
+            TimerManager.CreateTimer(2, () => { if (isNight) Fade.instance.battleMusic.Stop(); }, () =>
+            {
+                Fade.instance.battleMusic.volume -= Time.deltaTime / 2;
+                Fade.instance.exploreMusic.volume += Time.deltaTime / 2;
+            }, "", true);
         }
 
-        Player.instance.bossHealth.gameObject.SetActive(false);
-        Transform[] enemies = EnemySpawner.instance.gameObject.GetComponentsInChildren<Transform>();
-        for (int i = 0; i < enemies.Length; i++)
-        {
-            if (enemies[i].name != "EnemyHolder") Destroy(enemies[i].gameObject);
-        }
 
-        Fade.instance.exploreMusic.time = 0;
-        TimerManager.CreateTimer(2, () => { if (isNight) Fade.instance.battleMusic.Stop(); }, () =>
-        {
-            Fade.instance.battleMusic.volume -= Time.deltaTime / 2;
-            Fade.instance.exploreMusic.volume += Time.deltaTime / 2;
-        }, "", true);
 
     }
 }
