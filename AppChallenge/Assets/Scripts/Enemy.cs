@@ -97,6 +97,7 @@ public class Enemy : MonoBehaviour{
             hurtRenderer.enabled = hurtTimer > 0 ? true : false;
             hurtMask.sprite = spriteRenderer.sprite;
 
+            dir = (Player.instance.transform.position - transform.position).normalized;
             animator.SetFloat("x", dir.x);
             animator.SetFloat("y", dir.y);
         }

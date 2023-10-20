@@ -21,7 +21,6 @@ public class NightCycle : MonoBehaviour
     public HealingFountain fountain;
     public Rigidbody2D border;
     public StartNightNPC nightNPC;
-    [SerializeField] ParticleSystem dayParticles;
 
 
 
@@ -62,7 +61,6 @@ public class NightCycle : MonoBehaviour
 
     public void SetToNight()
     {
-        dayParticles.Stop();
         Fade.instance.battleMusic.Play(0);
         Fade.instance.Show(0.75f);
         Player.instance.canInteract = false;
@@ -95,7 +93,6 @@ public class NightCycle : MonoBehaviour
 
     public void EndNight(bool victorious)
     {
-        dayParticles.Play();
         if (isNight)
         {
             Fade.instance.SetFilter(false);
@@ -110,7 +107,6 @@ public class NightCycle : MonoBehaviour
             fountain.canHealFrom = true;
             visual.enabled = false;
             visual2.enabled = false;
-            isBoss = false;
             if (victorious)
             {
                 instance.currentNightIndex++;
@@ -138,12 +134,19 @@ public class NightCycle : MonoBehaviour
                 if (enemies[i].name != "EnemyHolder") Destroy(enemies[i].gameObject);
             }
 
-            Fade.instance.exploreMusic.time = 0;
-            TimerManager.CreateTimer(2, () => { if (isNight) Fade.instance.battleMusic.Stop(); }, () =>
-            {
-                Fade.instance.battleMusic.volume -= Time.deltaTime / 2;
-                Fade.instance.exploreMusic.volume += Time.deltaTime / 2;
-            }, "", true);
+            if (!isBoss) {
+                Fade.instance.exploreMusic.time = 0;
+                TimerManager.CreateTimer(2, () => { if (isNight) Fade.instance.battleMusic.Stop(); }, () =>
+                {
+                    Fade.instance.battleMusic.volume -= Time.deltaTime / 2;
+                    Fade.instance.exploreMusic.volume += Time.deltaTime / 2;
+                    print("sad");
+                }, "", true);
+            }
+
+
+            isBoss = false;
+
         }
 
 

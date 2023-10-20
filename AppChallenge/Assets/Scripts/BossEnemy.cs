@@ -36,6 +36,8 @@ public class BossEnemy : MonoBehaviour{
 
     private void Start()
     {
+        maxHealth = 1;
+
 
         health = maxHealth;
         alpha = 1;
@@ -189,8 +191,7 @@ public class BossEnemy : MonoBehaviour{
         hurtRenderer.enabled = hurtTimer > 0;
         hurtMask.sprite = spriteRenderer.sprite;
 
-        animator.SetFloat("x", dir.x);
-        animator.SetFloat("y", dir.y);
+
 
 
     }
@@ -253,7 +254,7 @@ public class BossEnemy : MonoBehaviour{
         {
             Fade.instance.Show(3);
             Player.instance.invincPeriod = 4;
-            TimerManager.CreateTimer(3, () => { SceneManager.LoadScene("EndingCutscene"); }, () => { Fade.instance.battleMusic.volume -= Time.deltaTime / 3; });
+            TimerManager.CreateTimer(3, () => { NightCycle.instance.EndNight(true); SceneManager.LoadScene("EndingCutscene"); }, () => { Fade.instance.battleMusic.volume -= Time.deltaTime / 3; }, "", true);
             SfxManager.instance.PlaySoundEffect(2, 0.5f, Random.Range(0.9f, 1.1f));
 
             gameObject.SetActive(false);

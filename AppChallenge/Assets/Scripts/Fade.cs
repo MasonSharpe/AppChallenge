@@ -39,7 +39,9 @@ public class Fade : MonoBehaviour {
         {
             sprite.color = Helper.SetColorAlpla(Color.black, isShowing ? (duration - fadeTimer) / duration : fadeTimer / duration);
             if (!isShowing) exploreMusic.volume = fadeTimer / duration;
-            if (isShowing || duration == 3) battleMusic.volume = (duration - fadeTimer) / duration;
+            if (isShowing && duration != 3) {
+                battleMusic.volume = (duration - fadeTimer) / duration;
+            }
         }
 
     }

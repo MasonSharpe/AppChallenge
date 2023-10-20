@@ -12,6 +12,8 @@ public class SettingsMenu : MonoBehaviour
 
     void Start()
     {
+        Fade.instance.sprite.color = Helper.SetColorAlpla(Color.black, 0);
+
         Fade.instance.battleMusic.Stop();
         Fade.instance.exploreMusic.Stop();
 
