@@ -112,7 +112,7 @@ public class Enemy : MonoBehaviour{
             SfxManager.instance.PlaySoundEffect(7, 0.4f, Random.Range(0.9f, 1.1f));
             if (tutorialWall != null)
             {
-                tutorialWall.gameObject.SetActive(false);
+                tutorialWall.SetActive(false);
             }
             if (NightCycle.instance.isNight || Random.Range(0, 1) == 0 && canDropXp)
             {
@@ -138,7 +138,7 @@ public class Enemy : MonoBehaviour{
         if (collision.gameObject.layer == 3)
         {
             GetHit(maxHealth / Mathf.Clamp(4 - (LevelUpScreen.instance.normalUpgradesGotten[0] * 0.4f), 1.1f, 4) + Sword.instance.swingDamage);
-            Sword.instance.swordCooldown -= Mathf.Clamp(LevelUpScreen.instance.normalUpgradesGotten[1] * 0.1f, 0, 0.75f);
+            Sword.instance.swordCooldown -= Mathf.Clamp(LevelUpScreen.instance.normalUpgradesGotten[1] * 0.075f, 0, 0.75f);
 
         }
 
