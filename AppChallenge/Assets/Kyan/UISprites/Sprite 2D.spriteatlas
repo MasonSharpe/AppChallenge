@@ -15,7 +15,7 @@ SpriteAtlas:
       compressionQuality: 50
       maxTextureSize: 2048
       textureCompression: 0
-      filterMode: 0
+      filterMode: 1
       generateMipMaps: 0
       readable: 0
       crunchedCompression: 0
@@ -26,7 +26,7 @@ SpriteAtlas:
       m_MaxTextureSize: 2048
       m_ResizeAlgorithm: 0
       m_TextureFormat: -1
-      m_TextureCompression: 0
+      m_TextureCompression: 1
       m_CompressionQuality: 50
       m_CrunchedCompression: 0
       m_AllowsAlphaSplitting: 0
@@ -45,9 +45,9 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 2800000, guid: 185b8f78a4e3c944a937010b079dbe2a, type: 3}
-    - {fileID: 2800000, guid: 31bd18e83f4f9ca40be8b0baab7d5a78, type: 3}
     - {fileID: 2800000, guid: ef2879bed085b3d49a132fcb16a57041, type: 3}
     - {fileID: 2800000, guid: b78cbeec26ddc3a41b44116dca14702d, type: 3}
+    - {fileID: 2800000, guid: 31bd18e83f4f9ca40be8b0baab7d5a78, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -55,9 +55,89 @@ SpriteAtlas:
   m_PackedSprites:
   - {fileID: 1325215201, guid: 185b8f78a4e3c944a937010b079dbe2a, type: 3}
   - {fileID: -1914171794, guid: 185b8f78a4e3c944a937010b079dbe2a, type: 3}
+  - {fileID: -158528917, guid: 31bd18e83f4f9ca40be8b0baab7d5a78, type: 3}
+  - {fileID: 2026997076, guid: 31bd18e83f4f9ca40be8b0baab7d5a78, type: 3}
+  - {fileID: 2036708210, guid: 31bd18e83f4f9ca40be8b0baab7d5a78, type: 3}
+  - {fileID: -801969314, guid: 31bd18e83f4f9ca40be8b0baab7d5a78, type: 3}
+  - {fileID: 519584435, guid: 31bd18e83f4f9ca40be8b0baab7d5a78, type: 3}
+  - {fileID: 1244265960, guid: 31bd18e83f4f9ca40be8b0baab7d5a78, type: 3}
+  - {fileID: 935490539, guid: 31bd18e83f4f9ca40be8b0baab7d5a78, type: 3}
+  - {fileID: 90103121, guid: 31bd18e83f4f9ca40be8b0baab7d5a78, type: 3}
+  - {fileID: 1460575372, guid: 31bd18e83f4f9ca40be8b0baab7d5a78, type: 3}
+  - {fileID: 307659491, guid: 31bd18e83f4f9ca40be8b0baab7d5a78, type: 3}
+  - {fileID: 105835262, guid: 31bd18e83f4f9ca40be8b0baab7d5a78, type: 3}
+  - {fileID: 1051494006, guid: 31bd18e83f4f9ca40be8b0baab7d5a78, type: 3}
+  - {fileID: 621580570, guid: 31bd18e83f4f9ca40be8b0baab7d5a78, type: 3}
+  - {fileID: 1158716361, guid: 31bd18e83f4f9ca40be8b0baab7d5a78, type: 3}
+  - {fileID: 118585395, guid: b78cbeec26ddc3a41b44116dca14702d, type: 3}
+  - {fileID: -1372612232, guid: b78cbeec26ddc3a41b44116dca14702d, type: 3}
+  - {fileID: -881471899, guid: b78cbeec26ddc3a41b44116dca14702d, type: 3}
+  - {fileID: 1915155213, guid: b78cbeec26ddc3a41b44116dca14702d, type: 3}
+  - {fileID: 248063138, guid: b78cbeec26ddc3a41b44116dca14702d, type: 3}
+  - {fileID: -545906542, guid: b78cbeec26ddc3a41b44116dca14702d, type: 3}
+  - {fileID: -251665774, guid: b78cbeec26ddc3a41b44116dca14702d, type: 3}
+  - {fileID: -1610186304, guid: b78cbeec26ddc3a41b44116dca14702d, type: 3}
+  - {fileID: -634275075, guid: b78cbeec26ddc3a41b44116dca14702d, type: 3}
+  - {fileID: -1313940729, guid: b78cbeec26ddc3a41b44116dca14702d, type: 3}
+  - {fileID: -1757507473, guid: b78cbeec26ddc3a41b44116dca14702d, type: 3}
+  - {fileID: -422302193, guid: b78cbeec26ddc3a41b44116dca14702d, type: 3}
+  - {fileID: 411236264, guid: ef2879bed085b3d49a132fcb16a57041, type: 3}
+  - {fileID: 146973174, guid: ef2879bed085b3d49a132fcb16a57041, type: 3}
+  - {fileID: -834656328, guid: ef2879bed085b3d49a132fcb16a57041, type: 3}
+  - {fileID: -1598962729, guid: ef2879bed085b3d49a132fcb16a57041, type: 3}
+  - {fileID: -567669159, guid: ef2879bed085b3d49a132fcb16a57041, type: 3}
+  - {fileID: -129191836, guid: ef2879bed085b3d49a132fcb16a57041, type: 3}
+  - {fileID: 1219076973, guid: ef2879bed085b3d49a132fcb16a57041, type: 3}
+  - {fileID: 689195105, guid: ef2879bed085b3d49a132fcb16a57041, type: 3}
+  - {fileID: 2023775269, guid: ef2879bed085b3d49a132fcb16a57041, type: 3}
+  - {fileID: 1485696986, guid: ef2879bed085b3d49a132fcb16a57041, type: 3}
+  - {fileID: -1631545042, guid: ef2879bed085b3d49a132fcb16a57041, type: 3}
+  - {fileID: -1847617954, guid: ef2879bed085b3d49a132fcb16a57041, type: 3}
+  - {fileID: 302472129, guid: ef2879bed085b3d49a132fcb16a57041, type: 3}
+  - {fileID: -109250783, guid: ef2879bed085b3d49a132fcb16a57041, type: 3}
   m_PackedSpriteNamesToIndex:
   - on off swicth_0
   - on off swicth_1
+  - snow floor_10
+  - snow floor_11
+  - snow floor_12
+  - snow floor_13
+  - snow floor_5
+  - snow floor_4
+  - snow floor_7
+  - snow floor_6
+  - snow floor_1
+  - snow floor_0
+  - snow floor_3
+  - snow floor_2
+  - snow floor_9
+  - snow floor_8
+  - dead dry grass_5
+  - dead dry grass_4
+  - dead dry grass_7
+  - dead dry grass_6
+  - dead dry grass_1
+  - dead dry grass_0
+  - dead dry grass_3
+  - dead dry grass_2
+  - dead dry grass_10
+  - dead dry grass_11
+  - dead dry grass_9
+  - dead dry grass_8
+  - ForestFloor_13
+  - ForestFloor_10
+  - ForestFloor_11
+  - ForestFloor_9
+  - ForestFloor_8
+  - ForestFloor_3
+  - ForestFloor_2
+  - ForestFloor_1
+  - ForestFloor_0
+  - ForestFloor_7
+  - ForestFloor_6
+  - ForestFloor_5
+  - ForestFloor_4
+  - ForestFloor_12
   m_RenderDataMap: {}
   m_Tag: Sprite 2D
   m_IsVariant: 0
