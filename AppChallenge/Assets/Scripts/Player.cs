@@ -69,10 +69,10 @@ public class Player : MonoBehaviour
 	{
 
 
-		if (Input.GetKeyDown(KeyCode.Tab))
-        {
-			transform.position = new Vector3(-90, 172, 0);
-        }
+		//if (Input.GetKeyDown(KeyCode.Tab))
+        //{
+		//	transform.position = new Vector3(-90, 172, 0);
+        //}
 
 		invincPeriod -= Time.deltaTime;
 		cameraShakeTimer -= Time.unscaledDeltaTime;
@@ -192,7 +192,7 @@ public class Player : MonoBehaviour
 				}
 				else
 				{
-					GetHit(bullet.currentStoredDamage * (1 + GameManager.nightsBeaten.FindAll(h => h == true).Count * 0.75f), 0.05f);
+					GetHit(bullet.currentStoredDamage * (1 + GameManager.nightsBeaten.FindAll(h => h == true).Count * 0.7f), 0.05f);
 				}
 				Destroy(collision.gameObject);
 				cameraShakeTimer = 0.1f;

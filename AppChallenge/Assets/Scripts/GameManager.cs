@@ -44,10 +44,10 @@ public class GameManager : MonoBehaviour
         NightCycle.instance.dayText.text = "Day " + (nightsBeaten.FindAll(h => h == true).Count + 1);
     }
 
-    public static void SetSpawn()
+    public static void SetSpawn(bool setsPosition = true)
     {
         saveHealth = Player.instance.health;
-        savePosition = Player.instance.gameObject.transform.position;
+        if (setsPosition) savePosition = Player.instance.gameObject.transform.position;
         saveLevel = Player.instance.level;
         saveXP = Player.instance.xp;
         saveArmor = Player.instance.armor;

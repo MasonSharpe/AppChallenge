@@ -112,7 +112,7 @@ public class NightCycle : MonoBehaviour
                 instance.currentNightIndex++;
                 GameManager.nightsBeaten[nightNPC.nightIndex] = true;
                 Player.instance.health = Player.instance.maxHealth;
-                GameManager.SetSpawn();
+                GameManager.SetSpawn(false);
             }
             else
             {
