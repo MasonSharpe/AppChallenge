@@ -76,6 +76,6 @@ public class SettingsMenu : MonoBehaviour
         GameManager.saveUpgrades = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         GameManager.saveEnemiesAlive = new int[0];
         GameManager.savePickupsLeft = new int[0];
-        GameManager.saveNightsBeaten = new();
+        GameManager.saveNightsBeaten = new List<bool>() { false, false, false, false };
     }
 }
