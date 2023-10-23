@@ -36,7 +36,6 @@ public class BossEnemy : MonoBehaviour{
 
     private void Start()
     {
-        maxHealth = 1;
 
 
         health = maxHealth;

@@ -152,6 +152,7 @@ public class Player : MonoBehaviour
 
 	private void LevelUp()
 	{
+		invincPeriod = 1;
 		level++;
 		xp = 0;
 		xpSlider.maxValue = Mathf.Pow(level, 1.7f) + 4;

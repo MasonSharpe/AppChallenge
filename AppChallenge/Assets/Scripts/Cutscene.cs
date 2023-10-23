@@ -25,6 +25,7 @@ public class Cutscene : MonoBehaviour
        source.clip = music;
         source.Play(0);
         doStuff = true;
+        Cursor.visible = false;
     }
 
 
@@ -53,7 +54,7 @@ public class Cutscene : MonoBehaviour
                 if (lineIndex > lines.Length - 2)
                 {
                     doStuff = false;
-                    TimerManager.CreateTimer(1, () => { SceneManager.LoadScene("MainMenu"); }, () => { source.volume -= Time.deltaTime; }, "", true);
+                    TimerManager.CreateTimer(1, () => { Cursor.visible = true; SceneManager.LoadScene("MainMenu"); }, () => { source.volume -= Time.deltaTime; }, "", true);
                 }
                 lineIndex++;
                 charIndex = 0;
