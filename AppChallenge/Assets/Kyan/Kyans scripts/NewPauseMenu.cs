@@ -22,7 +22,7 @@ public class NewPauseMenu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name == "_FullMap")
         {
             if (Time.timeScale > 0)
             {

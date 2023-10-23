@@ -12,7 +12,7 @@ public class InitialLoad : MonoBehaviour
     private void Start()
     {
         DontDestroyOnLoad(this);
-
+        Cursor.visible = false;
 
         SceneManager.LoadScene("StartingCutscene");
         Fade.instance.battleMusic.Stop();
