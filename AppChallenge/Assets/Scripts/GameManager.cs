@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
         Player.instance.gameObject.transform.position = savePosition;
         Player.instance.xp = saveXP;
         Player.instance.level = saveLevel;
-        Player.instance.health = saveHealth;
+        Player.instance.health = Mathf.Clamp(saveHealth, Player.instance.maxHealth / 2, Player.instance.maxHealth);
         Player.instance.armor = saveArmor;
         LevelUpScreen.instance.normalUpgradesGotten = (int[])saveUpgrades.Clone();
 

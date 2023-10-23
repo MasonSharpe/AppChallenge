@@ -30,7 +30,7 @@ public class Cutscene : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (doStuff)
         {
@@ -39,8 +39,19 @@ public class Cutscene : MonoBehaviour
                 currentLine = text.text;
                 charIndex++;
             }
-            if (Input.GetKeyDown(KeyCode.E)) {
-                if (lineIndex > lines.Length - 2) {
+
+        }
+
+    }
+
+    private void Update()
+    {
+        if (doStuff)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (lineIndex > lines.Length - 2)
+                {
                     doStuff = false;
                     TimerManager.CreateTimer(1, () => { SceneManager.LoadScene("MainMenu"); }, () => { source.volume -= Time.deltaTime; }, "", true);
                 }
@@ -50,6 +61,5 @@ public class Cutscene : MonoBehaviour
                 text.text = "";
             }
         }
-
     }
 }

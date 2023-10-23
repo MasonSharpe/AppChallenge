@@ -57,7 +57,7 @@ public class Sword : MonoBehaviour
             animator.Play("SwordSwing");
         }
 
-        transform.localScale = (Vector3.one * 0.7f) + (0.15f * LevelUpScreen.instance.normalUpgradesGotten[2] * Vector3.one);
+        transform.localScale = (Vector3.one * 0.75f) + (0.15f * LevelUpScreen.instance.normalUpgradesGotten[2] * Vector3.one);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
