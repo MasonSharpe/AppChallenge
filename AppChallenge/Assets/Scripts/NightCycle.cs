@@ -61,6 +61,7 @@ public class NightCycle : MonoBehaviour
 
     public void SetToNight()
     {
+        Fade.instance.battleMusic.volume = 1;
         Fade.instance.battleMusic.Play(0);
         Fade.instance.Show(0.75f);
         Player.instance.canInteract = false;
