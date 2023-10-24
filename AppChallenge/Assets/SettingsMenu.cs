@@ -77,5 +77,7 @@ public class SettingsMenu : MonoBehaviour
         GameManager.saveEnemiesAlive = new int[0];
         GameManager.savePickupsLeft = new int[0];
         GameManager.saveNightsBeaten = new List<bool>() { false, false, false, false };
+
+        NightCycle.instance.currentNightIndex = 0;
     }
 }
