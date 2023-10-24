@@ -247,18 +247,22 @@ public class BossEnemy : MonoBehaviour{
 
     private void GetHit(float damage)
     {
-        health -= damage;
-        SfxManager.instance.PlaySoundEffect(7, 0.6f, Random.Range(0.9f, 1.1f));
-        if (health <= 0)
+        if (canAttack)
         {
-            Fade.instance.Show(3);
-            Player.instance.invincPeriod = 4;
-            TimerManager.CreateTimer(3, () => { NightCycle.instance.EndNight(true); SceneManager.LoadScene("EndingCutscene"); }, () => { Fade.instance.battleMusic.volume -= Time.deltaTime / 3; }, "", true);
-            SfxManager.instance.PlaySoundEffect(2, 0.5f, Random.Range(0.9f, 1.1f));
+            health -= damage;
+            SfxManager.instance.PlaySoundEffect(7, 0.6f, Random.Range(0.9f, 1.1f));
+            if (health <= 0)
+            {
+                Fade.instance.Show(3);
+                Player.instance.invincPeriod = 4;
+                TimerManager.CreateTimer(3, () => { NightCycle.instance.EndNight(true); SceneManager.LoadScene("EndingCutscene"); }, () => { Fade.instance.battleMusic.volume -= Time.deltaTime / 3; }, "", true);
+                SfxManager.instance.PlaySoundEffect(2, 0.5f, Random.Range(0.9f, 1.1f));
 
-            gameObject.SetActive(false);
+                gameObject.SetActive(false);
+            }
+            hurtTimer = 0.1f;
         }
-        hurtTimer = 0.1f;
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
