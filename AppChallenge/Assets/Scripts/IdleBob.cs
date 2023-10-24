@@ -18,7 +18,7 @@ public class IdleBob : MonoBehaviour
     private void Update()
     {
         totalFrameCount += (useUnscaled ? Time.unscaledDeltaTime : Time.deltaTime) * 60;
-        affected.localPosition = new Vector3(0, 0.8f * Mathf.Sin(totalFrameCount / 165f * offset), 0) * strength;
+        affected.localPosition = new Vector3(0, 0.6f * Mathf.Sin(totalFrameCount / 165f * offset), 0) * strength;
     }
 
 
