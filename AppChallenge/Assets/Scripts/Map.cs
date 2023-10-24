@@ -18,6 +18,7 @@ public class Map : MonoBehaviour {
 
 
     private void Start() {
+        Fade.instance.battleMusic.volume = 0;
         Fade.instance.exploreMusic.volume = 1;
         Fade.instance.exploreMusic.Play(0);
         Fade.instance.SetFilter(false);

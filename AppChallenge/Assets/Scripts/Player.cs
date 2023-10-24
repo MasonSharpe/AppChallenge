@@ -165,7 +165,7 @@ public class Player : MonoBehaviour
     {
 		if (this.invincPeriod < 0) {
             health -= Mathf.Clamp(damage * (1 - armor / 30f), 0.75f, 1000);
-            this.invincPeriod = invincPeriod * (1 + LevelUpScreen.instance.normalUpgradesGotten[8] * 0.5f);
+            this.invincPeriod = invincPeriod * (1 + LevelUpScreen.instance.normalUpgradesGotten[8] * 0.3f);
             SfxManager.instance.PlaySoundEffect(3, 1, Random.Range(0.9f, 1.1f));
 
             if (health <= 0) {
