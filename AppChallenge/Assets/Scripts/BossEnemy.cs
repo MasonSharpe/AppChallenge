@@ -176,7 +176,7 @@ public class BossEnemy : MonoBehaviour{
         if (phase == 3)
         {
             transform.localPosition = Quaternion.Euler(0, 0, phaseRotation) * Vector2.one * 17 + new Vector3(21, 0, 0);
-            phaseRotation += (40 + Player.instance.rb.velocity.magnitude * 1.5f) * Time.deltaTime;
+            phaseRotation += (15 + Player.instance.rb.velocity.magnitude * 2.5f) * Time.deltaTime;
         }else if (phase == 4)
         {
             rb.velocity = moveSpeed / 2 * dir;

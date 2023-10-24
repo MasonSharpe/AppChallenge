@@ -140,7 +140,6 @@ public class NightCycle : MonoBehaviour
                 {
                     Fade.instance.battleMusic.volume -= Time.deltaTime / 2;
                     Fade.instance.exploreMusic.volume += Time.deltaTime / 2;
-                    print("sad");
                 }, "", true);
             }
 
