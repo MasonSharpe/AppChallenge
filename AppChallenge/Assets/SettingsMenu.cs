@@ -17,6 +17,8 @@ public class SettingsMenu : MonoBehaviour
         Fade.instance.battleMusic.Stop();
         Fade.instance.exploreMusic.Stop();
 
+        Sword.instance.gameObject.transform.position += Vector3.right * 100;
+
         /*resolutions = Screen.resolutions; 
 
         resolutionDropdown.ClearOptions();

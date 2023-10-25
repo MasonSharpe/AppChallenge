@@ -164,7 +164,9 @@ public class Player : MonoBehaviour
 	private void GetHit(float damage, float invincPeriod)
     {
 		if (this.invincPeriod < 0) {
-            health -= Mathf.Clamp(damage * (1 - armor / 30f), 0.75f, 1000);
+			float amount = Mathf.Clamp(damage * (1 - armor / 30f), 0.75f, 1000);
+			if (armor > 30) amount = Mathf.Clamp(amount - (armor - 30) * 0.01f, 0.1f, 1000);
+			health -= amount;
             this.invincPeriod = invincPeriod * (1 + LevelUpScreen.instance.normalUpgradesGotten[8] * 0.3f);
             SfxManager.instance.PlaySoundEffect(3, 1, Random.Range(0.9f, 1.1f));
 

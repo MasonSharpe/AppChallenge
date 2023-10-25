@@ -16,6 +16,7 @@ public class BossEnemy : MonoBehaviour{
     private float phaseRotation = 0;
 
     private float hurtTimer = 0;
+    private float invincibilityPeriod = 0;
     public float maxHealth;
     public float health;
     public Transform bulletParent;
@@ -45,7 +46,7 @@ public class BossEnemy : MonoBehaviour{
 
     private void Update()
     {
-
+        invincibilityPeriod -= Time.deltaTime;
         shootCooldown -= Time.deltaTime;
         hurtTimer -= Time.deltaTime;
 
@@ -81,7 +82,7 @@ public class BossEnemy : MonoBehaviour{
         Vector2 dir = (Player.instance.transform.position - transform.position).normalized;
 
 
-        if (shootCooldown <= 0 && canAttack)
+        if (shootCooldown <= 0 && invincibilityPeriod < 0)
         {
             switch (phase)
             {
@@ -197,6 +198,7 @@ public class BossEnemy : MonoBehaviour{
 
     private void TriggerPhase(int phase)
     {
+        invincibilityPeriod = 1;
         if (phase == 2)
         {
             alphaDirection = -1;
@@ -270,7 +272,7 @@ public class BossEnemy : MonoBehaviour{
         //hit by sword
         if (collision.gameObject.layer == 3)
         {
-            GetHit(maxHealth / Mathf.Clamp(1500 - (LevelUpScreen.instance.normalUpgradesGotten[0] * 100f), 50, 1500) + Sword.instance.swingDamage + 1);
+            GetHit(maxHealth / Mathf.Clamp(1500 - (LevelUpScreen.instance.normalUpgradesGotten[0] * 150f), 50, 1500) + Sword.instance.swingDamage + 1);
             Sword.instance.swordCooldown -= Mathf.Clamp(LevelUpScreen.instance.normalUpgradesGotten[1] * 0.02f, 0, 0.25f);
 
         }
