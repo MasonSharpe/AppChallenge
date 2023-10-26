@@ -55,6 +55,8 @@ SpriteAtlas:
   m_PackedSprites:
   - {fileID: 1325215201, guid: 185b8f78a4e3c944a937010b079dbe2a, type: 3}
   - {fileID: -1914171794, guid: 185b8f78a4e3c944a937010b079dbe2a, type: 3}
+  - {fileID: -1840738001, guid: 31bd18e83f4f9ca40be8b0baab7d5a78, type: 3}
+  - {fileID: -1183943952, guid: 31bd18e83f4f9ca40be8b0baab7d5a78, type: 3}
   - {fileID: -158528917, guid: 31bd18e83f4f9ca40be8b0baab7d5a78, type: 3}
   - {fileID: 2026997076, guid: 31bd18e83f4f9ca40be8b0baab7d5a78, type: 3}
   - {fileID: 2036708210, guid: 31bd18e83f4f9ca40be8b0baab7d5a78, type: 3}
@@ -98,6 +100,8 @@ SpriteAtlas:
   m_PackedSpriteNamesToIndex:
   - on off swicth_0
   - on off swicth_1
+  - snow floor_14
+  - snow floor_15
   - snow floor_10
   - snow floor_11
   - snow floor_12
